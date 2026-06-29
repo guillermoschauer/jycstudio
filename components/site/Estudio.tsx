@@ -1,6 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { STUDIO_CHIPS } from "@/lib/site";
+import { STUDIO_CHIPS, TEAM } from "@/lib/site";
 
 export function Estudio() {
   return (
@@ -17,31 +17,80 @@ export function Estudio() {
           </h2>
         </Reveal>
 
-        {/* Proof in progress */}
-        <Reveal delay={0.05}>
-          <div className="mt-12 rounded-2xl border border-hairline bg-paper p-8 sm:p-10">
-            <p className="overline flex items-center gap-2.5 text-champagne">
-              <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-operational-green" />
-              Prueba en construcción
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          {/* Human note + signature */}
+          <Reveal delay={0.05}>
+            <p className="max-w-xl text-pretty font-sans text-xl leading-relaxed text-charcoal sm:text-2xl">
+              Un estudio chico, a propósito. No vas a pasar por un comercial y
+              después por otro equipo: la misma persona que entiende tu
+              operación es la que diseña y construye la herramienta.
             </p>
-            <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-ink-soft">
-              Estamos construyendo productos propios y trabajando junto a negocios
-              reales. Este espacio va a reunir resultados, aprendizajes y
-              testimonios a medida que los proyectos entren en operación.
+            <p className="mt-5 max-w-xl text-pretty text-lg leading-relaxed text-ink-soft">
+              Trabajamos cerca, en contexto real, y nos quedamos cuando el
+              producto entra en operación. Escribís y te responde quien después
+              construye.
             </p>
 
-            <ul className="mt-8 flex flex-wrap gap-2">
-              {STUDIO_CHIPS.map((chip) => (
-                <li
-                  key={chip}
-                  className="rounded-full border border-hairline bg-ivory px-3.5 py-1.5 font-mono text-xs tracking-wide text-ink-soft"
-                >
-                  {chip}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
+            {/* Signature */}
+            <div className="mt-9 flex items-center gap-4">
+              <div className="flex -space-x-2.5">
+                {TEAM.map((m) =>
+                  m.photo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      key={m.name}
+                      src={m.photo}
+                      alt={m.name}
+                      className="h-12 w-12 rounded-full border-2 border-ivory object-cover"
+                    />
+                  ) : (
+                    <div
+                      key={m.name}
+                      aria-hidden
+                      className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-ivory bg-charcoal font-sans text-sm font-semibold tracking-wide text-ivory"
+                    >
+                      {m.initials}
+                    </div>
+                  ),
+                )}
+              </div>
+              <div className="space-y-0.5">
+                {TEAM.map((m) => (
+                  <p key={m.name} className="font-sans text-sm leading-snug">
+                    <span className="font-semibold text-charcoal">{m.name}</span>
+                    <span className="text-stone"> · {m.role}</span>
+                  </p>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          {/* What we're working on */}
+          <Reveal delay={0.1}>
+            <div className="rounded-2xl border border-hairline bg-paper p-8 sm:p-9">
+              <p className="overline flex items-center gap-2.5 text-champagne">
+                <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-operational-green" />
+                En qué andamos
+              </p>
+              <p className="mt-5 text-pretty leading-relaxed text-ink-soft">
+                Productos propios y trabajos en curso junto a negocios reales.
+                Vamos a ir sumando resultados, aprendizajes y testimonios a
+                medida que los proyectos entran en operación.
+              </p>
+
+              <ul className="mt-7 flex flex-wrap gap-2">
+                {STUDIO_CHIPS.map((chip) => (
+                  <li
+                    key={chip}
+                    className="rounded-full border border-hairline bg-ivory px-3.5 py-1.5 font-mono text-xs tracking-wide text-ink-soft"
+                  >
+                    {chip}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
       </Container>
     </section>
   );

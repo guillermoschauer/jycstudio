@@ -45,7 +45,16 @@ function CaseRow({ item, reversed }: { item: CaseItem; reversed: boolean }) {
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
           <p className="overline text-stone">{item.eyebrow}</p>
           {item.badge && (
-            <span className="rounded-full border border-champagne/40 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-champagne">
+            <span
+              className={cn(
+                "rounded-full border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em]",
+                item.badgeTone === "live"
+                  ? "border-operational-green/50 text-operational-green"
+                  : item.badgeTone === "dev"
+                    ? "border-stone/40 text-stone"
+                    : "border-champagne/40 text-champagne",
+              )}
+            >
               {item.badge}
             </span>
           )}
@@ -86,8 +95,13 @@ function CaseRow({ item, reversed }: { item: CaseItem; reversed: boolean }) {
           </ul>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
           <ArrowLink href={item.href}>{item.cta}</ArrowLink>
+          {item.liveUrl && (
+            <ArrowLink href={item.liveUrl} external>
+              Visitar sitio
+            </ArrowLink>
+          )}
         </div>
       </Reveal>
 

@@ -10,12 +10,11 @@ export const SITE = {
     "Productos digitales, sistemas y experiencias web para problemas reales.",
   description:
     "Sistemas, SaaS y experiencias web para ordenar operaciones, comunicar mejor y crecer.",
-  url: "https://indievibe.studio",
-  email: "hola@indievibe.studio",
+  url: "https://www.jycstudio.com.ar",
+  email: "hola@jycstudio.com.ar",
 
   // WhatsApp link is built from this number (international format, no symbols).
-  // Replace with the studio's real line when available.
-  whatsappNumber: "5492230000000",
+  whatsappNumber: "5492235216745",
   whatsappMessage:
     "Hola JYC Studio, tengo un problema que debería funcionar mejor.",
 } as const;
@@ -92,6 +91,10 @@ export type CaseItem = {
   /** Visual surface tone for framing (affects border/shadow). */
   tone: "light" | "dark";
   badge?: string; // optional status pill, e.g. "PROYECTO EN DESARROLLO"
+  /** Status tone driving badge color: live = green, soon/dev = muted. */
+  badgeTone?: "live" | "soon" | "dev";
+  /** Live, operational product URL (external). */
+  liveUrl?: string;
 };
 
 export const CASES: CaseItem[] = [
@@ -116,39 +119,14 @@ export const CASES: CaseItem[] = [
     href: "/casos/sacaturno",
     visual: "shot",
     tone: "light",
+    badge: "Producto en uso",
+    badgeTone: "live",
+    liveUrl: "https://sacaturno.app",
     image: {
       src: "/case-studies/sacaturno.png",
       alt: "Pantalla de sacaturno.app: agenda semanal de turnos para un salón de estética.",
       width: 1167,
       height: 781,
-    },
-  },
-  {
-    id: "coparentar",
-    eyebrow: "Producto digital · Familias",
-    title: "Coparentar",
-    problemLabel: "Problema",
-    problem:
-      "Padres y madres que coparentan coordinaban agenda, gastos y acuerdos en chats dispersos.",
-    solutionLabel: "Solución",
-    solution:
-      "Un producto que ordena calendario compartido, gastos y comunicación en un lugar claro y neutral.",
-    benefitsLabel: "Beneficios",
-    benefits: [
-      "Menos fricción y malentendidos en la coordinación",
-      "Acuerdos y gastos registrados y a la vista",
-      "Una sola fuente de verdad para ambas partes",
-    ],
-    microcopy: "Producto propio · agenda, gastos y documentos",
-    cta: "Ver caso completo",
-    href: "/casos/coparentar",
-    visual: "shot",
-    tone: "dark",
-    image: {
-      src: "/case-studies/coparentar.png",
-      alt: "Pantalla de Coparentar: app de crianza compartida con agenda, gastos y movimientos.",
-      width: 1893,
-      height: 818,
     },
   },
   {
@@ -172,11 +150,45 @@ export const CASES: CaseItem[] = [
     href: "/casos/agendallena",
     visual: "shot",
     tone: "dark",
+    badge: "Producto en uso",
+    badgeTone: "live",
+    liveUrl: "https://agendallena.com.ar",
     image: {
       src: "/case-studies/agendallena.png",
       alt: "Pantalla de agendallena: agenda semanal de turnos para profesionales de la salud.",
       width: 1202,
       height: 750,
+    },
+  },
+  {
+    id: "coparentar",
+    eyebrow: "Producto digital · Familias",
+    title: "Coparentar",
+    problemLabel: "Problema",
+    problem:
+      "Padres y madres que coparentan coordinaban agenda, gastos y acuerdos en chats dispersos.",
+    solutionLabel: "Solución",
+    solution:
+      "Un producto que ordena calendario compartido, gastos y comunicación en un lugar claro y neutral.",
+    benefitsLabel: "Beneficios",
+    benefits: [
+      "Menos fricción y malentendidos en la coordinación",
+      "Acuerdos y gastos registrados y a la vista",
+      "Una sola fuente de verdad para ambas partes",
+    ],
+    microcopy: "Producto propio · agenda, gastos y documentos",
+    cta: "Ver caso completo",
+    href: "/casos/coparentar",
+    visual: "shot",
+    tone: "dark",
+    badge: "Producto en uso",
+    badgeTone: "live",
+    liveUrl: "https://coparentar.com",
+    image: {
+      src: "/case-studies/coparentar.png",
+      alt: "Pantalla de Coparentar: app de crianza compartida con agenda, gastos y movimientos.",
+      width: 1893,
+      height: 818,
     },
   },
   {
@@ -201,6 +213,9 @@ export const CASES: CaseItem[] = [
     href: "/casos/bicitando",
     visual: "shot",
     tone: "dark",
+    badge: "Sitio en vivo",
+    badgeTone: "live",
+    liveUrl: "https://bicitandomardel.com",
     image: {
       src: "/case-studies/bicitando.png",
       alt: "Landing de Bicitando Mardel: escapada a Sierra de los Padres al atardecer.",
@@ -210,7 +225,7 @@ export const CASES: CaseItem[] = [
   },
   {
     id: "reservacancha",
-    eyebrow: "ReservaCancha.app · En desarrollo · Demo funcional",
+    eyebrow: "Reservas deportivas · Clubes y complejos",
     title: "ReservaCancha.app",
     problemLabel: "Problema",
     problem:
@@ -224,11 +239,13 @@ export const CASES: CaseItem[] = [
       "El complejo gestiona su disponibilidad desde un panel",
       "Menos llamadas, menos errores, más canchas ocupadas",
     ],
-    microcopy: "Reservas deportivas · disponibilidad en tiempo real",
+    microcopy: "Demo funcional · a semanas de lanzar",
     cta: "Ver caso",
     href: "/casos/reservacancha",
     visual: "shot",
     tone: "dark",
+    badge: "A semanas de lanzar",
+    badgeTone: "soon",
     image: {
       src: "/case-studies/reservacancha.png",
       alt: "Landing de ReservaCancha.app: búsqueda de canchas deportivas en tiempo real.",
@@ -258,6 +275,7 @@ export const CASES: CaseItem[] = [
     visual: "mockup",
     tone: "dark",
     badge: "Proyecto en desarrollo",
+    badgeTone: "dev",
   },
 ];
 
@@ -301,13 +319,36 @@ export const APPROACH_STEPS: ApproachStep[] = [
 
 // Studio / social proof chips.
 export const STUDIO_CHIPS = [
-  "agendallena",
   "sacaturno.app",
-  "ReservaCancha",
-  "Panacity",
+  "agendallena",
   "Coparentar",
   "Bicitando",
+  "ReservaCancha",
+  "Panacity",
 ] as const;
+
+// ---------------------------------------------------------------------------
+// Studio team.
+// Editá nombres/roles. Para fotos: dejá los archivos en /public/team/ y
+// completá `photo` (ej. "/team/guillermo.jpg"). Si `photo` queda vacío, se
+// muestran las iniciales en un círculo.
+// ---------------------------------------------------------------------------
+export type TeamMember = {
+  name: string;
+  role: string;
+  initials: string;
+  photo?: string;
+};
+
+export const TEAM: TeamMember[] = [
+  {
+    name: "Guillermo Schauer",
+    role: "Producto, diseño y desarrollo",
+    initials: "GS",
+    photo: "",
+  },
+  // Sumá acá a quien más forme parte del estudio.
+];
 
 // ---------------------------------------------------------------------------
 // Case detail lookup.

@@ -102,7 +102,7 @@ export default function OpengraphImage() {
             </span>
           </div>
           <div style={{ color: STONE, fontSize: 22, letterSpacing: 2 }}>
-            indievibe.studio
+            www.jycstudio.com.ar
           </div>
         </div>
       </div>

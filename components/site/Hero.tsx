@@ -55,8 +55,9 @@ export function Hero() {
               variants={item}
               className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-ink-soft sm:text-lg"
             >
-              Sistemas, SaaS y experiencias web para ordenar operaciones,
-              comunicar mejor y crecer.
+              Para negocios que hoy funcionan con WhatsApp, planillas y
+              cuadernos: diseñamos y construimos el sistema que ordena turnos,
+              reservas, ventas y stock — y crece con la operación.
             </motion.p>
 
             <motion.div

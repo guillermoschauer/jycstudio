@@ -1,6 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { Wordmark } from "@/components/ui/Wordmark";
-import { SITE } from "@/lib/site";
+import { SITE, MAILTO_URL } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -15,9 +15,17 @@ export function Footer() {
             {SITE.longClaim}
           </p>
 
-          <p className="shrink-0 font-mono text-[11px] tracking-[0.14em] text-stone">
-            © 2026 · Estudio independiente
-          </p>
+          <div className="flex shrink-0 flex-col items-center gap-2 sm:items-end">
+            <a
+              href={MAILTO_URL}
+              className="font-mono text-[11px] tracking-[0.14em] text-ivory/70 transition-colors duration-200 hover:text-ivory"
+            >
+              {SITE.email}
+            </a>
+            <p className="font-mono text-[11px] tracking-[0.14em] text-stone">
+              © 2026 · Estudio independiente
+            </p>
+          </div>
         </div>
       </Container>
     </footer>
