@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <style>
+    .bg { fill: #f3eee4; }
+    .fg { fill: #22201b; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #22201b; }
+      .fg { fill: #f3eee4; }
+    }
+  </style>
+  <rect class="bg" width="64" height="64" rx="14" />
+  <text class="fg" x="33" y="34" text-anchor="middle" dominant-baseline="central"
+    font-family="Georgia, 'Times New Roman', 'Newsreader', serif" font-style="italic"
+    font-weight="500" font-size="44">V</text>
+</svg>

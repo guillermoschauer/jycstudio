@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   JYC Studio — design tokens
+   --------------------------------------------------------------------------- */
+:root {
+  --ivory: #f3eee4;
+  --paper: #fbf8f2;
+  --charcoal: #22201b;
+  --dark-base: #16140f;
+  --stone: #8c867a;
+  --ink-soft: #46423a;
+  --hairline: #d7d1c4;
+  --champagne: #b79a68;
+  --operational-green: #2e6f5e;
+
+  /* Fixed header offset used for smooth anchor scrolling. */
+  --header-h: 4.5rem;
+}
+
+@theme inline {
+  --color-ivory: var(--ivory);
+  --color-paper: var(--paper);
+  --color-charcoal: var(--charcoal);
+  --color-dark-base: var(--dark-base);
+  --color-stone: var(--stone);
+  --color-ink-soft: var(--ink-soft);
+  --color-hairline: var(--hairline);
+  --color-champagne: var(--champagne);
+  --color-operational-green: var(--operational-green);
+
+  /* Hairline that works on dark surfaces. */
+  --color-hairline-dark: rgba(243, 238, 228, 0.14);
+
+  --font-serif: var(--font-newsreader);
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-jetbrains);
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--ivory);
+  color: var(--ink-soft);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--champagne);
+  color: var(--charcoal);
+}
+
+/* Visible, on-brand focus ring for keyboard users. */
+:focus-visible {
+  outline: 2px solid var(--champagne);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Editorial helpers
+   --------------------------------------------------------------------------- */
+
+/* Overline / label: mono, uppercase, wide tracking. */
+.overline {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+/* Champagne hairline accent (the small gold rule under the wordmark). */
+.accent-rule {
+  display: inline-block;
+  width: 2.25rem;
+  height: 1.5px;
+  background-color: var(--champagne);
+}
+
+/* Balance headline wrapping where supported. */
+.text-balance {
+  text-wrap: balance;
+}
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
