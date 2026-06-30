@@ -1,14 +1,14 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
-import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { CapabilitiesMarquee } from "@/components/site/CapabilitiesMarquee";
+import { HeroCollage } from "@/components/site/HeroCollage";
 
 /**
- * Compact hero: message → primary CTA (with shimmer) → capabilities marquee.
- * No invented product dashboard — the first scroll leads straight into the
- * real cases below. Copy is unchanged.
+ * Hero con collage interactivo en desktop.
+ * Mobile/tablet: columna única (copy + CTAs + marquee). Collage oculto.
+ * Desktop (lg+): dos columnas. Columna izquierda: copy. Columna derecha: HeroCollage.
  */
 export function Hero() {
   const reduce = useReducedMotion();
@@ -19,11 +19,11 @@ export function Hero() {
       transition: { staggerChildren: reduce ? 0 : 0.09, delayChildren: 0.05 },
     },
   };
+
   const item: Variants = {
-    hidden: { opacity: 0, y: reduce ? 0 : 22 },
-    visible: {
-      opacity: 1,
-      y: 0,
+    hidden:   { opacity: 0, y: reduce ? 0 : 22 },
+    visible:  {
+      opacity: 1, y: 0,
       transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
     },
   };
@@ -31,18 +31,25 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden pt-[calc(var(--header-h)+2.25rem)] pb-14 sm:pb-16 lg:pt-[calc(var(--header-h)+4rem)]"
+      className="relative overflow-hidden pt-[calc(var(--header-h)+2.25rem)] pb-14 sm:pb-16 lg:pt-[calc(var(--header-h)+2.5rem)]"
     >
-      <Container>
+      {/*
+        Grid del hero.
+        Mobile/tablet : columna única, padding normal.
+        Desktop (lg+) : dos columnas flex, ancho máximo 1300px, gap 56px, alto mínimo 680px.
+      */}
+      <div className="mx-auto w-full max-w-[1300px] px-6 sm:px-10 lg:px-[60px] flex flex-col lg:flex-row lg:items-center lg:gap-14 lg:min-h-[680px]">
+
+        {/* Columna izquierda: copy */}
         <motion.div
           variants={container}
           initial="hidden"
           animate="visible"
-          className="mx-auto max-w-3xl lg:mx-0"
+          className="flex-shrink-0 w-full lg:w-[440px]"
         >
           <motion.p
             variants={item}
-            className="mb-6 flex items-center gap-2.5 font-sans text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-stone"
+            className="mb-6 flex items-center gap-2.5 font-mono text-[0.78rem] font-semibold uppercase tracking-[0.15em] text-stone"
           >
             <span aria-hidden className="inline-block h-[5px] w-[5px] rounded-full bg-operational-green" />
             Estudio de producto digital · Independiente
@@ -71,26 +78,21 @@ export function Hero() {
             variants={item}
             className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
-            <Button
-              href="#contacto"
-              variant="primary"
-              shimmer
-              className="w-full sm:w-auto"
-            >
+            <Button href="#contacto" variant="primary" shimmer className="w-full sm:w-auto">
               Hablemos
             </Button>
-            <Button
-              href="#casos"
-              variant="outline"
-              className="w-full sm:w-auto"
-            >
+            <Button href="#casos" variant="outline" className="w-full sm:w-auto">
               Ver casos
             </Button>
           </motion.div>
         </motion.div>
-      </Container>
 
-      {/* Capabilities marquee — full-bleed band, replaces the static pill grid. */}
+        {/* Columna derecha: collage interactivo (desktop only) */}
+        <HeroCollage />
+
+      </div>
+
+      {/* Capabilities marquee (sin cambios) */}
       <CapabilitiesMarquee className="mt-11 sm:mt-14" />
     </section>
   );
