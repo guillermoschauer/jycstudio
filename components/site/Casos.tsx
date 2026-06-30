@@ -16,13 +16,12 @@ export function Casos() {
             Casos
           </p>
           <h2 className="mt-6 max-w-3xl text-balance font-sans text-[clamp(2.2rem,5vw,4rem)] font-extrabold leading-[1.06] tracking-[-0.03em] text-charcoal">
-            Problemas concretos, resueltos con{" "}
-            <em className="font-serif font-normal italic tracking-normal">producto.</em>
+            Productos digitales para resolver{" "}
+            <em className="font-serif font-normal italic tracking-normal">problemas reales.</em>
           </h2>
           <p className="mt-5 max-w-2xl text-pretty text-[1.05rem] leading-relaxed text-ink-soft sm:text-lg">
-            Una galería curada de productos reales y sistemas en desarrollo. La
-            misma forma de pensar: entender la operación primero, construir
-            después.
+            Herramientas que nacen de problemas concretos: mostrar un proyecto,
+            optimizar una tarea, ahorrar tiempo o hacer más simple el día a día.
           </p>
         </Reveal>
 
