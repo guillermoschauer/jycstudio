@@ -31,6 +31,7 @@ export function MidCTA() {
               href={WHATSAPP_URL}
               external
               variant="primary"
+              shimmer
               className="shrink-0"
             >
               Escribir por WhatsApp

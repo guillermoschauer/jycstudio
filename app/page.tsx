@@ -6,6 +6,7 @@ import { ComoTrabajamos } from "@/components/site/ComoTrabajamos";
 import { Estudio } from "@/components/site/Estudio";
 import { Contacto } from "@/components/site/Contacto";
 import { Footer } from "@/components/site/Footer";
+import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <Contacto />
       </main>
       <Footer />
+      <WhatsAppFab />
     </>
   );
 }

@@ -13,6 +13,8 @@
   --hairline: #d7d1c4;
   --champagne: #b79a68;
   --operational-green: #2e6f5e;
+  /* Warm accent for the "Problema" label (muted terracotta, never an alert red). */
+  --terracotta: #a0563a;
 
   /* Fixed header offset used for smooth anchor scrolling. */
   --header-h: 4.5rem;
@@ -28,6 +30,7 @@
   --color-hairline: var(--hairline);
   --color-champagne: var(--champagne);
   --color-operational-green: var(--operational-green);
+  --color-terracotta: var(--terracotta);
 
   /* Hairline that works on dark surfaces. */
   --color-hairline-dark: rgba(243, 238, 228, 0.14);
@@ -99,6 +102,52 @@ body {
 }
 
 /* ---------------------------------------------------------------------------
+   Mobile motion system — capabilities marquee, primary-CTA shimmer, WhatsApp FAB
+   All purely transform/opacity based; disabled under prefers-reduced-motion.
+   --------------------------------------------------------------------------- */
+@keyframes jyc-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes jyc-shimmer {
+  0% {
+    transform: translateX(-180%) skewX(-16deg);
+  }
+  14% {
+    transform: translateX(240%) skewX(-16deg);
+  }
+  100% {
+    transform: translateX(240%) skewX(-16deg);
+  }
+}
+
+/* Continuous, calm horizontal loop. Two identical tracks → -50% loops seamlessly. */
+.jyc-marquee-track {
+  animation: jyc-marquee 30s linear infinite;
+  will-change: transform;
+}
+/* Pause on hover for readability (pointer devices). */
+.jyc-marquee:hover .jyc-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Short, elegant light band sweeping a primary CTA ~every 2.6s. */
+.jyc-shimmer-band {
+  animation: jyc-shimmer 2.6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Fixed action button respecting iOS safe areas. */
+.fab-safe {
+  right: calc(1rem + env(safe-area-inset-right));
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+
+/* ---------------------------------------------------------------------------
    Reduced motion
    --------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
@@ -111,5 +160,13 @@ body {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+
+  /* Marquee rests at the start; the shimmer band is removed entirely. */
+  .jyc-marquee-track {
+    animation: none !important;
+  }
+  .jyc-shimmer-band {
+    display: none !important;
   }
 }

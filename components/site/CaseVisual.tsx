@@ -18,7 +18,7 @@ export function CaseVisual({ item }: { item: CaseItem }) {
   return (
     <figure
       className={cn(
-        "overflow-hidden rounded-2xl border shadow-[0_30px_80px_-44px_rgba(34,32,27,0.55)]",
+        "overflow-hidden rounded-xl border shadow-[0_22px_60px_-40px_rgba(34,32,27,0.5)] sm:rounded-2xl sm:shadow-[0_30px_80px_-44px_rgba(34,32,27,0.55)]",
         item.tone === "dark" ? "border-[color:var(--color-hairline-dark)]" : "border-hairline",
       )}
     >

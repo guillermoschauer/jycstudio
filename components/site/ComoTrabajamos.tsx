@@ -4,7 +4,7 @@ import { APPROACH_STEPS } from "@/lib/site";
 
 export function ComoTrabajamos() {
   return (
-    <section id="como-trabajamos" className="bg-paper py-24 sm:py-32">
+    <section id="como-trabajamos" className="bg-paper py-20 sm:py-28 lg:py-32">
       <Container>
         <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
           {/* Intro */}
@@ -32,7 +32,7 @@ export function ComoTrabajamos() {
                   <h3 className="mt-4 font-sans text-lg font-semibold text-charcoal">
                     {step.title}
                   </h3>
-                  <p className="mt-2 flex-1 text-pretty text-sm leading-relaxed text-ink-soft">
+                  <p className="mt-2 flex-1 text-pretty text-[0.95rem] leading-relaxed text-ink-soft sm:text-sm">
                     {step.text}
                   </p>
                   <p className="overline mt-5 text-stone">{step.tag}</p>

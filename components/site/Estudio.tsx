@@ -4,7 +4,7 @@ import { STUDIO_CHIPS, TEAM } from "@/lib/site";
 
 export function Estudio() {
   return (
-    <section id="estudio" className="bg-ivory py-24 sm:py-32">
+    <section id="estudio" className="bg-ivory py-20 sm:py-28 lg:py-32">
       <Container>
         <Reveal>
           <p className="overline flex items-center gap-2.5 text-stone">
@@ -72,7 +72,7 @@ export function Estudio() {
                 <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-operational-green" />
                 En qué andamos
               </p>
-              <p className="mt-5 text-pretty leading-relaxed text-ink-soft">
+              <p className="mt-5 text-pretty text-[1.05rem] leading-relaxed text-ink-soft">
                 Productos propios y trabajos en curso junto a negocios reales.
                 Vamos a ir sumando resultados, aprendizajes y testimonios a
                 medida que los proyectos entran en operación.
