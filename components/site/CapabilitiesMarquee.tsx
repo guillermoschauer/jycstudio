@@ -39,9 +39,10 @@ export function CapabilitiesMarquee({ className }: { className?: string }) {
                 <span className="px-5 font-sans text-[0.95rem] font-medium text-charcoal sm:px-6">
                   {chip}
                 </span>
-                <span aria-hidden className="text-sm text-champagne">
-                  ✳
-                </span>
+                <span
+                  aria-hidden
+                  className="mx-1 inline-block h-[3px] w-[3px] rounded-full bg-champagne"
+                />
               </li>
             ))}
           </ul>
