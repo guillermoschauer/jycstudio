@@ -2,8 +2,8 @@ import { cn } from "@/lib/cn";
 
 /**
  * Official JYC Studio wordmark.
- * "JYC" in DM Sans extrabold, tight tracking — the dominant block.
- * "Studio" in Instrument Serif italic, medium weight, slightly smaller.
+ * "JYC" — DM Sans extrabold, tight tracking. Dominant mark.
+ * "STUDIO" — DM Sans normal, uppercase, wide tracking. Small descriptor.
  * Caller sets the base size via className; internals are em-relative.
  */
 export function Wordmark({
@@ -21,12 +21,12 @@ export function Wordmark({
         className,
       )}
     >
-      <span aria-hidden className="font-sans font-extrabold tracking-[-0.045em]">
+      <span aria-hidden className="font-sans font-extrabold tracking-[-0.04em]">
         JYC
       </span>
       <span
         aria-hidden
-        className="ml-[0.2em] font-serif text-[0.92em] font-medium italic tracking-[-0.02em]"
+        className="ml-[0.32em] font-sans text-[0.44em] font-normal uppercase tracking-[0.18em]"
       >
         Studio
       </span>

@@ -52,7 +52,7 @@ export function Header() {
           className="text-charcoal"
           onClick={() => setMenuOpen(false)}
         >
-          <Wordmark className="text-[1.1rem] sm:text-[1.45rem]" />
+          <Wordmark className="text-[1.2rem] sm:text-[1.55rem]" />
         </Link>
 
         {/* Desktop nav */}
