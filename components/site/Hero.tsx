@@ -92,8 +92,8 @@ export function Hero() {
 
       </div>
 
-      {/* Capabilities marquee (sin cambios) */}
-      <CapabilitiesMarquee className="mt-11 sm:mt-14" />
+      {/* Capabilities marquee — desktop only. Mobile uses MobileProductsTicker. */}
+      <CapabilitiesMarquee className="mt-11 hidden md:block sm:mt-14" />
     </section>
   );
 }

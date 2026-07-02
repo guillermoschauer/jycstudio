@@ -102,12 +102,12 @@ export const CASES: CaseItem[] = [
     id: "sacaturno",
     eyebrow: "Gestión de turnos · Estética y belleza",
     title: "sacaturno.app",
-    problemLabel: "Problema",
+    problemLabel: "El problema",
     problem:
-      "En estética y belleza, coordinar turnos por WhatsApp comía horas y dejaba huecos sin cubrir.",
-    solutionLabel: "Solución",
+      "Coordinar turnos por WhatsApp comía horas y dejaba huecos sin cubrir.",
+    solutionLabel: "Ahora",
     solution:
-      "La misma base de reservas, con identidad propia del rubro: agenda 24hs, recordatorios y confirmación automática.",
+      "El cliente reserva solo, las 24 horas. Señas y confirmaciones, sin perseguir a nadie.",
     benefitsLabel: "Beneficios",
     benefits: [
       "El cliente reserva solo, las 24 horas",
@@ -133,12 +133,12 @@ export const CASES: CaseItem[] = [
     id: "agendallena",
     eyebrow: "Gestión de turnos · Salud",
     title: "agendallena",
-    problemLabel: "Problema",
+    problemLabel: "El problema",
     problem:
-      "Consultorios y clínicas perdían turnos entre WhatsApp, llamados y planillas sin control.",
-    solutionLabel: "Solución",
+      "Consultorios y clínicas perdían turnos entre WhatsApp, llamados y planillas.",
+    solutionLabel: "Ahora",
     solution:
-      "Agenda online donde el paciente reserva solo, con recordatorios automáticos y señas por Mercado Pago.",
+      "El paciente reserva solo — recordatorios automáticos y señas por Mercado Pago.",
     benefitsLabel: "Beneficios",
     benefits: [
       "Menos mensajes, llamadas y ausencias",
@@ -164,12 +164,12 @@ export const CASES: CaseItem[] = [
     id: "coparentar",
     eyebrow: "Producto digital · Familias",
     title: "Coparentar",
-    problemLabel: "Problema",
+    problemLabel: "El problema",
     problem:
-      "Padres y madres que coparentan coordinaban agenda, gastos y acuerdos en chats dispersos.",
-    solutionLabel: "Solución",
+      "Agenda, gastos y acuerdos de crianza dispersos en chats interminables.",
+    solutionLabel: "Ahora",
     solution:
-      "Un producto que ordena calendario compartido, gastos y comunicación en un lugar claro y neutral.",
+      "Calendario, gastos y comunicación en un lugar claro y neutral, para ambas partes.",
     benefitsLabel: "Beneficios",
     benefits: [
       "Menos fricción y malentendidos en la coordinación",
@@ -325,6 +325,16 @@ export const STUDIO_CHIPS = [
   "Bicitando",
   "ReservaCancha",
   "Panacity",
+] as const;
+
+// Mobile product ticker — name + status.
+export const PRODUCT_TICKER_ITEMS = [
+  { name: "SACATURNO.APP", status: "EN USO",        live: true  },
+  { name: "AGENDALLENA",   status: "EN USO",        live: true  },
+  { name: "COPARENTAR",    status: "EN USO",        live: true  },
+  { name: "RESERVACANCHA", status: "POR LANZAR",    live: false },
+  { name: "PANACITY",      status: "EN DESARROLLO", live: false },
+  { name: "BICITANDO",     status: "EN VIVO",       live: true  },
 ] as const;
 
 // ---------------------------------------------------------------------------

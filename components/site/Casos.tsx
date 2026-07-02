@@ -14,11 +14,11 @@ export function Casos() {
           <Reveal>
             <p className="overline flex items-center gap-2.5 text-stone">
               <span aria-hidden className="inline-block h-[5px] w-[5px] rounded-full bg-operational-green" />
-              Casos
+              01 — Casos
             </p>
             <h2 className="mt-6 max-w-3xl text-balance font-sans text-[clamp(2.2rem,5vw,4rem)] font-extrabold leading-[1.06] tracking-[-0.03em] text-charcoal">
-              Productos digitales para resolver{" "}
-              <em className="font-serif font-normal italic tracking-normal">problemas reales.</em>
+              Lo que construimos{" "}
+              <em className="font-serif font-normal italic tracking-normal">está en uso.</em>
             </h2>
             <p className="mt-5 max-w-2xl text-pretty text-[1.05rem] leading-relaxed text-ink-soft sm:text-lg">
               Herramientas que nacen de problemas concretos: mostrar un proyecto,
@@ -116,8 +116,8 @@ function CaseRow({
           </div>
         </dl>
 
-        {/* Beneficios */}
-        <div className="mt-6">
+        {/* Beneficios — hidden on mobile to keep focus on problem/solution and CTA */}
+        <div className="mt-6 hidden sm:block">
           <p className="overline mb-2.5 text-stone">{item.benefitsLabel}</p>
           <ul className="space-y-2">
             {item.benefits.map((b) => (
@@ -135,8 +135,8 @@ function CaseRow({
           </ul>
         </div>
 
-        {/* Actions */}
-        <div className="mt-8 flex flex-wrap gap-3">
+        {/* Actions — full-width on mobile, inline on sm+ */}
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <CaseAction href={item.href} onPaper={onPaper}>{item.cta}</CaseAction>
           {item.liveUrl && (
             <CaseAction href={item.liveUrl} onPaper={onPaper} external>
@@ -162,7 +162,7 @@ function CaseAction({
 }) {
   // Button bg contrasts with the stripe it sits on
   const classes = cn(
-    "group inline-flex min-h-[3rem] items-center gap-2.5 rounded-xl border border-hairline px-4 py-3 font-mono text-[0.72rem] font-medium uppercase tracking-[0.14em] text-charcoal transition-all duration-300 ease-out hover:border-champagne/60 hover:bg-[#f0e9dc] active:scale-[0.98]",
+    "group inline-flex w-full min-h-[3rem] items-center justify-center gap-2.5 rounded-xl border border-hairline px-4 py-3 font-mono text-[0.72rem] font-medium uppercase tracking-[0.14em] text-charcoal transition-all duration-300 ease-out hover:border-champagne/60 hover:bg-[#f0e9dc] active:scale-[0.98] sm:w-auto sm:justify-start",
     onPaper ? "bg-ivory" : "bg-paper",
   );
   const arrow = (
