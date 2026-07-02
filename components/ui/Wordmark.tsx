@@ -17,7 +17,7 @@ export function Wordmark({
     <span
       aria-label={ariaLabel}
       className={cn(
-        "inline-flex items-baseline whitespace-nowrap leading-none text-current",
+        "inline-flex items-center whitespace-nowrap leading-none text-current",
         className,
       )}
     >
@@ -26,7 +26,7 @@ export function Wordmark({
       </span>
       <span
         aria-hidden
-        className="ml-[0.32em] font-sans text-[0.44em] font-normal uppercase tracking-[0.18em]"
+        className="ml-[0.32em] font-sans text-[0.44em] font-light uppercase tracking-[0.2em]"
       >
         Studio
       </span>
