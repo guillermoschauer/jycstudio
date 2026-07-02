@@ -7,36 +7,51 @@ import { cn } from "@/lib/cn";
 
 export function Casos() {
   return (
-    <section id="casos" className="bg-ivory py-20 sm:py-28 lg:py-32">
-      <Container>
-        {/* Heading */}
-        <Reveal>
-          <p className="overline flex items-center gap-2.5 text-stone">
-            <span aria-hidden className="inline-block h-[5px] w-[5px] rounded-full bg-operational-green" />
-            Casos
-          </p>
-          <h2 className="mt-6 max-w-3xl text-balance font-sans text-[clamp(2.2rem,5vw,4rem)] font-extrabold leading-[1.06] tracking-[-0.03em] text-charcoal">
-            Productos digitales para resolver{" "}
-            <em className="font-serif font-normal italic tracking-normal">problemas reales.</em>
-          </h2>
-          <p className="mt-5 max-w-2xl text-pretty text-[1.05rem] leading-relaxed text-ink-soft sm:text-lg">
-            Herramientas que nacen de problemas concretos: mostrar un proyecto,
-            optimizar una tarea, ahorrar tiempo o hacer más simple el día a día.
-          </p>
-        </Reveal>
+    <section id="casos">
+      {/* Heading stripe */}
+      <div className="bg-ivory pt-20 pb-14 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24">
+        <Container>
+          <Reveal>
+            <p className="overline flex items-center gap-2.5 text-stone">
+              <span aria-hidden className="inline-block h-[5px] w-[5px] rounded-full bg-operational-green" />
+              Casos
+            </p>
+            <h2 className="mt-6 max-w-3xl text-balance font-sans text-[clamp(2.2rem,5vw,4rem)] font-extrabold leading-[1.06] tracking-[-0.03em] text-charcoal">
+              Productos digitales para resolver{" "}
+              <em className="font-serif font-normal italic tracking-normal">problemas reales.</em>
+            </h2>
+            <p className="mt-5 max-w-2xl text-pretty text-[1.05rem] leading-relaxed text-ink-soft sm:text-lg">
+              Herramientas que nacen de problemas concretos: mostrar un proyecto,
+              optimizar una tarea, ahorrar tiempo o hacer más simple el día a día.
+            </p>
+          </Reveal>
+        </Container>
+      </div>
 
-        {/* Cases */}
-        <div className="mt-14 flex flex-col gap-20 sm:mt-20 sm:gap-28 lg:gap-32">
-          {CASES.map((item, i) => (
-            <CaseRow key={item.id} item={item} reversed={i % 2 === 1} />
-          ))}
-        </div>
-      </Container>
+      {/* Cases — full-bleed stripes, alternating bg-paper / bg-ivory */}
+      {CASES.map((item, i) => {
+        const onPaper = i % 2 === 0;
+        return (
+          <div key={item.id} className={onPaper ? "bg-paper" : "bg-ivory"}>
+            <Container className="py-20 sm:py-24 lg:py-28">
+              <CaseRow item={item} reversed={i % 2 === 1} onPaper={onPaper} />
+            </Container>
+          </div>
+        );
+      })}
     </section>
   );
 }
 
-function CaseRow({ item, reversed }: { item: CaseItem; reversed: boolean }) {
+function CaseRow({
+  item,
+  reversed,
+  onPaper,
+}: {
+  item: CaseItem;
+  reversed: boolean;
+  onPaper: boolean;
+}) {
   return (
     <article className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
       {/* Visual — product first on mobile (DOM order), alternating on desktop. */}
@@ -77,7 +92,7 @@ function CaseRow({ item, reversed }: { item: CaseItem; reversed: boolean }) {
           )}
         </h3>
 
-        {/* Problema / Solución — accented labels for fast scanning. */}
+        {/* Problema / Solución */}
         <dl className="mt-7 space-y-5">
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-[auto_1fr] sm:gap-5">
             <dt>
@@ -101,7 +116,7 @@ function CaseRow({ item, reversed }: { item: CaseItem; reversed: boolean }) {
           </div>
         </dl>
 
-        {/* Beneficios — intentionally neutral so the focus stays on Problema → Solución. */}
+        {/* Beneficios */}
         <div className="mt-6">
           <p className="overline mb-2.5 text-stone">{item.benefitsLabel}</p>
           <ul className="space-y-2">
@@ -120,11 +135,11 @@ function CaseRow({ item, reversed }: { item: CaseItem; reversed: boolean }) {
           </ul>
         </div>
 
-        {/* Actions — tappable, premium, comfortable hit area. */}
+        {/* Actions */}
         <div className="mt-8 flex flex-wrap gap-3">
-          <CaseAction href={item.href}>{item.cta}</CaseAction>
+          <CaseAction href={item.href} onPaper={onPaper}>{item.cta}</CaseAction>
           {item.liveUrl && (
-            <CaseAction href={item.liveUrl} external>
+            <CaseAction href={item.liveUrl} onPaper={onPaper} external>
               Visitar sitio
             </CaseAction>
           )}
@@ -138,13 +153,18 @@ function CaseAction({
   href,
   children,
   external = false,
+  onPaper,
 }: {
   href: string;
   children: React.ReactNode;
   external?: boolean;
+  onPaper: boolean;
 }) {
-  const classes =
-    "group inline-flex min-h-[3rem] items-center gap-2.5 rounded-xl border border-hairline bg-paper px-4 py-3 font-mono text-[0.72rem] font-medium uppercase tracking-[0.14em] text-charcoal transition-all duration-300 ease-out hover:border-champagne/60 hover:bg-[#f0e9dc] active:scale-[0.98]";
+  // Button bg contrasts with the stripe it sits on
+  const classes = cn(
+    "group inline-flex min-h-[3rem] items-center gap-2.5 rounded-xl border border-hairline px-4 py-3 font-mono text-[0.72rem] font-medium uppercase tracking-[0.14em] text-charcoal transition-all duration-300 ease-out hover:border-champagne/60 hover:bg-[#f0e9dc] active:scale-[0.98]",
+    onPaper ? "bg-ivory" : "bg-paper",
+  );
   const arrow = (
     <span
       aria-hidden
