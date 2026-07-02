@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/cn";
 
 /**
- * Mobile-only sticky bottom CTA.
- * Appears once the hero section has scrolled out of view.
- * Disappears when the #contacto section comes into range.
- * Links to #contacto so the user goes straight to the contact block.
+ * Mobile-only sticky floating CTA pill (V1 reference spec):
+ * - Green pill, 16px margins from screen edges, 56px tall
+ * - "¿Hablamos de tu caso?" text + circular cream arrow button
+ * - Appears after hero exits view, hides when #contacto comes into range
+ * - Hides on md+ (desktop has its own CTAs)
  */
 export function StickyCTA() {
   const [show, setShow] = useState(false);
@@ -37,31 +38,30 @@ export function StickyCTA() {
 
   return (
     <div
-      aria-hidden={!show}
+      aria-hidden={show ? undefined : "true"}
       className={cn(
-        "fixed inset-x-0 bottom-0 z-40 md:hidden",
+        "fixed bottom-0 inset-x-0 z-40 md:hidden",
+        "flex justify-center",
+        "px-4 pb-[calc(1rem+env(safe-area-inset-bottom))]",
         "transition-transform duration-[420ms] ease-[cubic-bezier(0.2,0.6,0.2,1)]",
         show ? "translate-y-0" : "translate-y-full",
       )}
     >
-      {/* Border top as subtle separator against any bg */}
-      <div className="border-t border-white/[0.06] bg-dark-base/96 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur-md">
-        <a
-          href="#contacto"
-          tabIndex={show ? 0 : -1}
-          className="group flex w-full items-center justify-between gap-3 rounded-2xl px-5 py-4"
+      <a
+        href="#contacto"
+        tabIndex={show ? 0 : -1}
+        className="group flex h-[56px] w-full max-w-[calc(100%-2rem)] items-center justify-between gap-4 rounded-full bg-operational-green px-5 shadow-[0_10px_30px_rgba(22,21,15,0.35)]"
+      >
+        <span className="font-sans text-[0.95rem] font-semibold text-ivory">
+          ¿Hablamos de tu caso?
+        </span>
+        <span
+          aria-hidden
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ivory font-sans text-sm font-bold text-charcoal transition-transform duration-300 group-hover:translate-x-0.5"
         >
-          <span className="font-sans text-[1rem] font-semibold text-ivory">
-            ¿Hablamos de tu caso?
-          </span>
-          <span
-            aria-hidden
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-operational-green font-sans text-sm font-bold text-ivory transition-transform duration-300 group-hover:translate-x-0.5"
-          >
-            →
-          </span>
-        </a>
-      </div>
+          →
+        </span>
+      </a>
     </div>
   );
 }

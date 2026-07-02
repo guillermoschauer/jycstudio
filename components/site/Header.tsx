@@ -5,12 +5,18 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { Container } from "@/components/ui/Container";
-import { NAV_LINKS } from "@/lib/site";
+import { WHATSAPP_URL } from "@/lib/site";
 import { cn } from "@/lib/cn";
 
+const MENU_LINKS = [
+  { label: "Casos",           href: "#casos"          },
+  { label: "Cómo trabajamos", href: "#como-trabajamos" },
+  { label: "Estudio",         href: "#estudio"        },
+] as const;
+
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled,  setScrolled]  = useState(false);
+  const [menuOpen,  setMenuOpen]  = useState(false);
   const reduce = useReducedMotion();
 
   useEffect(() => {
@@ -23,12 +29,10 @@ export function Header() {
   // Lock body scroll while the mobile menu is open.
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
-  // Close menu on Escape.
+  // Close on Escape.
   useEffect(() => {
     if (!menuOpen) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
@@ -36,13 +40,16 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, [menuOpen]);
 
+  const close = () => setMenuOpen(false);
+
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 h-[var(--header-h)] transition-[background-color,box-shadow,border-color] duration-300",
+        "fixed inset-x-0 top-0 z-50 h-[var(--header-h)]",
+        "transition-[background-color,box-shadow,border-color] duration-300",
         scrolled
-          ? "border-b border-hairline bg-ivory/85 shadow-[0_1px_24px_-12px_rgba(34,32,27,0.35)] backdrop-blur-md"
-          : "border-b border-transparent bg-ivory/0",
+          ? "border-b border-hairline bg-[rgba(243,238,228,0.86)] shadow-[0_1px_24px_-12px_rgba(34,32,27,0.35)] backdrop-blur-[14px]"
+          : "border-b border-transparent bg-[rgba(243,238,228,0)]",
       )}
     >
       <Container className="flex h-full items-center justify-between">
@@ -50,14 +57,14 @@ export function Header() {
           href="#top"
           aria-label="JYC Studio — inicio"
           className="text-charcoal"
-          onClick={() => setMenuOpen(false)}
+          onClick={close}
         >
           <Wordmark className="text-[1.2rem] sm:text-[1.55rem]" />
         </Link>
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-9 md:flex">
-          {NAV_LINKS.map((link) => (
+          {MENU_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -75,33 +82,37 @@ export function Header() {
           </a>
         </nav>
 
-        {/* Mobile trigger */}
+        {/* Mobile trigger — hamburger with two asymmetric bars (26px + 17px) */}
         <button
           type="button"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-          aria-expanded={menuOpen}
-          className="relative z-50 flex h-10 w-10 items-center justify-center md:hidden"
+          aria-expanded={menuOpen ? "true" : "false"}
+          className="relative z-[81] flex h-10 w-10 items-center justify-center md:hidden"
         >
           <span className="sr-only">Menú</span>
-          <span className="relative block h-4 w-6">
+          <span className="relative block h-4 w-[26px]">
             <span
               className={cn(
-                "absolute left-0 block h-[1.5px] w-6 bg-charcoal transition-all duration-300",
-                menuOpen ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0",
+                "absolute left-0 block h-[2px] bg-current transition-all duration-300",
+                menuOpen
+                  ? "top-1/2 w-[26px] -translate-y-1/2 rotate-45 text-ivory"
+                  : "top-0 w-[26px] text-charcoal",
               )}
             />
             <span
               className={cn(
-                "absolute bottom-0 left-0 block h-[1.5px] w-6 bg-charcoal transition-all duration-300",
-                menuOpen ? "bottom-1/2 translate-y-1/2 -rotate-45" : "bottom-0",
+                "absolute bottom-0 left-0 block h-[2px] bg-current transition-all duration-300",
+                menuOpen
+                  ? "bottom-1/2 w-[26px] translate-y-1/2 -rotate-45 text-ivory"
+                  : "bottom-0 w-[17px] text-charcoal",
               )}
             />
           </span>
         </button>
       </Container>
 
-      {/* Mobile full-screen menu */}
+      {/* Mobile full-screen overlay — dark (#16150F) per V1 reference */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -109,38 +120,71 @@ export function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: reduce ? 0 : 0.3, ease: "easeOut" }}
-            className="fixed inset-0 top-0 z-40 flex h-[100dvh] flex-col bg-ivory md:hidden"
+            transition={{ duration: reduce ? 0 : 0.35, ease: "easeOut" }}
+            className="fixed inset-0 top-0 z-40 flex h-[100dvh] flex-col bg-[#16150F] md:hidden"
           >
-            <div className="flex flex-1 flex-col justify-center px-8">
-              <nav className="flex flex-col gap-1">
-                {NAV_LINKS.map((link, i) => (
-                  <motion.a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    initial={{ opacity: 0, y: reduce ? 0 : 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: reduce ? 0 : 0.45,
-                      delay: reduce ? 0 : 0.08 + i * 0.06,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                    className="border-b border-hairline py-5 font-serif text-4xl text-charcoal"
-                  >
+            {/* Nav links with mono numerals */}
+            <nav className="flex flex-1 flex-col justify-center px-6 sm:px-8">
+              {MENU_LINKS.map((link, i) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  onClick={close}
+                  initial={{ opacity: 0, y: reduce ? 0 : 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: reduce ? 0 : 0.45,
+                    delay:    reduce ? 0 : 0.06 + i * 0.07,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="group flex items-baseline gap-4 border-b border-white/[0.07] py-5"
+                >
+                  <span className="w-5 font-mono text-[0.65rem] font-semibold tracking-[0.16em] text-[#63C695]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="font-sans text-[2.1rem] font-extrabold leading-none text-ivory transition-opacity duration-200 group-hover:opacity-70">
                     {link.label}
-                  </motion.a>
-                ))}
-              </nav>
-            </div>
-            <div className="px-8 pb-12">
-              <a
+                  </span>
+                </motion.a>
+              ))}
+
+              {/* "Hablemos" — italic serif gold, 4th item */}
+              <motion.a
                 href="#contacto"
-                onClick={() => setMenuOpen(false)}
-                className="inline-flex w-full items-center justify-center rounded-full bg-charcoal px-6 py-4 text-sm font-medium text-ivory"
+                onClick={close}
+                initial={{ opacity: 0, y: reduce ? 0 : 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: reduce ? 0 : 0.45,
+                  delay:    reduce ? 0 : 0.06 + MENU_LINKS.length * 0.07,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="group flex items-baseline gap-4 border-b border-white/[0.07] py-5"
               >
-                Hablemos
-              </a>
+                <span className="w-5 font-mono text-[0.65rem] font-semibold tracking-[0.16em] text-[#63C695]">
+                  04
+                </span>
+                <span className="font-serif text-[2.1rem] font-normal italic text-champagne transition-opacity duration-200 group-hover:opacity-70">
+                  Hablemos
+                </span>
+              </motion.a>
+            </nav>
+
+            {/* WhatsApp CTA at bottom */}
+            <div className="px-6 pb-[calc(2.5rem+env(safe-area-inset-bottom))] sm:px-8">
+              <motion.a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={close}
+                initial={{ opacity: 0, y: reduce ? 0 : 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reduce ? 0 : 0.4, delay: reduce ? 0 : 0.32, ease: [0.22, 1, 0.36, 1] }}
+                className="flex w-full items-center justify-between gap-3 rounded-2xl bg-operational-green px-6 py-5 font-sans text-[1rem] font-semibold text-ivory"
+              >
+                <span>Escribir por WhatsApp</span>
+                <span aria-hidden>→</span>
+              </motion.a>
             </div>
           </motion.div>
         )}

@@ -21,10 +21,7 @@ export default function Home() {
         <MobileProductsTicker />
         <MobileManifesto />
         <Casos />
-        {/* MidCTA replaced on mobile by the StickyCTA sticky bar */}
-        <div className="hidden md:block">
-          <MidCTA />
-        </div>
+        <MidCTA />
         <ComoTrabajamos />
         <Estudio />
         <Contacto />

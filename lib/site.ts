@@ -76,9 +76,9 @@ export type CaseItem = {
   title: string;
   /** Optional second line styled as the editorial heading continuation. */
   titleTail?: string;
-  problemLabel: string; // "Problema" | "Propuesta"
+  problemLabel: string; // "El problema" | "Propuesta"
   problem: string;
-  solutionLabel: string; // "Solución" | "Beneficio"
+  solutionLabel: string; // "Ahora" | "Solución" | "Beneficio"
   solution: string;
   benefitsLabel: string; // "Beneficios" | "Qué aporta"
   benefits: string[];
@@ -95,6 +95,10 @@ export type CaseItem = {
   badgeTone?: "live" | "soon" | "dev";
   /** Live, operational product URL (external). */
   liveUrl?: string;
+  /** If true, this case goes into the "En el taller" list on mobile instead of the editorial main section. */
+  taller?: boolean;
+  /** Short status shown in the "En el taller" row, e.g. "A SEMANAS DE LANZAR". */
+  tallerLabel?: string;
 };
 
 export const CASES: CaseItem[] = [
@@ -216,6 +220,8 @@ export const CASES: CaseItem[] = [
     badge: "Sitio en vivo",
     badgeTone: "live",
     liveUrl: "https://bicitandomardel.com",
+    taller: true,
+    tallerLabel: "MARCA · EN VIVO",
     image: {
       src: "/case-studies/bicitando.png",
       alt: "Landing de Bicitando Mardel: escapada a Sierra de los Padres al atardecer.",
@@ -246,6 +252,8 @@ export const CASES: CaseItem[] = [
     tone: "dark",
     badge: "A semanas de lanzar",
     badgeTone: "soon",
+    taller: true,
+    tallerLabel: "A SEMANAS DE LANZAR",
     image: {
       src: "/case-studies/reservacancha.png",
       alt: "Landing de ReservaCancha.app: búsqueda de canchas deportivas en tiempo real.",
@@ -276,6 +284,8 @@ export const CASES: CaseItem[] = [
     tone: "dark",
     badge: "Proyecto en desarrollo",
     badgeTone: "dev",
+    taller: true,
+    tallerLabel: "EN DESARROLLO",
   },
 ];
 

@@ -67,7 +67,7 @@ function StepBlock({
       className={cn(
         "relative flex flex-col justify-center",
         "pl-10 lg:pl-16",
-        "py-14 sm:py-16 lg:py-[13vh] lg:min-h-[74vh]",
+        "py-14 min-h-[46svh] sm:py-16 lg:py-[13vh] lg:min-h-[74vh]",
         !isLast && "border-b border-ivory/[0.07] lg:border-0",
       )}
     >
@@ -172,7 +172,13 @@ export function ComoTrabajamos() {
             }}
             className="mt-7 text-balance font-sans text-[clamp(2.4rem,3.8vw,3.3rem)] font-extrabold leading-[1.04] tracking-[-0.035em] text-ivory"
           >
-            No arrancamos por una pantalla.
+            No arrancamos{" "}
+            <span className="block">
+              por{" "}
+              <em className="font-serif font-normal italic tracking-normal text-champagne">
+                una pantalla.
+              </em>
+            </span>
           </motion.h2>
 
           {/* Support text */}
