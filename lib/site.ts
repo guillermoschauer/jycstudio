@@ -220,8 +220,6 @@ export const CASES: CaseItem[] = [
     badge: "Sitio en vivo",
     badgeTone: "live",
     liveUrl: "https://bicitandomardel.com",
-    taller: true,
-    tallerLabel: "MARCA · EN VIVO",
     image: {
       src: "/case-studies/bicitando.png",
       alt: "Landing de Bicitando Mardel: escapada a Sierra de los Padres al atardecer.",
@@ -288,6 +286,23 @@ export const CASES: CaseItem[] = [
     tallerLabel: "EN DESARROLLO",
   },
 ];
+
+// Short status label + tone for the case index (derived from real data).
+export function caseStatus(item: CaseItem): {
+  label: string;
+  tone: "live" | "soon" | "dev";
+} {
+  if (item.badgeTone === "live") {
+    return { label: /vivo/i.test(item.badge ?? "") ? "EN VIVO" : "EN USO", tone: "live" };
+  }
+  if (item.badgeTone === "soon") return { label: "POR LANZAR", tone: "soon" };
+  return { label: "EN DESARROLLO", tone: "dev" };
+}
+
+// Human-readable URL (no protocol) for chrome bars / previews.
+export function caseDisplayUrl(item: CaseItem): string | undefined {
+  return item.liveUrl?.replace(/^https?:\/\//, "").replace(/\/$/, "");
+}
 
 // ---------------------------------------------------------------------------
 // How we work.

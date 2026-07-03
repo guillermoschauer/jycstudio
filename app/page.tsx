@@ -1,5 +1,6 @@
 import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
+import { CapabilitiesMarquee } from "@/components/site/CapabilitiesMarquee";
 import { MobileProductsTicker } from "@/components/site/MobileProductsTicker";
 import { MobileManifesto } from "@/components/site/MobileManifesto";
 import { Casos } from "@/components/site/Casos";
@@ -17,6 +18,8 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        {/* Post-hero seam: capabilities (desktop) / live products (mobile) */}
+        <CapabilitiesMarquee className="hidden md:block" />
         {/* Mobile-specific narrative layer: product ticker → manifesto → cases */}
         <MobileProductsTicker />
         <MobileManifesto />

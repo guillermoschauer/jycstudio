@@ -8,6 +8,8 @@
   --paper: #fbf8f2;
   --charcoal: #22201b;
   --dark-base: #16140f;
+  /* Deeper near-black reserved for the cinematic hero + closing sections. */
+  --noche: #100e08;
   --stone: #8c867a;
   --ink-soft: #46423a;
   --hairline: #d7d1c4;
@@ -25,6 +27,7 @@
   --color-paper: var(--paper);
   --color-charcoal: var(--charcoal);
   --color-dark-base: var(--dark-base);
+  --color-noche: var(--noche);
   --color-stone: var(--stone);
   --color-ink-soft: var(--ink-soft);
   --color-hairline: var(--hairline);
@@ -83,6 +86,12 @@ body {
   font-size: 0.72rem;
   font-weight: 500;
   line-height: 1.1;
+}
+
+/* Cinematic depth for the "noche" hero — neutral vignette only (luminance, no
+   color tint), so the dark background reads as one consistent tone. */
+.hero-noche-glow {
+  background: radial-gradient(135% 100% at 50% 22%, transparent 48%, rgba(0, 0, 0, 0.5) 100%);
 }
 
 /* Champagne hairline accent (the small gold rule under the wordmark). */

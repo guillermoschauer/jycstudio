@@ -75,36 +75,36 @@ export function Estudio() {
         </Reveal>
       </div>
 
-      {/* ── DESKTOP layout (md+) — existing grid ── */}
+      {/* ── DESKTOP layout (md+) — museum spread, no cards ── */}
       <div className="hidden md:block">
-        <Container className="py-20 sm:py-28 lg:py-32">
+        <Container className="py-24 sm:py-32 lg:py-40">
           <Reveal>
             <p className="overline flex items-center gap-2.5 text-stone">
               <span aria-hidden className="inline-block h-[5px] w-[5px] rounded-full bg-operational-green" />
               03 — El estudio
             </p>
-            <h2 className="mt-6 max-w-3xl text-balance font-sans text-[clamp(2.4rem,5vw,4rem)] font-extrabold leading-[1.06] tracking-[-0.03em] text-charcoal">
+            <h2 className="mt-7 max-w-[15ch] text-balance font-sans text-[clamp(2.6rem,5.5vw,4.6rem)] font-extrabold leading-[1.02] tracking-[-0.035em] text-charcoal">
               Un estudio chico,{" "}
               <em className="font-serif font-normal italic tracking-normal">a propósito.</em>
             </h2>
           </Reveal>
 
-          <div className="mt-12 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <div className="mt-14 grid gap-x-16 gap-y-14 lg:mt-20 lg:grid-cols-12">
             {/* Human note + signature */}
-            <Reveal delay={0.05}>
-              <p className="max-w-xl text-pretty font-sans text-xl leading-relaxed text-charcoal sm:text-2xl">
-                No vas a pasar por un comercial y después por otro equipo: la
-                misma persona que entiende tu operación es la que diseña y
-                construye la herramienta.
+            <Reveal className="lg:col-span-7">
+              <p className="max-w-xl text-pretty font-sans text-2xl leading-[1.35] text-charcoal sm:text-[1.7rem]">
+                No pasás por un comercial y después por otro equipo: la misma
+                persona que entiende tu operación es la que diseña y construye la
+                herramienta.
               </p>
-              <p className="mt-5 max-w-xl text-pretty text-lg leading-relaxed text-ink-soft">
+              <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-ink-soft">
                 Trabajamos cerca, en contexto real, y nos quedamos cuando el
-                producto entra en operación. Escribís y te responde quien
-                después construye.
+                producto entra en operación. Escribís y te responde quien después
+                construye.
               </p>
 
               {/* Signature */}
-              <div className="mt-9 flex items-center gap-4">
+              <div className="mt-10 flex items-center gap-4">
                 <div className="flex -space-x-2.5">
                   {TEAM.map((m) =>
                     m.photo ? (
@@ -137,29 +137,28 @@ export function Estudio() {
               </div>
             </Reveal>
 
-            {/* What we're working on */}
-            <Reveal delay={0.1}>
-              <div className="rounded-2xl border border-hairline bg-paper p-8 sm:p-9">
-                <p className="overline flex items-center gap-2.5 text-champagne">
-                  <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-operational-green" />
-                  En qué andamos
-                </p>
-                <p className="mt-5 text-pretty text-[1.05rem] leading-relaxed text-ink-soft">
-                  Productos propios y trabajos en curso junto a negocios reales.
-                  Vamos a ir sumando resultados, aprendizajes y testimonios a
-                  medida que los proyectos entran en operación.
-                </p>
-                <ul className="mt-7 flex flex-wrap gap-2">
-                  {STUDIO_CHIPS.map((chip) => (
-                    <li
-                      key={chip}
-                      className="rounded-full border border-hairline bg-ivory px-3.5 py-1.5 font-mono text-xs tracking-wide text-ink-soft"
-                    >
-                      {chip}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            {/* "En qué andamos" — museum placard, not a card */}
+            <Reveal delay={0.08} className="lg:col-span-4 lg:col-start-9 lg:border-l lg:border-hairline lg:pl-10">
+              <p className="overline flex items-center gap-2.5 text-champagne">
+                <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-operational-green" />
+                En qué andamos
+              </p>
+              <ul className="mt-6 space-y-3">
+                {STUDIO_CHIPS.map((chip) => (
+                  <li
+                    key={chip}
+                    className="flex items-baseline gap-3 font-mono text-[0.8rem] tracking-[0.04em] text-ink-soft"
+                  >
+                    <span aria-hidden className="text-champagne">—</span>
+                    {chip}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-7 max-w-xs text-pretty text-sm leading-relaxed text-stone">
+                Productos propios y trabajos en curso junto a negocios reales.
+                Vamos sumando resultados y aprendizajes a medida que entran en
+                operación.
+              </p>
             </Reveal>
           </div>
         </Container>

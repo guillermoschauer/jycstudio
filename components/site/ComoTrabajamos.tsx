@@ -152,7 +152,7 @@ export function ComoTrabajamos() {
                 transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
               },
             }}
-            className="overline flex items-center gap-2.5 text-operational-green"
+            className="overline flex items-center gap-2.5 text-stone"
           >
             <span
               aria-hidden

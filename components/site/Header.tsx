@@ -42,6 +42,10 @@ export function Header() {
 
   const close = () => setMenuOpen(false);
 
+  // Light marks/text when sitting over the dark hero (top) or the dark menu
+  // overlay; dark once scrolled onto the light sections below.
+  const lightUI = !scrolled || menuOpen;
+
   return (
     <header
       className={cn(
@@ -49,34 +53,55 @@ export function Header() {
         "transition-[background-color,box-shadow,border-color] duration-300",
         scrolled
           ? "border-b border-hairline bg-[rgba(243,238,228,0.86)] shadow-[0_1px_24px_-12px_rgba(34,32,27,0.35)] backdrop-blur-[14px]"
-          : "border-b border-transparent bg-[rgba(243,238,228,0)]",
+          : "border-b border-[rgba(243,238,228,0.08)] bg-[rgba(243,238,228,0)]",
       )}
     >
       <Container className="flex h-full items-center justify-between">
         <Link
           href="#top"
           aria-label="JYC Studio — inicio"
-          className="text-charcoal"
+          className={cn(
+            "transition-colors duration-300",
+            lightUI ? "text-ivory" : "text-charcoal",
+          )}
           onClick={close}
         >
           <Wordmark className="text-[1.2rem] sm:text-[1.55rem]" />
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-9 md:flex">
-          {MENU_LINKS.map((link) => (
+        {/* Desktop nav — section numerals tie it to the numbered spreads */}
+        <nav className="hidden items-center gap-8 md:flex">
+          {MENU_LINKS.map((link, i) => (
             <a
               key={link.href}
               href={link.href}
-              className="group relative font-sans text-sm text-ink-soft transition-colors duration-200 hover:text-charcoal"
+              className={cn(
+                "group relative flex items-baseline gap-1.5 font-sans text-sm transition-colors duration-200",
+                lightUI ? "text-ivory/75 hover:text-ivory" : "text-ink-soft hover:text-charcoal",
+              )}
             >
-              {link.label}
-              <span className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-champagne transition-transform duration-300 ease-out group-hover:scale-x-100" />
+              <span
+                className={cn(
+                  "font-mono text-[0.6rem] tabular-nums transition-colors duration-200",
+                  lightUI ? "text-operational-green" : "text-champagne",
+                )}
+              >
+                0{i + 1}
+              </span>
+              <span className="relative">
+                {link.label}
+                <span className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-champagne transition-transform duration-300 ease-out group-hover:scale-x-100" />
+              </span>
             </a>
           ))}
           <a
             href="#contacto"
-            className="rounded-full border border-charcoal px-5 py-2 text-sm font-medium text-charcoal transition-colors duration-300 hover:bg-charcoal hover:text-ivory"
+            className={cn(
+              "rounded-full border px-5 py-2 text-sm font-medium transition-colors duration-300",
+              lightUI
+                ? "border-ivory/45 text-ivory hover:bg-ivory hover:text-charcoal"
+                : "border-charcoal text-charcoal hover:bg-charcoal hover:text-ivory",
+            )}
           >
             Hablemos
           </a>
@@ -95,17 +120,19 @@ export function Header() {
             <span
               className={cn(
                 "absolute left-0 block h-[2px] bg-current transition-all duration-300",
+                lightUI ? "text-ivory" : "text-charcoal",
                 menuOpen
-                  ? "top-1/2 w-[26px] -translate-y-1/2 rotate-45 text-ivory"
-                  : "top-0 w-[26px] text-charcoal",
+                  ? "top-1/2 w-[26px] -translate-y-1/2 rotate-45"
+                  : "top-0 w-[26px]",
               )}
             />
             <span
               className={cn(
                 "absolute bottom-0 left-0 block h-[2px] bg-current transition-all duration-300",
+                lightUI ? "text-ivory" : "text-charcoal",
                 menuOpen
-                  ? "bottom-1/2 w-[26px] translate-y-1/2 -rotate-45 text-ivory"
-                  : "bottom-0 w-[17px] text-charcoal",
+                  ? "bottom-1/2 w-[26px] translate-y-1/2 -rotate-45"
+                  : "bottom-0 w-[17px]",
               )}
             />
           </span>
