@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { CampaignStill } from "@/components/site/CampaignStill";
+import { Shimmer } from "@/components/ui/Shimmer";
 import { cn } from "@/lib/cn";
 
 /**
@@ -118,10 +119,11 @@ export function Hero() {
             {/* Mobile: full-width pill */}
             <a
               href="#contacto"
-              className="flex min-h-[60px] w-full items-center justify-between gap-3 rounded-full bg-ivory px-7 font-sans text-[1rem] font-semibold text-charcoal transition-opacity duration-200 hover:opacity-90 lg:hidden"
+              className="relative isolate flex min-h-[60px] w-full items-center justify-between gap-3 overflow-hidden rounded-full bg-ivory px-7 font-sans text-[1rem] font-semibold text-charcoal transition-opacity duration-200 hover:opacity-90 lg:hidden"
             >
-              <span>Hablemos</span>
-              <span aria-hidden>→</span>
+              <span className="relative z-[1]">Hablemos</span>
+              <span aria-hidden className="relative z-[1]">→</span>
+              <Shimmer className="via-champagne/40" />
             </a>
             <a
               href="#casos"
@@ -134,10 +136,13 @@ export function Hero() {
             <div className="hidden lg:flex lg:items-center lg:gap-4">
               <a
                 href="#contacto"
-                className="group inline-flex min-h-[52px] items-center gap-2 rounded-full bg-ivory px-7 font-sans text-sm font-semibold text-charcoal transition-opacity duration-200 hover:opacity-90"
+                className="group relative isolate inline-flex min-h-[52px] items-center overflow-hidden rounded-full bg-ivory px-7 font-sans text-sm font-semibold text-charcoal transition-opacity duration-200 hover:opacity-90"
               >
-                Hablemos
-                <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+                <span className="relative z-[1] inline-flex items-center gap-2">
+                  Hablemos
+                  <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+                </span>
+                <Shimmer className="via-champagne/40" />
               </a>
               <a
                 href="#casos"

@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
+import { Shimmer } from "@/components/ui/Shimmer";
 import { WHATSAPP_URL } from "@/lib/site";
 
 /**
@@ -33,15 +34,16 @@ export function MidCTA() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex min-h-[60px] w-full items-center justify-between gap-4 rounded-full bg-ivory px-7 font-sans text-[1rem] font-semibold text-charcoal transition-opacity duration-200 hover:opacity-90 sm:w-auto sm:pr-6"
+                className="group relative isolate flex min-h-[60px] w-full items-center justify-between gap-4 overflow-hidden rounded-full bg-ivory px-7 font-sans text-[1rem] font-semibold text-charcoal transition-opacity duration-200 hover:opacity-90 sm:w-auto sm:pr-6"
               >
-                <span>Escribir por WhatsApp</span>
+                <span className="relative z-[1]">Escribir por WhatsApp</span>
                 <span
                   aria-hidden
-                  className="transition-transform duration-300 group-hover:translate-x-0.5"
+                  className="relative z-[1] transition-transform duration-300 group-hover:translate-x-0.5"
                 >
                   →
                 </span>
+                <Shimmer className="via-champagne/40" />
               </a>
               <p className="mt-4 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-ivory/55">
                 Te respondemos en el día

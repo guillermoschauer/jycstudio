@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Shimmer } from "@/components/ui/Shimmer";
 import { cn } from "@/lib/cn";
 
 /**
@@ -50,17 +51,18 @@ export function StickyCTA() {
       <a
         href="#contacto"
         tabIndex={show ? 0 : -1}
-        className="group flex h-[56px] w-full max-w-[calc(100%-2rem)] items-center justify-between gap-4 rounded-full bg-operational-green px-5 shadow-[0_10px_30px_rgba(22,21,15,0.35)]"
+        className="group relative isolate flex h-[56px] w-full max-w-[calc(100%-2rem)] items-center justify-between gap-4 overflow-hidden rounded-full bg-operational-green px-5 shadow-[0_10px_30px_rgba(22,21,15,0.35)]"
       >
-        <span className="font-sans text-[0.95rem] font-semibold text-ivory">
+        <span className="relative z-[1] font-sans text-[0.95rem] font-semibold text-ivory">
           ¿Hablamos de tu caso?
         </span>
         <span
           aria-hidden
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ivory font-sans text-sm font-bold text-charcoal transition-transform duration-300 group-hover:translate-x-0.5"
+          className="relative z-[1] flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ivory font-sans text-sm font-bold text-charcoal transition-transform duration-300 group-hover:translate-x-0.5"
         >
           →
         </span>
+        <Shimmer className="via-[rgba(243,238,228,0.3)]" />
       </a>
     </div>
   );
