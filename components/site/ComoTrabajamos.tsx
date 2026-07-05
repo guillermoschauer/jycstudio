@@ -172,11 +172,10 @@ export function ComoTrabajamos() {
             }}
             className="mt-7 text-balance font-sans text-[clamp(2.4rem,3.8vw,3.3rem)] font-extrabold leading-[1.04] tracking-[-0.035em] text-ivory"
           >
-            No arrancamos{" "}
+            Primero entendemos{" "}
             <span className="block">
-              por{" "}
               <em className="font-serif font-normal italic tracking-normal text-champagne">
-                una pantalla.
+                qué hace falta.
               </em>
             </span>
           </motion.h2>
@@ -192,8 +191,9 @@ export function ComoTrabajamos() {
             }}
             className="mt-6 max-w-[340px] text-pretty text-[1.05rem] leading-relaxed text-ivory/60"
           >
-            Antes de construir, entendemos qué está pasando. Porque un buen
-            producto no empieza con una idea linda: empieza con un problema real.
+            Antes de proponer una solución, miramos cómo funciona hoy el negocio:
+            qué se hace a mano, dónde se pierde tiempo y qué conviene mejorar de
+            verdad.
           </motion.p>
         </motion.div>
 
