@@ -19,9 +19,10 @@ export function MidCTA() {
                 ¿Te suena?
               </p>
               <h2 className="mt-5 text-balance font-sans text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-[1.03] tracking-[-0.03em] text-ivory">
-                Si tu operación vive en WhatsApp y planillas,{" "}
+                Si tu negocio vive en WhatsApp y planillas, necesitás ordenar cómo
+                trabajás o mostrar mejor lo que hacés,{" "}
                 <em className="font-serif font-normal italic tracking-normal">
-                  empecemos por el problema.
+                  empecemos por ahí.
                 </em>
               </h2>
             </div>
@@ -43,7 +44,7 @@ export function MidCTA() {
                 </span>
               </a>
               <p className="mt-4 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-ivory/55">
-                Respondemos como personas · el mismo día
+                Te respondemos en el día
               </p>
             </div>
           </div>

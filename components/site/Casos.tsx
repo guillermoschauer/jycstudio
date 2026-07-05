@@ -77,7 +77,7 @@ export function Casos() {
         <Reveal>
           <p className="flex items-center gap-2.5 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-stone">
             <span aria-hidden className="inline-block h-[5px] w-[5px] rounded-full bg-operational-green" />
-            01 — Casos
+            01 — Proyectos
           </p>
           <h2 className="mt-5 text-balance font-sans text-[clamp(2.2rem,10vw,2.7rem)] font-extrabold leading-[1.04] tracking-[-0.03em] text-charcoal">
             Lo que construimos,{" "}
@@ -85,6 +85,11 @@ export function Casos() {
               de punta a punta.
             </em>
           </h2>
+          <p className="mt-6 text-pretty text-[0.97rem] leading-relaxed text-ink-soft">
+            Algunos proyectos que pensamos, diseñamos y llevamos a la realidad.
+            Herramientas que ya se usan todos los días y otras que todavía
+            estamos haciendo crecer.
+          </p>
         </Reveal>
 
         <Reveal delay={0.06} className="mt-8">
@@ -98,15 +103,16 @@ export function Casos() {
           <Reveal>
             <p className="overline flex items-center gap-2.5 text-stone">
               <span aria-hidden className="inline-block h-[5px] w-[5px] rounded-full bg-operational-green" />
-              01 — Casos
+              01 — Proyectos
             </p>
             <h2 className="mt-6 max-w-3xl text-balance font-sans text-[clamp(2.4rem,5vw,4.2rem)] font-extrabold leading-[1.04] tracking-[-0.03em] text-charcoal">
               Lo que construimos,{" "}
               <em className="font-serif font-normal italic tracking-normal">de punta a punta.</em>
             </h2>
             <p className="mt-6 max-w-2xl text-pretty text-[1.05rem] leading-relaxed text-ink-soft sm:text-lg">
-              Seis proyectos — sistemas, productos y experiencias. Del problema al
-              producto: los que ya están en uso y los que vienen en camino.
+              Algunos proyectos que pensamos, diseñamos y llevamos a la realidad.
+              Herramientas que ya se usan todos los días y otras que todavía
+              estamos haciendo crecer.
             </p>
           </Reveal>
 
