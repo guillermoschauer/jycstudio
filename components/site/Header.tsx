@@ -42,9 +42,9 @@ export function Header() {
 
   const close = () => setMenuOpen(false);
 
-  // Light marks/text when sitting over the dark hero (top) or the dark menu
-  // overlay; dark once scrolled onto the light sections below.
-  const lightUI = !scrolled || menuOpen;
+  // The hero is light, so the header reads dark at rest and when scrolled;
+  // light marks only while the dark mobile menu overlay is open.
+  const lightUI = menuOpen;
 
   return (
     <header
@@ -53,7 +53,7 @@ export function Header() {
         "transition-[background-color,box-shadow,border-color] duration-300",
         scrolled
           ? "border-b border-hairline bg-[rgba(243,238,228,0.86)] shadow-[0_1px_24px_-12px_rgba(34,32,27,0.35)] backdrop-blur-[14px]"
-          : "border-b border-[rgba(243,238,228,0.08)] bg-[rgba(243,238,228,0)]",
+          : "border-b border-transparent bg-[rgba(243,238,228,0)]",
       )}
     >
       <Container className="flex h-full items-center justify-between">
@@ -80,12 +80,7 @@ export function Header() {
                 lightUI ? "text-ivory/75 hover:text-ivory" : "text-ink-soft hover:text-charcoal",
               )}
             >
-              <span
-                className={cn(
-                  "font-mono text-[0.6rem] tabular-nums transition-colors duration-200",
-                  lightUI ? "text-operational-green" : "text-champagne",
-                )}
-              >
+              <span className="font-mono text-[0.6rem] tabular-nums text-operational-green">
                 0{i + 1}
               </span>
               <span className="relative">

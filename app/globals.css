@@ -88,12 +88,6 @@ body {
   line-height: 1.1;
 }
 
-/* Cinematic depth for the "noche" hero — neutral vignette only (luminance, no
-   color tint), so the dark background reads as one consistent tone. */
-.hero-noche-glow {
-  background: radial-gradient(135% 100% at 50% 22%, transparent 48%, rgba(0, 0, 0, 0.5) 100%);
-}
-
 /* Champagne hairline accent (the small gold rule under the wordmark). */
 .accent-rule {
   display: inline-block;
