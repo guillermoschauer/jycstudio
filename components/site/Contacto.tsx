@@ -20,7 +20,7 @@ export function Contacto() {
             <Reveal>
               <p className="flex items-center gap-2.5 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-stone">
                 <span aria-hidden className="inline-block h-[5px] w-[5px] rounded-full bg-operational-green" />
-                04 — Contacto · Escribí el próximo capítulo
+                03 — Contacto · Escribí el próximo capítulo
               </p>
             </Reveal>
 

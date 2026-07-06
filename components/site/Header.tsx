@@ -11,7 +11,6 @@ import { cn } from "@/lib/cn";
 const MENU_LINKS = [
   { label: "Casos",           href: "#casos"          },
   { label: "Cómo trabajamos", href: "#como-trabajamos" },
-  { label: "Estudio",         href: "#estudio"        },
 ] as const;
 
 export function Header() {
@@ -175,7 +174,7 @@ export function Header() {
                 </motion.a>
               ))}
 
-              {/* "Hablemos" — italic serif gold, 4th item */}
+              {/* "Hablemos" — italic serif gold, last item */}
               <motion.a
                 href="#contacto"
                 onClick={close}
@@ -189,7 +188,7 @@ export function Header() {
                 className="group flex items-baseline gap-4 border-b border-white/[0.07] py-5"
               >
                 <span className="w-5 font-mono text-[0.65rem] font-semibold tracking-[0.16em] text-[#63C695]">
-                  04
+                  {String(MENU_LINKS.length + 1).padStart(2, "0")}
                 </span>
                 <span className="font-serif text-[2.1rem] font-normal italic text-champagne transition-opacity duration-200 group-hover:opacity-70">
                   Hablemos

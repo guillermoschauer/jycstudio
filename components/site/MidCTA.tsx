@@ -45,7 +45,7 @@ export function MidCTA() {
                 </span>
                 <Shimmer className="via-champagne/40" />
               </a>
-              <p className="mt-4 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-ivory/55">
+              <p className="mt-4 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-ivory/55 lg:text-center">
                 Te respondemos en el día
               </p>
             </div>

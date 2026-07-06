@@ -7,6 +7,8 @@ import { cn } from "@/lib/cn";
 /**
  * Subtle, premium WhatsApp action pinned bottom-right.
  *
+ * - Desktop only (md+): on mobile the StickyCTA already occupies the bottom,
+ *   so the two would overlap.
  * - Respects iOS safe areas via the `.fab-safe` helper (globals.css).
  * - Hides while the #contacto section (which already offers WhatsApp) is on
  *   screen, so it never competes with the main CTA at the close of the page.
@@ -33,7 +35,7 @@ export function WhatsAppFab() {
       rel="noopener noreferrer"
       aria-label="Escribir por WhatsApp"
       className={cn(
-        "fab-safe fixed z-50 flex h-14 w-14 items-center justify-center rounded-full bg-operational-green text-ivory shadow-[0_14px_30px_-8px_rgba(46,111,94,0.6)] transition-all duration-300 ease-out hover:bg-[#27604f]",
+        "fab-safe fixed z-50 hidden h-14 w-14 items-center justify-center rounded-full bg-operational-green text-ivory shadow-[0_14px_30px_-8px_rgba(46,111,94,0.6)] transition-all duration-300 ease-out hover:bg-[#27604f] md:flex",
         hidden
           ? "pointer-events-none translate-y-4 opacity-0"
           : "opacity-100",
