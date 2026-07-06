@@ -11,6 +11,7 @@ import { cn } from "@/lib/cn";
 const MENU_LINKS = [
   { label: "Proyectos",       href: "#casos"          },
   { label: "Cómo trabajamos", href: "#como-trabajamos" },
+  { label: "Contacto",        href: "#contacto"        },
 ] as const;
 
 export function Header() {
@@ -93,17 +94,6 @@ export function Header() {
               </span>
             </a>
           ))}
-          <a
-            href="#contacto"
-            className={cn(
-              "rounded-full border px-5 py-2 text-sm font-medium transition-colors duration-300",
-              lightUI
-                ? "border-ivory/45 text-ivory hover:bg-ivory hover:text-charcoal"
-                : "border-charcoal text-charcoal hover:bg-charcoal hover:text-ivory",
-            )}
-          >
-            Hablemos
-          </a>
         </nav>
 
         {/* Mobile trigger — hamburger with two asymmetric bars (26px + 17px) */}
@@ -173,27 +163,6 @@ export function Header() {
                   </span>
                 </motion.a>
               ))}
-
-              {/* "Hablemos" — italic serif gold, last item */}
-              <motion.a
-                href="#contacto"
-                onClick={close}
-                initial={{ opacity: 0, y: reduce ? 0 : 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: reduce ? 0 : 0.45,
-                  delay:    reduce ? 0 : 0.06 + MENU_LINKS.length * 0.07,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="group flex items-baseline gap-4 border-b border-white/[0.07] py-5"
-              >
-                <span className="w-5 font-mono text-[0.65rem] font-semibold tracking-[0.16em] text-[#63C695]">
-                  {String(MENU_LINKS.length + 1).padStart(2, "0")}
-                </span>
-                <span className="font-serif text-[2.1rem] font-normal italic text-champagne transition-opacity duration-200 group-hover:opacity-70">
-                  Hablemos
-                </span>
-              </motion.a>
             </nav>
 
             {/* WhatsApp CTA at bottom */}
