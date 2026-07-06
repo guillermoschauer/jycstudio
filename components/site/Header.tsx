@@ -9,7 +9,7 @@ import { WHATSAPP_URL } from "@/lib/site";
 import { cn } from "@/lib/cn";
 
 const MENU_LINKS = [
-  { label: "Casos",           href: "#casos"          },
+  { label: "Proyectos",       href: "#casos"          },
   { label: "Cómo trabajamos", href: "#como-trabajamos" },
 ] as const;
 

@@ -3,15 +3,15 @@ import { Reveal } from "@/components/ui/Reveal";
 import { MAILTO_URL, SITE, WHATSAPP_URL } from "@/lib/site";
 
 /**
- * Closing "capítulo" — the page's dark bookend. Deliberately distinct from the
- * hero (which is also "noche"): no still, a question as the protagonist, and two
- * side-by-side CTA cards. Also rendered at the foot of every case-detail page.
+ * Closing "capítulo" — on a light surface so it reads as a clear section change
+ * after the dark "Cómo trabajamos". A question as the protagonist + two CTA
+ * cards. Also rendered at the foot of every case-detail page.
  */
 export function Contacto() {
   return (
     <section
       id="contacto"
-      className="bg-noche pb-[calc(7rem+env(safe-area-inset-bottom))] pt-20 text-ivory sm:pb-[calc(9rem+env(safe-area-inset-bottom))] sm:pt-28 lg:pt-32"
+      className="bg-ivory pb-[calc(7rem+env(safe-area-inset-bottom))] pt-20 text-charcoal sm:pb-[calc(9rem+env(safe-area-inset-bottom))] sm:pt-28 lg:pt-32"
     >
       <Container>
         <div className="grid gap-x-16 gap-y-12 lg:grid-cols-12 lg:items-end">
@@ -25,16 +25,16 @@ export function Contacto() {
             </Reveal>
 
             <Reveal delay={0.05}>
-              <h2 className="mt-7 max-w-[13ch] text-balance font-sans text-[clamp(2.35rem,8vw,4.8rem)] font-extrabold leading-[1.02] tracking-[-0.035em] text-ivory">
+              <h2 className="mt-7 max-w-[13ch] text-balance font-sans text-[clamp(2.35rem,8vw,4.8rem)] font-extrabold leading-[1.02] tracking-[-0.035em] text-charcoal">
                 ¿Hay un problema real{" "}
-                <em className="font-serif font-normal italic tracking-normal text-champagne">
+                <em className="font-serif font-normal italic tracking-normal">
                   que debería funcionar mejor?
                 </em>
               </h2>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <p className="mt-7 max-w-md text-pretty text-[0.97rem] leading-relaxed text-ivory/65 lg:text-lg">
+              <p className="mt-7 max-w-md text-pretty text-[0.97rem] leading-relaxed text-ink-soft lg:text-lg">
                 Contanos qué está pasando. Sin formularios ni demos automáticas —
                 hablamos como personas.
               </p>
@@ -49,7 +49,7 @@ export function Contacto() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative isolate flex min-h-[4.5rem] items-center justify-between gap-3 overflow-hidden rounded-[20px] bg-operational-green p-6 text-ivory transition-opacity duration-200 hover:opacity-90"
+                className="group relative isolate flex min-h-[4.5rem] items-center justify-between gap-3 overflow-hidden rounded-[20px] bg-operational-green p-6 text-ivory shadow-[0_20px_45px_-26px_rgba(46,111,94,0.6)] transition-opacity duration-200 hover:opacity-90"
               >
                 <div className="relative z-[1]">
                   <p className="font-sans text-[1rem] font-medium">Escribir por WhatsApp</p>
@@ -72,7 +72,7 @@ export function Contacto() {
               {/* Email */}
               <a
                 href={MAILTO_URL}
-                className="group flex min-h-[4.5rem] items-center justify-between gap-3 rounded-[20px] border border-[color:var(--color-hairline-dark)] bg-white/[0.02] p-6 text-ivory transition-opacity duration-200 hover:opacity-80"
+                className="group flex min-h-[4.5rem] items-center justify-between gap-3 rounded-[20px] border border-hairline bg-paper p-6 text-charcoal transition-colors duration-200 hover:border-champagne/60"
               >
                 <div>
                   <p className="font-sans text-[1rem] font-medium">{SITE.email}</p>
