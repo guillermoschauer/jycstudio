@@ -122,7 +122,7 @@ export function CasosIndex() {
                       alt={item.image.alt}
                       fill
                       sizes="340px"
-                      className="object-cover object-top"
+                      className="object-contain"
                     />
                   ) : (
                     <div className="flex h-full w-full flex-col items-center justify-center gap-2 px-6 text-center">
