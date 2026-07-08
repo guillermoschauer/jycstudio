@@ -20,78 +20,95 @@ import { cn } from "@/lib/cn";
 
 // ─── Scene vignettes (illustrative content — deliberately generic) ────────────
 
+/** Recognizable WhatsApp mini-chat: green header + white bubbles on warm bg. */
 function ChatCard({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "rounded-2xl border border-hairline bg-white p-3.5 shadow-[0_14px_30px_-16px_rgba(34,32,27,0.35)]",
+        "overflow-hidden rounded-xl border border-hairline bg-[#efe8db] shadow-[0_14px_30px_-16px_rgba(34,32,27,0.35)]",
         className,
       )}
     >
-      <p className="w-fit rounded-lg rounded-bl-sm bg-[#efe8db] px-2.5 py-1.5 text-[0.78rem] leading-snug text-ink-soft">
-        Hola! ¿Tenés lugar mañana?
-      </p>
-      <p className="mt-1.5 w-fit rounded-lg rounded-bl-sm bg-[#efe8db] px-2.5 py-1.5 text-[0.78rem] leading-snug text-ink-soft">
-        ¿Y el precio del combo?
-      </p>
-      <p className="mt-2 whitespace-nowrap font-mono text-[0.55rem] uppercase tracking-[0.1em] text-stone">
-        22:41 · sin responder
-      </p>
-    </div>
-  );
-}
-
-function NoteCard({ className }: { className?: string }) {
-  return (
-    <div
-      className={cn(
-        "rounded-lg border border-[#e2d8c3] bg-[#f2ead8] p-3.5 shadow-[0_12px_26px_-14px_rgba(34,32,27,0.3)]",
-        className,
-      )}
-    >
-      <p className="font-mono text-[0.55rem] font-semibold uppercase tracking-[0.14em] text-stone">
-        No olvidar
-      </p>
-      <ul className="mt-1.5 space-y-0.5 text-[0.78rem] leading-snug text-ink-soft">
-        <li>— Seña de Carla</li>
-        <li>— Pedido del viernes</li>
-        <li>— ¿Factura A?</li>
-      </ul>
-    </div>
-  );
-}
-
-function SheetCard({ className }: { className?: string }) {
-  return (
-    <div
-      className={cn(
-        "overflow-hidden rounded-lg border border-hairline bg-white shadow-[0_12px_26px_-14px_rgba(34,32,27,0.3)]",
-        className,
-      )}
-    >
-      <div className="grid grid-cols-4 font-mono text-[0.55rem] uppercase tracking-[0.08em]">
-        <span className="border-b border-hairline bg-paper px-2 py-1.5 text-stone">Turnos</span>
-        <span className="border-b border-l border-hairline bg-paper px-2 py-1.5 text-stone">Lu</span>
-        <span className="border-b border-l border-hairline bg-paper px-2 py-1.5 text-stone">Ma</span>
-        <span className="border-b border-l border-hairline bg-paper px-2 py-1.5 text-stone">Mi</span>
-        <span className="px-2 py-1.5 text-ink-soft">Mañana</span>
-        <span className="border-l border-hairline px-2 py-1.5 text-ink-soft">8</span>
-        <span className="border-l border-hairline px-2 py-1.5 text-ink-soft">5</span>
-        <span className="border-l border-hairline px-2 py-1.5 text-terracotta">¿?</span>
+      <div className="flex items-center gap-2 bg-operational-green px-3 py-2">
+        <span
+          aria-hidden
+          className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ivory/25 font-sans text-[0.6rem] font-bold text-ivory"
+        >
+          C
+        </span>
+        <div className="leading-none">
+          <p className="font-sans text-[0.68rem] font-semibold text-ivory">Cliente</p>
+          <p className="mt-0.5 font-sans text-[0.55rem] text-ivory/70">en línea</p>
+        </div>
+      </div>
+      <div className="p-3">
+        <p className="w-fit rounded-lg rounded-tl-sm bg-white px-2.5 py-1.5 text-[0.78rem] leading-snug text-ink-soft shadow-sm">
+          Hola! ¿Tenés lugar mañana?
+        </p>
+        <p className="mt-1.5 w-fit rounded-lg rounded-tl-sm bg-white px-2.5 py-1.5 text-[0.78rem] leading-snug text-ink-soft shadow-sm">
+          ¿Y el precio del combo?
+        </p>
+        <p className="mt-2 whitespace-nowrap text-right font-sans text-[0.6rem] text-stone">
+          22:41 · sin responder
+        </p>
       </div>
     </div>
   );
 }
 
-function MissedChip({ className }: { className?: string }) {
+/** Notebook page: ruled lines, terracotta margin, handwritten list. */
+function NoteCard({ className }: { className?: string }) {
   return (
-    <p
+    <div
       className={cn(
-        "w-fit rounded-full border border-hairline bg-white px-3 py-1.5 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-terracotta shadow-[0_10px_22px_-12px_rgba(34,32,27,0.3)]",
+        "relative overflow-hidden rounded-[4px] border border-[#e6dcc4] bg-[#fbf4e2] shadow-[0_12px_26px_-14px_rgba(34,32,27,0.3)]",
         className,
       )}
     >
-      2 llamadas perdidas
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-[repeating-linear-gradient(to_bottom,transparent,transparent_21px,rgba(140,134,122,0.22)_21px,rgba(140,134,122,0.22)_22px)]"
+      />
+      <span aria-hidden className="absolute inset-y-0 left-5 w-px bg-terracotta/40" />
+      <div className="relative pb-1.5 pl-7 pr-3 pt-1 font-hand text-[1.05rem] font-medium leading-[22px] text-ink-soft">
+        <p className="font-semibold text-charcoal">No olvidar:</p>
+        <p>seña de Carla</p>
+        <p>pedido del viernes</p>
+        <p className="font-semibold text-terracotta">¿factura A?</p>
+      </div>
+    </div>
+  );
+}
+
+/** Loose paper scrap with handwritten turnos — square corners, slight tilt. */
+function TurnosScrap({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        "border border-hairline bg-[#fdfaf1] px-4 py-2 shadow-[0_12px_26px_-14px_rgba(34,32,27,0.3)]",
+        className,
+      )}
+    >
+      <p className="whitespace-nowrap font-hand text-[1.05rem] font-semibold leading-snug text-charcoal">
+        Turnos: Lu 8 · Ma 5 · Mi <span className="text-terracotta">¿?</span>
+      </p>
+      <p className="whitespace-nowrap font-hand text-[0.98rem] font-medium leading-snug text-ink-soft">
+        pedidos → 3 sin confirmar
+      </p>
+    </div>
+  );
+}
+
+/** Tiny handwritten reminder strip. */
+function CallsScrap({ className }: { className?: string }) {
+  return (
+    <p
+      className={cn(
+        "w-fit border border-[#e6dcc4] bg-[#fbf4e2] px-3 py-0.5 font-hand text-[1.02rem] font-semibold leading-snug text-terracotta shadow-[0_10px_22px_-12px_rgba(34,32,27,0.3)]",
+        className,
+      )}
+    >
+      ¡devolver 2 llamadas!
     </p>
   );
 }
@@ -396,17 +413,17 @@ export function Hero() {
           viewport={{ once: true, margin: "0px 0px -8% 0px" }}
           className="mt-14 hidden items-center justify-center gap-4 lg:flex xl:gap-8"
         >
-          {/* 1 · Chaos — rotated, loosely stacked */}
+          {/* 1 · Chaos — WhatsApp + handwritten papers, loosely stacked */}
           <motion.div variants={sceneZone(-18)} className="w-[330px] shrink-0 xl:w-[400px]">
             <SceneCaption>Entra — el día a día</SceneCaption>
             <div className="mt-3 flex items-start gap-2.5 xl:gap-3">
               <ChatCard className="w-[185px] shrink-0 -rotate-2 xl:w-[215px]" />
               <div className="flex min-w-0 flex-col items-start gap-2.5 pt-3">
-                <MissedChip className="rotate-2 whitespace-nowrap" />
-                <NoteCard className="w-[135px] rotate-[2.5deg] xl:w-[165px]" />
+                <CallsScrap className="rotate-2" />
+                <NoteCard className="w-[140px] rotate-[2.5deg] xl:w-[168px]" />
               </div>
             </div>
-            <SheetCard className="-mt-1.5 ml-7 w-[215px] -rotate-1 xl:w-[240px]" />
+            <TurnosScrap className="-mt-1.5 ml-7 w-fit -rotate-1" />
           </motion.div>
 
           <Arrow />
@@ -445,9 +462,9 @@ export function Hero() {
         >
           <motion.div variants={item} className="w-[290px]">
             <SceneCaption>Entra — el día a día</SceneCaption>
-            <ChatCard className="mt-3 w-[195px] -rotate-2" />
-            <NoteCard className="-mt-4 ml-auto w-[150px] rotate-2" />
-            <MissedChip className="-mt-1 -rotate-1" />
+            <ChatCard className="mt-3 w-[190px] -rotate-2" />
+            <NoteCard className="-mt-5 ml-auto w-[145px] rotate-2" />
+            <CallsScrap className="-mt-1 -rotate-1" />
           </motion.div>
 
           <motion.div variants={item} className="my-3">

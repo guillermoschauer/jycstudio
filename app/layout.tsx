@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Newsreader, JetBrains_Mono } from "next/font/google";
+import { DM_Sans, Newsreader, JetBrains_Mono, Caveat } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/site";
 
@@ -21,6 +21,14 @@ const newsreader = Newsreader({
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
   subsets: ["latin"],
+  display: "swap",
+});
+
+// Handwritten voice for the hero's "día a día" paper notes.
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["500", "600"],
   display: "swap",
 });
 
@@ -77,7 +85,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${dmSans.variable} ${newsreader.variable} ${jetbrainsMono.variable} antialiased`}
+      className={`${dmSans.variable} ${newsreader.variable} ${jetbrainsMono.variable} ${caveat.variable} antialiased`}
     >
       <body>{children}</body>
     </html>
