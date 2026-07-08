@@ -100,7 +100,7 @@ function JycNode({ compact = false }: { compact?: boolean }) {
   return (
     <div
       className={cn(
-        "relative rounded-[20px] bg-charcoal text-ivory shadow-[0_26px_50px_-22px_rgba(34,32,27,0.55)]",
+        "relative flex flex-col items-center rounded-[20px] bg-charcoal text-ivory shadow-[0_26px_50px_-22px_rgba(34,32,27,0.55)]",
         compact ? "px-6 py-4" : "px-8 py-6",
       )}
     >
@@ -109,6 +109,48 @@ function JycNode({ compact = false }: { compact?: boolean }) {
         className="absolute right-3 top-3 inline-block h-[6px] w-[6px] rounded-full bg-operational-green"
       />
       <Wordmark className={compact ? "text-[1.05rem]" : "text-[1.3rem]"} />
+      <p
+        className={cn(
+          "mt-1.5 whitespace-nowrap font-mono font-semibold uppercase tracking-[0.16em] text-ivory/55",
+          compact ? "text-[0.5rem]" : "text-[0.55rem]",
+        )}
+      >
+        Diseño + desarrollo
+      </p>
+    </div>
+  );
+}
+
+/** Title + colored mono caption that names each output explicitly. */
+function OutputLabel({
+  title,
+  caption,
+  tone,
+  compact = false,
+}: {
+  title: string;
+  caption: string;
+  tone: "champagne" | "green";
+  compact?: boolean;
+}) {
+  return (
+    <div className={compact ? "mb-1.5" : "mb-2"}>
+      <p
+        className={cn(
+          "font-sans font-bold leading-tight text-charcoal",
+          compact ? "text-[0.78rem]" : "text-[0.85rem]",
+        )}
+      >
+        {title}
+      </p>
+      <p
+        className={cn(
+          "mt-0.5 font-mono text-[0.55rem] font-semibold uppercase tracking-[0.16em]",
+          tone === "champagne" ? "text-champagne" : "text-operational-green",
+        )}
+      >
+        {caption}
+      </p>
     </div>
   );
 }
@@ -244,7 +286,27 @@ export function Hero() {
             variants={item}
             className="max-w-[900px] text-balance font-sans text-[clamp(2.3rem,9.6vw,3.5rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-charcoal lg:text-[clamp(2.7rem,4.4vw,3.9rem)]"
           >
-            Mostramos lo que hacés.{" "}
+            {/* Color code ties the headline to the scene's two outputs:
+                champagne = mostrar (landing) · green = ordenar (sistema) */}
+            Mostramos{" "}
+            <span className="relative inline-block">
+              lo que hacés.
+              {!reduce && (
+                <motion.span
+                  aria-hidden
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.7, duration: 0.8, ease: [0.65, 0, 0.2, 1] }}
+                  className="absolute -bottom-1 left-0 block h-[3px] w-full origin-left bg-champagne"
+                />
+              )}
+              {reduce && (
+                <span
+                  aria-hidden
+                  className="absolute -bottom-1 left-0 block h-[3px] w-full bg-champagne"
+                />
+              )}
+            </span>{" "}
             <span className="block font-serif text-[1.04em] font-normal italic tracking-normal">
               Ordenamos{" "}
               {/* inline-block keeps the underlined pair together across wraps */}
@@ -255,14 +317,14 @@ export function Hero() {
                     aria-hidden
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
-                    transition={{ delay: 0.75, duration: 0.9, ease: [0.65, 0, 0.2, 1] }}
-                    className="absolute -bottom-1 left-0 block h-[3px] w-full origin-left bg-champagne"
+                    transition={{ delay: 1.05, duration: 0.8, ease: [0.65, 0, 0.2, 1] }}
+                    className="absolute -bottom-1 left-0 block h-[3px] w-full origin-left bg-operational-green"
                   />
                 )}
                 {reduce && (
                   <span
                     aria-hidden
-                    className="absolute -bottom-1 left-0 block h-[3px] w-full bg-champagne"
+                    className="absolute -bottom-1 left-0 block h-[3px] w-full bg-operational-green"
                   />
                 )}
               </span>
@@ -273,8 +335,9 @@ export function Hero() {
             variants={item}
             className="mt-6 max-w-[38ch] text-pretty text-[1.02rem] leading-relaxed text-ink-soft lg:max-w-xl lg:text-lg"
           >
-            Landings y sistemas a medida, para negocios que hoy funcionan con
-            WhatsApp, planillas y memoria.
+            Una landing que muestra lo que hacés y un sistema que ordena tu día
+            a día — para negocios que hoy funcionan con WhatsApp, planillas y
+            memoria.
           </motion.p>
 
           {/* CTAs — primary: WhatsApp (green); secondary: projects */}
@@ -355,21 +418,17 @@ export function Hero() {
 
           <Arrow />
 
-          {/* 3 · Result — straight, clean, both outputs */}
+          {/* 3 · Result — straight, clean, the two outputs named */}
           <motion.div variants={sceneZone(18)} className="w-[330px] shrink-0 xl:w-[400px]">
             <SceneCaption className="text-right">Sale — listo para usar</SceneCaption>
-            <div className="mt-3 flex items-start justify-end gap-3">
-              <div className="mt-7 w-[155px] xl:w-[190px]">
+            <div className="mt-3 flex items-start justify-end gap-3 xl:gap-4">
+              <div className="w-[155px] xl:w-[190px]">
+                <OutputLabel title="Landing page" caption="Para mostrar" tone="champagne" />
                 <LandingMini />
-                <SceneCaption className="mt-2 text-center text-[0.52rem] text-champagne">
-                  Para mostrar
-                </SceneCaption>
               </div>
-              <div className="w-[165px] xl:w-[195px]">
+              <div className="mt-6 w-[165px] xl:w-[195px]">
+                <OutputLabel title="Sistema · agenda" caption="Para ordenar" tone="green" />
                 <AgendaMini />
-                <SceneCaption className="mt-2 text-center text-[0.52rem] text-operational-green">
-                  Para ordenar
-                </SceneCaption>
               </div>
             </div>
           </motion.div>
@@ -387,7 +446,8 @@ export function Hero() {
           <motion.div variants={item} className="w-[290px]">
             <SceneCaption>Entra — el día a día</SceneCaption>
             <ChatCard className="mt-3 w-[195px] -rotate-2" />
-            <NoteCard className="-mt-3 ml-auto w-[150px] rotate-2" />
+            <NoteCard className="-mt-4 ml-auto w-[150px] rotate-2" />
+            <MissedChip className="-mt-1 -rotate-1" />
           </motion.div>
 
           <motion.div variants={item} className="my-3">
@@ -404,16 +464,12 @@ export function Hero() {
 
           <motion.div variants={item} className="flex items-start gap-3">
             <div className="w-[158px]">
+              <OutputLabel title="Landing page" caption="Para mostrar" tone="champagne" compact />
               <LandingMini />
-              <SceneCaption className="mt-2 text-center text-[0.52rem] text-champagne">
-                Para mostrar
-              </SceneCaption>
             </div>
             <div className="w-[165px]">
+              <OutputLabel title="Sistema · agenda" caption="Para ordenar" tone="green" compact />
               <AgendaMini />
-              <SceneCaption className="mt-2 text-center text-[0.52rem] text-operational-green">
-                Para ordenar
-              </SceneCaption>
             </div>
           </motion.div>
         </motion.div>
