@@ -172,6 +172,7 @@ function OutputLabel({
   );
 }
 
+/** A recognizable mini landing: chrome, nav, headline, CTA and trust row. */
 function LandingMini({ className }: { className?: string }) {
   return (
     <div
@@ -180,18 +181,46 @@ function LandingMini({ className }: { className?: string }) {
         className,
       )}
     >
+      {/* Browser chrome with address-bar hint */}
       <div className="flex items-center gap-1.5 border-b border-hairline bg-paper px-3 py-2">
         <span className="h-1.5 w-1.5 rounded-full bg-stone/30" />
         <span className="h-1.5 w-1.5 rounded-full bg-stone/30" />
         <span className="h-1.5 w-1.5 rounded-full bg-stone/30" />
+        <span className="ml-1 h-1.5 w-16 rounded-full bg-stone/20" />
       </div>
-      <div className="p-3.5">
-        <div className="h-2.5 w-4/5 rounded-full bg-charcoal" />
-        <div className="mt-2 h-1.5 w-full rounded-full bg-charcoal/15" />
-        <div className="mt-1.5 h-1.5 w-2/3 rounded-full bg-charcoal/15" />
-        <div className="mt-3 flex h-6 w-20 items-center justify-center rounded-full bg-operational-green">
-          <span className="font-sans text-[0.6rem] font-semibold text-ivory">Hablemos</span>
+      {/* Mini nav */}
+      <div className="flex items-center justify-between px-3 pt-2.5">
+        <span className="flex items-center gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-operational-green" />
+          <span className="font-sans text-[0.6rem] font-bold tracking-[-0.01em] text-charcoal">
+            Tu negocio
+          </span>
+        </span>
+        <span className="flex gap-1.5">
+          <span className="h-1 w-4 rounded-full bg-stone/25" />
+          <span className="h-1 w-4 rounded-full bg-stone/25" />
+        </span>
+      </div>
+      {/* Mini hero */}
+      <div className="px-3 pb-3 pt-2.5">
+        <p className="font-sans text-[0.82rem] font-extrabold leading-[1.15] tracking-[-0.02em] text-charcoal">
+          Tu negocio,
+          <br />
+          bien mostrado.
+        </p>
+        <div className="mt-2 h-1.5 w-4/5 rounded-full bg-charcoal/15" />
+        <div className="mt-1 h-1.5 w-3/5 rounded-full bg-charcoal/15" />
+        <div className="mt-2.5 flex items-center gap-2">
+          <span className="flex h-6 items-center rounded-full bg-operational-green px-2.5 font-sans text-[0.6rem] font-semibold text-ivory">
+            Reservar
+          </span>
+          <span className="whitespace-nowrap font-sans text-[0.58rem] text-stone">
+            Cómo llegar →
+          </span>
         </div>
+        <p className="mt-2.5 font-sans text-[0.62rem] tracking-[0.06em] text-champagne">
+          ★★★★★ <span className="tracking-normal text-stone">· reseñas</span>
+        </p>
       </div>
     </div>
   );
@@ -225,6 +254,47 @@ function AgendaMini({ className }: { className?: string }) {
                 row.on ? "bg-operational-green" : "border border-stone/50",
               )}
             />
+          </li>
+        ))}
+      </ul>
+      <p className="mt-2.5 flex h-6 items-center justify-center rounded-md bg-operational-green/10 font-sans text-[0.6rem] font-semibold text-operational-green">
+        + Nuevo turno
+      </p>
+    </div>
+  );
+}
+
+/** Third output: gestión/cobros — resolves the very items from the paper note. */
+function GestionMini({ className }: { className?: string }) {
+  const rows = [
+    { label: "Seña · Carla M.",  status: "Cobrada",   done: true  },
+    { label: "Factura A",        status: "Emitida",   done: true  },
+    { label: "Pedido viernes",   status: "Pendiente", done: false },
+  ] as const;
+  return (
+    <div
+      className={cn(
+        "rounded-xl border border-hairline bg-white p-3.5 shadow-[0_18px_40px_-20px_rgba(34,32,27,0.35)]",
+        className,
+      )}
+    >
+      <p className="font-mono text-[0.55rem] font-semibold uppercase tracking-[0.14em] text-stone">
+        Cobros · al día
+      </p>
+      <ul className="mt-2 space-y-1.5">
+        {rows.map((row) => (
+          <li key={row.label} className="flex items-center gap-2 text-[0.7rem] leading-none">
+            <span className="flex-1 truncate font-medium text-charcoal">{row.label}</span>
+            <span
+              className={cn(
+                "shrink-0 rounded px-1.5 py-0.5 font-sans text-[0.55rem] font-semibold",
+                row.done
+                  ? "bg-operational-green/10 text-operational-green"
+                  : "bg-champagne/15 text-[#8a7247]",
+              )}
+            >
+              {row.status}
+            </span>
           </li>
         ))}
       </ul>
@@ -350,7 +420,7 @@ export function Hero() {
 
           <motion.p
             variants={item}
-            className="mt-6 max-w-[38ch] text-pretty text-[1.02rem] leading-relaxed text-ink-soft lg:max-w-xl lg:text-lg"
+            className="mt-6 max-w-[38ch] text-pretty text-[1.02rem] leading-relaxed text-ink-soft lg:max-w-2xl lg:text-lg"
           >
             Una landing que muestra lo que hacés y un sistema que ordena tu día
             a día — para negocios que hoy funcionan con WhatsApp, planillas y
@@ -411,7 +481,7 @@ export function Hero() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "0px 0px -8% 0px" }}
-          className="mt-14 hidden items-center justify-center gap-4 lg:flex xl:gap-8"
+          className="mt-11 hidden items-center justify-center gap-4 lg:flex xl:gap-8"
         >
           {/* 1 · Chaos — WhatsApp + handwritten papers, loosely stacked */}
           <motion.div variants={sceneZone(-18)} className="w-[330px] shrink-0 xl:w-[400px]">
@@ -435,18 +505,22 @@ export function Hero() {
 
           <Arrow />
 
-          {/* 3 · Result — straight, clean, the two outputs named */}
+          {/* 3 · Result — straight, clean, three concrete outputs */}
           <motion.div variants={sceneZone(18)} className="w-[330px] shrink-0 xl:w-[400px]">
             <SceneCaption className="text-right">Sale — listo para usar</SceneCaption>
-            <div className="mt-3 flex items-start justify-end gap-3 xl:gap-4">
-              <div className="w-[155px] xl:w-[190px]">
+            <div className="mt-3 flex items-start gap-2.5 xl:gap-3">
+              <div className="w-[178px] shrink-0 xl:w-[208px]">
                 <OutputLabel title="Landing page" caption="Para mostrar" tone="champagne" />
                 <LandingMini />
               </div>
-              <div className="mt-6 w-[165px] xl:w-[195px]">
+              <div className="mt-9 min-w-0 flex-1">
                 <OutputLabel title="Sistema · agenda" caption="Para ordenar" tone="green" />
                 <AgendaMini />
               </div>
+            </div>
+            <div className="ml-auto mt-2.5 w-[210px] xl:w-[235px]">
+              <OutputLabel title="Gestión · cobros" caption="Para administrar" tone="green" />
+              <GestionMini />
             </div>
           </motion.div>
         </motion.div>
@@ -479,14 +553,20 @@ export function Hero() {
             <Arrow down />
           </motion.div>
 
-          <motion.div variants={item} className="flex items-start gap-3">
-            <div className="w-[158px]">
-              <OutputLabel title="Landing page" caption="Para mostrar" tone="champagne" compact />
-              <LandingMini />
+          <motion.div variants={item} className="w-full max-w-[330px]">
+            <div className="flex items-start gap-3">
+              <div className="w-[162px] shrink-0">
+                <OutputLabel title="Landing page" caption="Para mostrar" tone="champagne" compact />
+                <LandingMini />
+              </div>
+              <div className="mt-7 min-w-0 flex-1">
+                <OutputLabel title="Sistema · agenda" caption="Para ordenar" tone="green" compact />
+                <AgendaMini />
+              </div>
             </div>
-            <div className="w-[165px]">
-              <OutputLabel title="Sistema · agenda" caption="Para ordenar" tone="green" compact />
-              <AgendaMini />
+            <div className="ml-auto mt-3 w-[200px]">
+              <OutputLabel title="Gestión · cobros" caption="Para administrar" tone="green" compact />
+              <GestionMini />
             </div>
           </motion.div>
         </motion.div>
