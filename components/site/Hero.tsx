@@ -535,6 +535,7 @@ export function Hero() {
           </motion.div>
 
           <motion.div variants={item} className="w-full max-w-[330px]">
+            <SceneCaption className="mb-3">Sale — listo para usar</SceneCaption>
             <div className="flex items-start gap-3">
               <div className="w-[162px] shrink-0">
                 <OutputLabel title="Landing page" caption="Para mostrar" tone="champagne" compact />
