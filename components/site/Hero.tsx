@@ -363,7 +363,7 @@ export function Hero() {
         <motion.div variants={container} initial="hidden" animate="visible">
           <motion.p
             variants={item}
-            className="mb-6 flex items-center gap-2.5 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-stone"
+            className="mb-7 flex items-center gap-2.5 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-stone"
           >
             <span aria-hidden className="inline-block h-[5px] w-[5px] rounded-full bg-operational-green" />
             Estudio de producto digital · Independiente
@@ -373,28 +373,10 @@ export function Hero() {
             variants={item}
             className="max-w-[900px] text-balance font-sans text-[clamp(2.3rem,9.6vw,3.5rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-charcoal lg:text-[clamp(2.7rem,4.4vw,3.9rem)]"
           >
-            {/* Color code ties the headline to the scene's two outputs:
-                champagne = mostrar (landing) · green = ordenar (sistema) */}
-            Mostramos{" "}
-            <span className="relative inline-block">
-              lo que hacés.
-              {!reduce && (
-                <motion.span
-                  aria-hidden
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 0.7, duration: 0.8, ease: [0.65, 0, 0.2, 1] }}
-                  className="absolute -bottom-1 left-0 block h-[3px] w-full origin-left bg-champagne"
-                />
-              )}
-              {reduce && (
-                <span
-                  aria-hidden
-                  className="absolute -bottom-1 left-0 block h-[3px] w-full bg-champagne"
-                />
-              )}
-            </span>{" "}
-            <span className="block font-serif text-[1.04em] font-normal italic tracking-normal">
+            Mostramos lo que hacés.{" "}
+            {/* Sober serif line: same optical size, separated, with a single
+                thin underline as the only accent — no competing decorations. */}
+            <span className="mt-2 block font-serif text-[0.98em] font-normal italic tracking-normal lg:mt-3">
               Ordenamos{" "}
               {/* inline-block keeps the underlined pair together across wraps */}
               <span className="relative inline-block">
@@ -404,14 +386,14 @@ export function Hero() {
                     aria-hidden
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
-                    transition={{ delay: 1.05, duration: 0.8, ease: [0.65, 0, 0.2, 1] }}
-                    className="absolute -bottom-1 left-0 block h-[3px] w-full origin-left bg-operational-green"
+                    transition={{ delay: 0.8, duration: 0.9, ease: [0.65, 0, 0.2, 1] }}
+                    className="absolute -bottom-1.5 left-0 block h-[2px] w-full origin-left bg-champagne"
                   />
                 )}
                 {reduce && (
                   <span
                     aria-hidden
-                    className="absolute -bottom-1 left-0 block h-[3px] w-full bg-operational-green"
+                    className="absolute -bottom-1.5 left-0 block h-[2px] w-full bg-champagne"
                   />
                 )}
               </span>
@@ -420,15 +402,14 @@ export function Hero() {
 
           <motion.p
             variants={item}
-            className="mt-6 max-w-[38ch] text-pretty text-[1.02rem] leading-relaxed text-ink-soft lg:max-w-2xl lg:text-lg"
+            className="mt-7 max-w-[38ch] text-pretty text-[1.02rem] leading-relaxed text-ink-soft lg:max-w-2xl lg:text-lg"
           >
-            Una landing que muestra lo que hacés y un sistema que ordena tu día
-            a día — para negocios que hoy funcionan con WhatsApp, planillas y
-            memoria.
+            Landings y sistemas para negocios que hoy funcionan entre WhatsApp,
+            planillas y memoria.
           </motion.p>
 
           {/* CTAs — primary: WhatsApp (green); secondary: projects */}
-          <motion.div variants={item} className="mt-8">
+          <motion.div variants={item} className="mt-9">
             {/* Mobile: stacked */}
             <a
               href={WHATSAPP_URL}
