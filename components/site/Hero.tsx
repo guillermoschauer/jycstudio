@@ -359,8 +359,15 @@ export function Hero() {
     >
       <div className="w-full px-6 pb-14 pt-[calc(var(--header-h)+2rem)] sm:px-8 lg:mx-auto lg:max-w-[1240px] lg:px-12 lg:pb-16 lg:pt-[calc(var(--header-h)+2.75rem)]">
 
-        {/* ── The message ── */}
-        <motion.div variants={container} initial="hidden" animate="visible">
+        {/* ── The message ──
+            Below lg it fills the first viewport (centered), so the scene
+            starts under the fold and the opening screen is pure message. */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="visible"
+          className="flex min-h-[calc(100svh-var(--header-h)-2rem)] flex-col justify-center lg:min-h-0 lg:justify-start"
+        >
           <motion.p
             variants={item}
             className="mb-7 flex items-center gap-2.5 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-stone"
