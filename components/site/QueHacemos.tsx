@@ -55,9 +55,13 @@ export function QueHacemos() {
 
         {/* The answer, straight after the symptoms. */}
         <Reveal delay={0.08}>
-          <p className="mt-14 max-w-[24ch] text-balance text-[clamp(1.5rem,6vw,1.9rem)] font-extrabold leading-[1.1] tracking-[-0.03em] text-ivory lg:mt-16 lg:max-w-[40ch] lg:text-[clamp(1.8rem,2.6vw,2.4rem)]">
-            El resultado no es una herramienta nueva.{" "}
-            <span className="text-verde-on-dark">Es una operación que funciona mejor.</span>
+          <p className="mt-14 max-w-[22ch] text-balance text-[clamp(1.5rem,6vw,1.9rem)] font-extrabold leading-[1.1] tracking-[-0.03em] text-ivory lg:mt-16 lg:max-w-[36ch] lg:text-[clamp(1.8rem,2.6vw,2.4rem)]">
+            Menos tareas manuales. Menos errores.{" "}
+            <span className="text-verde-on-dark">Menos tiempo perdido.</span>
+          </p>
+          <p className="mt-5 max-w-[54ch] text-pretty leading-relaxed text-gris">
+            Revisamos cómo trabaja tu empresa y automatizamos lo que hoy te hace
+            perder tiempo.
           </p>
         </Reveal>
 
@@ -82,11 +86,14 @@ export function QueHacemos() {
           ))}
         </ol>
 
-        {/* Who it is for — one line, no longer a section. */}
+        {/* Cierre de sección: la línea donde el lector se reconoce.
+            Sube a semibold e ivory para tener peso propio, pero se queda por
+            debajo del titular en tamaño — si compitiera, la sección tendría dos
+            entradas y ninguna cerraría. El acento verde ya existente la ancla. */}
         <Reveal delay={0.12}>
           <p
             id="para-quien"
-            className="mt-12 max-w-[60ch] border-l-2 border-verde-on-dark pl-5 text-pretty leading-relaxed text-gris lg:mt-14"
+            className="mt-14 max-w-[24ch] border-l-2 border-verde-on-dark pl-5 text-balance text-[1.2rem] font-semibold leading-snug tracking-[-0.02em] text-ivory sm:pl-6 lg:mt-16 lg:max-w-[40ch] lg:text-[1.6rem]"
           >
             {AUDIENCE_LINE}
           </p>

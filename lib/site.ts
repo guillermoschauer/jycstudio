@@ -63,9 +63,13 @@ export const FRICTIONS = [
   "El seguimiento depende de que alguien se acuerde.",
 ] as const;
 
-/** Who this is for. One line inside the section, no longer a section of its own. */
+/**
+ * Who this is for, as a line of recognition rather than a description of a
+ * segment: the reader should finish the section having identified themselves.
+ * Closes the section — see components/site/QueHacemos.tsx for the treatment.
+ */
 export const AUDIENCE_LINE =
-  "Trabajamos especialmente con pymes y empresas donde WhatsApp, planillas y tareas manuales ya empezaron a quedar chicas.";
+  "Si tu negocio depende de WhatsApp, planillas y memoria, hay mucho para mejorar.";
 
 // ---------------------------------------------------------------------------
 // 02 — Qué hacemos
