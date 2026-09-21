@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 100" width="560" height="100" role="img" aria-label="Schauer Labs">
+  <!--
+    Horizontal lockup for web use. The wordmark is live text in Archivo, loaded
+    from Google Fonts: it renders correctly in browsers, but design tools that
+    do not fetch remote fonts will substitute a fallback. For print, signage or
+    third-party platforms, export a version with the type converted to outlines.
+  -->
+  <defs>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;800&amp;display=swap");
+      .wm { font-family: Archivo, "Helvetica Neue", Arial, sans-serif; font-size: 52px; }
+      .wm-bold { font-weight: 800; letter-spacing: -0.8px; }
+      .wm-light { font-weight: 300; letter-spacing: 2px; }
+    </style>
+  </defs>
+
+  <g transform="translate(0 17) scale(1.05)">
+    <path d="M28.5 10h16L28.5 54h-16z" fill="#16140f"/>
+    <circle cx="44.5" cy="47" r="7" fill="#2e6f5e"/>
+  </g>
+
+  <text x="78" y="69" class="wm" fill="#16140f">
+    <tspan class="wm-bold">SCHAUER</tspan><tspan class="wm-light" dx="16">LABS</tspan>
+  </text>
+</svg>

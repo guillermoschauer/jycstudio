@@ -1,99 +1,106 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "outline";
+type Variant = "primary" | "secondary";
 type Tone = "light" | "dark";
 
-type ButtonProps = {
-  href: string;
+type Common = {
   children: React.ReactNode;
   variant?: Variant;
-  /** "light" = on ivory surfaces, "dark" = on charcoal surfaces. */
+  /** Surface the button sits on: "light" = ivory, "dark" = carbon. */
   tone?: Tone;
-  external?: boolean;
-  /**
-   * Adds a subtle recurring light sweep to signal the primary action.
-   * Use ONLY on a primary CTA and never more than one visible per viewport.
-   * Automatically removed under prefers-reduced-motion (see globals.css).
-   */
-  shimmer?: boolean;
+  /** Full width below `sm`. CTAs on mobile should almost always set this. */
+  block?: boolean;
   className?: string;
   "aria-label"?: string;
 };
 
+type Props =
+  | (Common & { href: string; external?: boolean; type?: never })
+  | (Common & { href?: undefined; external?: never; type: "submit" | "button" });
+
+/**
+ * The single CTA primitive. Pill, 3.25rem tall (comfortably past the 44px touch
+ * target), one arrow, no gradient and no shimmer — the emphasis comes from the
+ * green, not from decoration.
+ */
 const base =
-  "group inline-flex min-h-[3rem] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-wide font-sans transition-colors duration-300 ease-out";
+  "group inline-flex min-h-[3.25rem] items-center justify-center gap-3 rounded-full px-7 text-[0.95rem] font-semibold tracking-[-0.01em] transition-colors duration-200 ease-out disabled:cursor-not-allowed disabled:opacity-60";
 
 const styles: Record<Tone, Record<Variant, string>> = {
   light: {
-    primary: "bg-charcoal text-ivory hover:bg-[#2e2b24]",
-    outline:
-      "border border-hairline text-charcoal hover:border-charcoal hover:bg-charcoal hover:text-ivory",
+    primary: "bg-verde text-ivory hover:bg-verde-deep",
+    secondary: "border border-hairline text-carbon hover:border-carbon hover:bg-carbon hover:text-ivory",
   },
   dark: {
-    primary: "bg-ivory text-charcoal hover:bg-white",
-    outline:
-      "border border-[color:var(--color-hairline-dark)] text-ivory hover:border-ivory/70 hover:bg-white/5",
+    primary: "bg-ivory text-carbon hover:bg-white",
+    secondary:
+      "border border-[color:var(--color-hairline-dark)] text-ivory hover:border-ivory/60 hover:bg-white/[0.06]",
   },
 };
 
 export function Button({
-  href,
   children,
   variant = "primary",
   tone = "light",
-  external = false,
-  shimmer = false,
+  block = false,
   className,
   ...rest
-}: ButtonProps) {
-  const classes = cn(
-    base,
-    styles[tone][variant],
-    shimmer && "relative isolate overflow-hidden",
-    className,
-  );
-  const isProtocol = /^(mailto:|tel:)/.test(href);
+}: Props) {
+  const classes = cn(base, styles[tone][variant], block && "w-full sm:w-auto", className);
 
   const content = (
     <>
-      <span className="relative z-[1] inline-flex items-center gap-2">
-        {children}
+      <span>{children}</span>
+      <span
+        aria-hidden
+        className="transition-transform duration-300 ease-out group-hover:translate-x-0.5"
+      >
+        →
       </span>
-      {shimmer && (
-        <span
-          aria-hidden
-          className="jyc-shimmer-band pointer-events-none absolute inset-y-0 left-0 z-0 w-[36%] bg-gradient-to-r from-transparent via-[rgba(243,238,228,0.42)] to-transparent"
-        />
-      )}
     </>
   );
 
-  // mailto/tel links render as a plain anchor (no new tab, no client routing).
-  if (isProtocol) {
+  if (!rest.href) {
+    const { type, external: _external, ...buttonProps } = rest as Extract<
+      Props,
+      { type: "submit" | "button" }
+    >;
+    void _external;
     return (
-      <a href={href} className={classes} {...rest}>
+      <button type={type} className={classes} {...buttonProps}>
         {content}
-      </a>
+      </button>
     );
   }
 
-  if (external) {
+  const { href, external, ...linkProps } = rest as Extract<Props, { href: string }>;
+
+  if (external || /^(mailto:|tel:|https?:)/.test(href)) {
+    const isProtocol = /^(mailto:|tel:)/.test(href);
     return (
       <a
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+        {...(isProtocol ? {} : { target: "_blank", rel: "noopener noreferrer" })}
         className={classes}
-        {...rest}
+        {...linkProps}
       >
         {content}
       </a>
     );
   }
 
+  // In-page anchors must not go through the router.
+  if (href.startsWith("#")) {
+    return (
+      <a href={href} className={classes} {...linkProps}>
+        {content}
+      </a>
+    );
+  }
+
   return (
-    <Link href={href} className={classes} {...rest}>
+    <Link href={href} className={classes} {...linkProps}>
       {content}
     </Link>
   );

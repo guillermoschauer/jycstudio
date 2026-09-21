@@ -30,16 +30,16 @@ export function Reveal({
   const reduce = useReducedMotion();
   const MotionTag = motion[as] as ElementType;
 
+  // Under prefers-reduced-motion the content appears at once: no travel and no
+  // fade, so nothing is ever briefly unreadable.
   const variants: Variants = {
-    hidden: { opacity: 0, y: reduce ? 0 : y },
+    hidden: { opacity: reduce ? 1 : 0, y: reduce ? 0 : y },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.7,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
-      },
+      transition: reduce
+        ? { duration: 0 }
+        : { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
     },
   };
 

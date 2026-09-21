@@ -1,22 +1,36 @@
-// Central site configuration for JYC Studio.
-// Keep brand/contact constants here so they are easy to update in one place.
+// ---------------------------------------------------------------------------
+// Schauer Labs — central site configuration.
+// Brand, contact and page content live here so they change in one place.
+// ---------------------------------------------------------------------------
 
 export const SITE = {
-  name: "JYC Studio",
-  // Hero claim.
-  claim: "Productos digitales para negocios reales.",
-  // Footer / meta long claim.
-  longClaim:
-    "Productos digitales, sistemas y experiencias web para problemas reales.",
+  name: "Schauer Labs",
+  /** Descriptor under the wordmark. Also the page's conceptual spine. */
+  tagline: "Procesos · Tecnología · Resultados",
+  /** Short positioning line (footer, OG, JSON-LD). */
+  claim: "Software e IA para resolver problemas reales.",
+  /** Long positioning line — the main proposition of the whole site. */
+  proposition:
+    "Analizamos cómo funciona tu negocio, detectamos dónde se pierde tiempo y diseñamos la tecnología para resolverlo.",
   description:
-    "Sistemas, SaaS y experiencias web para ordenar operaciones, comunicar mejor y crecer.",
-  url: "https://www.jycstudio.com.ar",
-  email: "hola@jycstudio.com.ar",
+    "Analizamos cómo funciona tu negocio, detectamos dónde se pierde tiempo y diseñamos software, automatizaciones e IA para resolverlo.",
+  url: "https://schauerlabs.com",
+  email: "hola@schauerlabs.com",
+  locale: "es_AR",
 
   // WhatsApp link is built from this number (international format, no symbols).
   whatsappNumber: "5492235216745",
   whatsappMessage:
-    "Hola JYC Studio, tengo un problema que debería funcionar mejor.",
+    "Hola Schauer Labs, quiero contarles cómo trabajamos hoy y ver qué se puede mejorar.",
+} as const;
+
+/**
+ * Previous brand and domains. Kept only as documentation for the migration
+ * (redirects live in `next.config.ts`). Nothing here is rendered.
+ */
+export const LEGACY = {
+  brand: "JYC Studio",
+  hosts: ["jycstudio.com.ar", "www.jycstudio.com.ar", "jycstudio.com", "www.jycstudio.com"],
 } as const;
 
 export const WHATSAPP_URL = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(
@@ -25,369 +39,539 @@ export const WHATSAPP_URL = `https://wa.me/${SITE.whatsappNumber}?text=${encodeU
 
 export const MAILTO_URL = `mailto:${SITE.email}`;
 
+/** Builds a WhatsApp link with a custom prefilled message. */
+export function whatsappUrl(message: string): string {
+  return `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
 export const NAV_LINKS = [
+  { label: "Qué hacemos", href: "#que-hacemos" },
+  { label: "Cómo trabajamos", href: "#metodo" },
   { label: "Casos", href: "#casos" },
-  { label: "Cómo trabajamos", href: "#como-trabajamos" },
-  { label: "Estudio", href: "#estudio" },
-] as const;
-
-// Hero capability chips.
-export const HERO_CHIPS = [
-  "Sistemas internos",
-  "SaaS",
-  "Reservas y operación",
-  "Landings",
-  "Sitios de marca",
-  "Experiencias de conversión",
-] as const;
-
-// Hero three pillars.
-export const HERO_PILLARS = [
-  {
-    title: "Operación",
-    text: "Herramientas y sistemas que ordenan reservas, turnos, ventas y stock. Menos planillas y WhatsApp suelto; más control en tiempo real.",
-  },
-  {
-    title: "Producto",
-    text: "Productos digitales propios y para terceros, diseñados y construidos de punta a punta — desde el problema hasta el producto en uso.",
-  },
-  {
-    title: "Marca y experiencia",
-    text: "Landings, sitios y experiencias digitales que ayudan a una marca a comunicar su propuesta y convertir interés en consultas y ventas.",
-  },
+  { label: "Contacto", href: "#contacto" },
 ] as const;
 
 // ---------------------------------------------------------------------------
-// Cases — the curated gallery. Order is intentional.
-// `visual` is either a real screenshot or the in-house Panacity mockup.
+// 01 — El punto de partida (problema)
+// ---------------------------------------------------------------------------
+
+/** Recognizable frictions. Written as symptoms, never as incompetence. */
+export const FRICTIONS = [
+  "La información vive repartida entre WhatsApp, mails y planillas.",
+  "Hay tareas que dependen de que una persona en particular esté disponible.",
+  "Los mismos datos se cargan dos o tres veces, en lugares distintos.",
+  "El seguimiento de un cliente se pierde entre conversaciones.",
+  "Las herramientas que ya usan no se hablan entre sí.",
+  "El proceso funciona porque alguien se acuerda de qué hay que hacer.",
+] as const;
+
+// ---------------------------------------------------------------------------
+// 02 — Qué hacemos
+// ---------------------------------------------------------------------------
+
+export type Capability = {
+  number: string;
+  title: string;
+  text: string;
+};
+
+export const CAPABILITIES: Capability[] = [
+  {
+    number: "01",
+    title: "Análisis de procesos",
+    text: "Entendemos cómo funciona hoy la operación antes de proponer tecnología: qué se hace, quién lo hace y cuánto tiempo se va en cada paso.",
+  },
+  {
+    number: "02",
+    title: "Automatización",
+    text: "Sacamos del medio los pasos manuales y repetitivos: cargas de datos, recordatorios, seguimientos y los informes que se rehacen todos los meses.",
+  },
+  {
+    number: "03",
+    title: "Software a medida",
+    text: "Construimos herramientas propias cuando una solución existente no alcanza. Solo cuando no alcanza.",
+  },
+  {
+    number: "04",
+    title: "IA aplicada",
+    text: "Usamos inteligencia artificial donde efectivamente mejora una tarea: clasificar, redactar, resumir, leer documentos o responder lo de siempre.",
+  },
+  {
+    number: "05",
+    title: "Integraciones",
+    text: "Conectamos las herramientas, los datos y los procesos que hoy funcionan aislados, para que la información deje de copiarse a mano.",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// 03 — Método
+// ---------------------------------------------------------------------------
+
+export type MethodStep = {
+  number: string;
+  title: string;
+  text: string;
+};
+
+export const METHOD_STEPS: MethodStep[] = [
+  {
+    number: "01",
+    title: "Entendemos",
+    text: "Recorremos la operación real: qué se hace, en qué orden, con qué herramientas y quién queda en el medio.",
+  },
+  {
+    number: "02",
+    title: "Detectamos",
+    text: "Marcamos las fricciones: lo repetitivo, lo duplicado, lo que se pierde y lo que depende de que alguien se acuerde.",
+  },
+  {
+    number: "03",
+    title: "Diseñamos",
+    text: "Decidimos qué conviene que siga siendo humano, qué se elimina, qué se automatiza y qué hace falta construir.",
+  },
+  {
+    number: "04",
+    title: "Implementamos",
+    text: "Integramos lo que ya usan, automatizamos lo repetitivo y desarrollamos únicamente lo que no existe.",
+  },
+  {
+    number: "05",
+    title: "Medimos",
+    text: "Volvemos a mirar la operación con la solución funcionando y ajustamos lo que no rindió como esperábamos.",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// 05 — Para quién
+// ---------------------------------------------------------------------------
+
+export const AUDIENCE = [
+  "Pymes y empresas familiares",
+  "Negocios de servicios con agenda, turnos o reservas",
+  "Equipos administrativos que cargan los mismos datos varias veces",
+  "Operaciones que crecieron alrededor de WhatsApp",
+  "Empresas que dependen de planillas para decidir",
+  "Equipos con herramientas que no se hablan entre sí",
+] as const;
+
+// ---------------------------------------------------------------------------
+// 04 — Casos.
+// Real projects only. No invented clients, metrics or results.
+// Every case is told as PROBLEMA → PROCESO → SOLUCIÓN.
+// `visual` is either a real screenshot or the in-house Panacity schematic.
 // Screenshots keep each project's own identity (never recolored).
 // ---------------------------------------------------------------------------
 
+/**
+ * A real screenshot, plus how to frame it.
+ *
+ * Cropping is done here, not in the file: `focus` and `zoom` reframe the shot
+ * inside a fixed 16/10 window so every case reads at the same proportion,
+ * while the asset on disk stays the untouched original. Re-cropping a case is
+ * changing two numbers; replacing a screenshot is changing `src` and the
+ * intrinsic size. Nothing else in the site needs to know.
+ */
 export type CaseImage = {
   src: string;
   alt: string;
+  /** Intrinsic size of the file — used for the aspect math, not for layout. */
   width: number;
   height: number;
+  /**
+   * Which part of the shot survives the crop (CSS `object-position`).
+   * Wide dashboards usually want "left top"; centred app views want "center".
+   */
+  focus?: string;
+  /** >1 crops further into the shot. 1 = the whole width fits. */
+  zoom?: number;
+  /**
+   * The frame's window bar. A string prints that address — only ever the real
+   * one, never a made-up domain. `true` draws the bar with no address, for
+   * products that have no public URL yet; it keeps every frame the same height
+   * without claiming a URL that does not exist. Omit for no bar at all.
+   */
+  chrome?: string | true;
+  /** Screenshot's own background, so the frame picks a hairline that shows. */
+  shotTone?: "light" | "dark";
 };
 
 export type CaseItem = {
   id: string;
-  eyebrow: string; // mono label, e.g. "GESTIÓN DE TURNOS · ESTÉTICA Y BELLEZA"
+  /** Small label: rubro · sector. */
+  eyebrow: string;
   title: string;
-  /** Optional second line styled as the editorial heading continuation. */
+  /** Optional second line under the title on the detail page. */
   titleTail?: string;
-  problemLabel: string; // "El problema" | "Propuesta"
+  /** How the operation worked before. */
   problem: string;
-  solutionLabel: string; // "Ahora" | "Solución" | "Beneficio"
+  /** What the work consisted of — the process, not the feature list. */
+  process: string;
+  /** The operational outcome, described qualitatively. */
   solution: string;
-  benefitsLabel: string; // "Beneficios" | "Qué aporta"
-  benefits: string[];
-  microcopy: string; // small italic-ish note under the visual
-  cta: string;
+  /** What changed day to day. Qualitative — never invented figures. */
+  changes: string[];
+  /**
+   * Heading for `changes`. The default is past tense, which only holds for
+   * products actually in use; anything in development or beta overrides it so
+   * the page never implies results it has not produced.
+   */
+  changesLabel?: string;
+  /** Small factual note under the visual. */
+  microcopy: string;
   href: string;
-  /** "shot" uses an image; "mockup" renders the Panacity operative mockup. */
-  visual: "shot" | "mockup";
+  /** "shot" uses an image; "schematic" renders the in-house Panacity diagram. */
+  visual: "shot" | "schematic";
+  /**
+   * Omit until a real screenshot exists. The frame then falls back to a
+   * typographic panel — sober and finished-looking, never a broken image or an
+   * invented mockup. Adding the file later is this one field.
+   */
   image?: CaseImage;
-  /** Visual surface tone for framing (affects border/shadow). */
-  tone: "light" | "dark";
-  badge?: string; // optional status pill, e.g. "PROYECTO EN DESARROLLO"
-  /** Status tone driving badge color: live = green, soon/dev = muted. */
-  badgeTone?: "live" | "soon" | "dev";
+  /** Extra screenshots, shown only on the case's own page, after the main one. */
+  moreImages?: CaseImage[];
+  /**
+   * Featured cases get the large treatment at the top of the section, with the
+   * screenshot. Every case, featured or not, is listed underneath.
+   */
+  featured?: boolean;
+  /** One line for the featured block's fallback panel: what the product is. */
+  summary?: string;
+  /** Status shown in listings. Drives the colour. */
+  status: "live" | "soon" | "dev";
+  /**
+   * Overrides the label derived from `status` when the project needs a more
+   * precise word than the three defaults — "BETA", "EARLY STAGE".
+   */
+  statusLabel?: string;
   /** Live, operational product URL (external). */
   liveUrl?: string;
-  /** If true, this case goes into the "En el taller" list on mobile instead of the editorial main section. */
-  taller?: boolean;
-  /** Short status shown in the "En el taller" row, e.g. "A SEMANAS DE LANZAR". */
-  tallerLabel?: string;
 };
 
 export const CASES: CaseItem[] = [
   {
-    id: "sacaturno",
-    eyebrow: "Gestión de turnos · Estética y belleza",
-    title: "sacaturno.app",
-    problemLabel: "El problema",
+    id: "flowstock",
+    eyebrow: "Sistema interno · Gestión comercial",
+    title: "FlowStock",
     problem:
-      "Coordinar turnos por WhatsApp comía horas y dejaba huecos sin cubrir.",
-    solutionLabel: "Ahora",
+      "Compras, recepción, stock, costos y ventas eran procesos que necesitaban convivir sin perder trazabilidad ni control.",
+    process:
+      "Comprar, pagar, recibir e ingresar mercadería son momentos distintos, y el sistema tenía que reflejarlos como tales. Diseñamos un flujo interno único —con recepciones parciales, ingresos a stock, notas de crédito, cuentas por cobrar y por pagar— donde la información económica se calcula a partir de la operación.",
     solution:
-      "El cliente reserva solo, las 24 horas. Señas y confirmaciones, sin perseguir a nadie.",
-    benefitsLabel: "Beneficios",
-    benefits: [
-      "El cliente reserva solo, las 24 horas",
-      "Señas y confirmaciones sin perseguir a nadie",
-      "Una agenda por salón, lista en minutos",
+      "FlowStock convierte esos movimientos en un único sistema operativo: compras, ingresos, stock, ventas y cuentas conectados entre sí.",
+    changesLabel: "En concreto",
+    changes: [
+      "Cada movimiento queda trazado, de la compra al ingreso a stock",
+      "Las cuentas por cobrar y por pagar salen de la misma operación",
+      "El stock bajo mínimo y la mercadería en revisión aparecen solos",
     ],
-    microcopy: "Mismo motor · adaptado a otro rubro",
-    cta: "Ver caso",
-    href: "/casos/sacaturno",
+    summary:
+      "Compras, ingresos, stock, ventas y cuentas conectados en un mismo sistema interno.",
+    microcopy: "Sistema en desarrollo · en testing real",
+    href: "/casos/flowstock",
     visual: "shot",
-    tone: "light",
-    badge: "Producto en uso",
-    badgeTone: "live",
-    liveUrl: "https://sacaturno.app",
+    featured: true,
+    status: "dev",
     image: {
-      src: "/case-studies/sacaturno.png",
-      alt: "Pantalla de sacaturno.app: agenda semanal de turnos para un salón de estética.",
-      width: 1167,
-      height: 781,
+      src: "/case-studies/flowstock.png",
+      alt: "Panel de FlowStock: resultado del mes, cuentas por cobrar y por pagar, stock disponible y alertas de reposición.",
+      width: 1586,
+      height: 992,
+      focus: "left top",
+      // Corre en local: barra sin dirección, para no inventar una URL.
+      chrome: true,
+      shotTone: "dark",
     },
   },
   {
-    id: "agendallena",
-    eyebrow: "Gestión de turnos · Salud",
-    title: "agendallena",
-    problemLabel: "El problema",
+    id: "kidu",
+    eyebrow: "Producto propio · Familias y salas",
+    title: "KIDU",
     problem:
-      "Consultorios y clínicas perdían turnos entre WhatsApp, llamados y planillas.",
-    solutionLabel: "Ahora",
+      "Cumpleaños, regalos y colectas terminaban repartidos entre mensajes, transferencias y comprobantes de WhatsApp.",
+    process:
+      "Diseñamos un espacio permanente por sala en vez de un hilo que se pierde: las familias se suman con un link, registran a sus hijos y sus cumpleaños, y la colecta se abre solo cuando alguien del grupo decide organizar el regalo. No aparece automáticamente.",
     solution:
-      "El paciente reserva solo — recordatorios automáticos y señas por Mercado Pago.",
-    benefitsLabel: "Beneficios",
-    benefits: [
-      "Menos mensajes, llamadas y ausencias",
-      "Vista semanal de turnos por profesional",
-      "Operación centralizada, sin planillas sueltas",
+      "KIDU convierte la sala en un espacio permanente: familias, cumpleaños y colectas organizados desde un único lugar.",
+    changesLabel: "En concreto",
+    changes: [
+      "Quién organiza y quién aportó deja de estar en un chat",
+      "El próximo cumpleaños está siempre a la vista",
+      "La colecta la abre alguien de la sala, cuando corresponde",
     ],
+    summary:
+      "Una sala, un link: familias, cumpleaños y colectas en un espacio que no se pierde.",
+    microcopy: "Versión web pública · early stage",
+    href: "/casos/kidu",
+    visual: "shot",
+    featured: true,
+    status: "dev",
+    statusLabel: "EARLY STAGE",
+    liveUrl: "https://somoskidu.com",
+    image: {
+      src: "/case-studies/kidu.png",
+      alt: "Landing de KIDU: una sala con la colecta abierta para el regalo de un cumpleaños.",
+      width: 1448,
+      height: 1086,
+      // 4:3 recortado a 16/10: centrado deja entrar el logo arriba y el CTA abajo.
+      focus: "center",
+      chrome: "somoskidu.com",
+      shotTone: "light",
+    },
+  },
+  {
+    id: "tdu",
+    eyebrow: "Marketplace · Regalos y experiencias",
+    title: "Te Debo Una",
+    problem:
+      'Un "te debo una" muchas veces quedaba en palabras porque regalar implicaba elegir, coordinar y resolver la entrega.',
+    process:
+      "Separamos el momento de regalar del momento de disfrutar. Una persona elige un comercio y un producto, lo compra como regalo y lo envía; quien lo recibe lo canjea después, en el comercio, cuando le queda cómodo.",
+    solution:
+      "TDU convierte ese agradecimiento en un regalo concreto: elegís, pagás, lo enviás y la otra persona lo disfruta cuando quiere.",
+    changesLabel: "En concreto",
+    changes: [
+      "Regalar deja de depender de coordinar una entrega",
+      "La distancia deja de ser un impedimento",
+      "Gastronomía, experiencias, bienestar, entretenimiento y retail en un mismo lugar",
+    ],
+    summary:
+      "Elegís un regalo en un comercio, lo enviás, y la otra persona lo canjea cuando quiere.",
+    microcopy: "MVP en beta funcional",
+    href: "/casos/tdu",
+    visual: "shot",
+    featured: true,
+    status: "soon",
+    statusLabel: "BETA",
+    liveUrl: "https://beta.tedebouna.app",
+    image: {
+      src: "/case-studies/TDU1.png",
+      alt: "Home de Te Debo Una: categorías de regalo y productos de un comercio en Mar del Plata.",
+      width: 1448,
+      height: 1086,
+      focus: "50% 35%",
+      chrome: "beta.tedebouna.app",
+      shotTone: "light",
+    },
+    moreImages: [
+      {
+        src: "/case-studies/TDU2.png",
+        alt: "Checkout de Te Debo Una: a quién va el regalo, el mensaje y el pago por Mercado Pago.",
+        width: 1448,
+        height: 1086,
+        focus: "50% 35%",
+        chrome: "beta.tedebouna.app",
+        shotTone: "light",
+      },
+    ],
+  },
+  {
+    id: "agendallena",
+    eyebrow: "Turnos · Salud",
+    title: "agendallena",
+    problem:
+      "Los turnos entraban por WhatsApp, por teléfono y por mostrador, y terminaban anotados en tres lugares distintos. Reconstruir la agenda del día era un trabajo en sí mismo.",
+    process:
+      "Unificamos los canales de entrada en una sola agenda y automatizamos lo que hasta entonces se hacía mensaje por mensaje: confirmar, cobrar la seña y recordar.",
+    solution:
+      "Una agenda única por profesional, con reserva directa del paciente, seña por Mercado Pago y recordatorios automáticos. El mismo motor, adaptado a otro rubro, es sacaturno.app.",
+    changes: [
+      "La agenda del día deja de reconstruirse a mano",
+      "Menos ausencias, sin perseguir confirmaciones",
+      "Vista por profesional, sin planillas paralelas",
+    ],
+    summary:
+      "Una agenda por profesional donde el paciente reserva, seña y recibe el recordatorio solo.",
     microcopy: "Producto en uso · agenda de turnos",
-    cta: "Ver caso completo",
     href: "/casos/agendallena",
     visual: "shot",
-    tone: "dark",
-    badge: "Producto en uso",
-    badgeTone: "live",
+    featured: true,
+    status: "live",
     liveUrl: "https://agendallena.com.ar",
     image: {
       src: "/case-studies/agendallena.png",
       alt: "Pantalla de agendallena: agenda semanal de turnos para profesionales de la salud.",
       width: 1202,
       height: 750,
+      focus: "left top",
+      chrome: "agendallena.com.ar",
+      shotTone: "dark",
+    },
+  },
+  {
+    id: "sacaturno",
+    eyebrow: "Turnos · Estética y belleza",
+    title: "sacaturno.app",
+    problem:
+      "Los turnos se coordinaban por WhatsApp: mensajes fuera de hora, señas que había que perseguir y huecos que quedaban sin cubrir porque nadie los veía a tiempo.",
+    process:
+      "Mapeamos el recorrido completo de un turno —desde la primera consulta hasta el cobro— y separamos lo que necesitaba una persona de lo que podía resolverse solo.",
+    solution:
+      "Convertimos reservas, señas, confirmaciones y recordatorios en un único flujo operativo que corre sin que nadie tenga que empujarlo.",
+    changes: [
+      "El cliente reserva solo, a cualquier hora",
+      "La seña y la confirmación dejaron de ser una conversación",
+      "Una agenda por salón, con la disponibilidad real siempre a la vista",
+    ],
+    summary:
+      "El mismo motor de agendallena, adaptado a salones de estética y belleza.",
+    microcopy: "Producto en uso · agenda de turnos",
+    href: "/casos/sacaturno",
+    visual: "shot",
+    status: "live",
+    liveUrl: "https://sacaturno.app",
+    image: {
+      src: "/case-studies/sacaturno.png",
+      alt: "Pantalla de sacaturno.app: agenda semanal de turnos para un salón de estética.",
+      width: 1167,
+      height: 781,
+      focus: "left top",
+      chrome: "sacaturno.app",
+      shotTone: "light",
     },
   },
   {
     id: "coparentar",
-    eyebrow: "Producto digital · Familias",
+    eyebrow: "Producto propio · Coordinación familiar",
     title: "Coparentar",
-    problemLabel: "El problema",
     problem:
-      "Agenda, gastos y acuerdos de crianza dispersos en chats interminables.",
-    solutionLabel: "Ahora",
+      "Agenda, gastos y acuerdos de crianza dispersos en chats interminables, sin una versión de los hechos que las dos partes reconocieran como válida.",
+    process:
+      "Diseñamos el producto alrededor de un requisito difícil: que la misma información resulte confiable y neutral para dos personas que no siempre coinciden.",
     solution:
-      "Calendario, gastos y comunicación en un lugar claro y neutral, para ambas partes.",
-    benefitsLabel: "Beneficios",
-    benefits: [
-      "Menos fricción y malentendidos en la coordinación",
-      "Acuerdos y gastos registrados y a la vista",
-      "Una sola fuente de verdad para ambas partes",
+      "Calendario, gastos y documentos en un espacio compartido y neutral: una sola fuente de verdad para ambas partes.",
+    changes: [
+      "Los acuerdos quedan registrados y a la vista",
+      "La coordinación deja de depender del historial de un chat",
+      "Menos fricción y menos malentendidos",
     ],
+    summary:
+      "Calendario, gastos y documentos de crianza compartida en un espacio neutral para ambas partes.",
     microcopy: "Producto propio · agenda, gastos y documentos",
-    cta: "Ver caso completo",
     href: "/casos/coparentar",
     visual: "shot",
-    tone: "dark",
-    badge: "Producto en uso",
-    badgeTone: "live",
+    featured: true,
+    status: "live",
     liveUrl: "https://coparentar.com",
     image: {
       src: "/case-studies/coparentar.png",
       alt: "Pantalla de Coparentar: app de crianza compartida con agenda, gastos y movimientos.",
       width: 1893,
       height: 818,
+      focus: "left top",
+      chrome: "coparentar.com",
+      shotTone: "dark",
     },
   },
   {
-    id: "bicitando",
-    eyebrow: "Marca y experiencia",
-    title: "Bicitando Mardel",
-    titleTail: "Escapadas de Bienestar Activo",
-    problemLabel: "Propuesta",
+    id: "reservacancha",
+    eyebrow: "Reservas · Clubes y complejos",
+    title: "ReservaCancha.app",
     problem:
-      "Experiencia digital y landing de conversión para una propuesta de escapadas, comunidad y actividades al aire libre.",
-    solutionLabel: "Beneficio",
+      "Los turnos de cancha se coordinaban por teléfono, cuaderno y grupos de WhatsApp. La disponibilidad real solo la sabía quien estaba atendiendo en ese momento.",
+    process:
+      "Sacamos la disponibilidad de la cabeza de una persona y la pusimos en un lugar donde el jugador y el complejo miran exactamente lo mismo.",
     solution:
-      "Una propuesta más clara, una identidad más memorable y un recorrido digital pensado para transformar interés en consultas.",
-    benefitsLabel: "Qué aporta",
-    benefits: [
-      "Mensaje y propuesta de valor ordenados",
-      "Identidad y tono propios, memorables",
-      "Recorrido orientado a la consulta",
+      "Disponibilidad en tiempo real, reserva y pago online, y un panel desde donde el complejo gestiona sus canchas sin atender el teléfono.",
+    changesLabel: "En concreto",
+    changes: [
+      "El jugador ve la disponibilidad real y reserva solo",
+      "El complejo administra sus horarios desde un panel",
+      "Menos llamadas y menos turnos superpuestos",
     ],
-    microcopy: "Landing de conversión · marca y experiencia",
-    cta: "Ver experiencia",
+    summary:
+      "Disponibilidad de canchas en tiempo real, con reserva y pago online.",
+    microcopy: "Demo funcional · a semanas de lanzar",
+    href: "/casos/reservacancha",
+    visual: "shot",
+    status: "soon",
+    image: {
+      src: "/case-studies/reservacancha.png",
+      alt: "Landing de ReservaCancha.app: búsqueda de canchas deportivas en tiempo real.",
+      width: 1903,
+      height: 827,
+      focus: "left top",
+      // Todavía sin URL pública: barra sin dirección.
+      chrome: true,
+      shotTone: "dark",
+    },
+  },
+  {
+    id: "panacity",
+    eyebrow: "Ventas y reposición · Equipo de campo",
+    title: "Panacity",
+    problem:
+      "Los vendedores registran pedidos, cambios de mercadería y reposiciones entre papel, WhatsApp y controles sueltos. El dato llega tarde a la oficina y ya editado.",
+    process:
+      "Seguimos el recorrido de un vendedor durante su ruta y diseñamos la carga para el momento y el lugar donde el dato realmente se genera: en el comercio.",
+    solution:
+      "El diseño propone un sistema de campo donde pedidos, devoluciones, stock y seguimiento de comercios se cargan una sola vez, en el momento. El proyecto está en esa etapa: la operación diseñada, todavía sin implementación.",
+    changesLabel: "Qué busca resolver",
+    changes: [
+      "Que el dato se cargue donde ocurre, no al final del día",
+      "Trazabilidad por vendedor y por punto de venta",
+      "Menos papel y menos reconstrucción posterior",
+    ],
+    summary:
+      "Pedidos, devoluciones y reposición pensados para cargarse en el comercio, no al final del día.",
+    microcopy: "Proyecto en diseño · esquema operativo",
+    href: "/casos/panacity",
+    visual: "schematic",
+    status: "dev",
+    statusLabel: "EN DISEÑO",
+  },
+  {
+    id: "bicitando",
+    eyebrow: "Comunicación · Marca y experiencia",
+    title: "Bicitando Mardel",
+    titleTail: "Escapadas de bienestar activo",
+    problem:
+      "Una propuesta de escapadas y actividades al aire libre que se explicaba distinto en cada conversación, y que por eso costaba entender de una sola vez.",
+    process:
+      "Ordenamos primero el mensaje —qué se ofrece, a quién y por qué importa— y recién después construimos el recorrido digital que lo cuenta.",
+    solution:
+      "Una identidad y una experiencia web que explican la propuesta una sola vez y bien, y que llevan a la consulta sin vueltas.",
+    changes: [
+      "La propuesta se entiende sin tener que explicarla",
+      "Identidad y tono propios, reconocibles",
+      "Un recorrido claro hasta la consulta",
+    ],
+    summary:
+      "Identidad y recorrido digital para una propuesta de escapadas al aire libre.",
+    microcopy: "Sitio en vivo · marca y experiencia",
     href: "/casos/bicitando",
     visual: "shot",
-    tone: "dark",
-    badge: "Sitio en vivo",
-    badgeTone: "live",
+    status: "live",
     liveUrl: "https://bicitandomardel.com",
     image: {
       src: "/case-studies/bicitando.png",
       alt: "Landing de Bicitando Mardel: escapada a Sierra de los Padres al atardecer.",
       width: 1710,
       height: 832,
+      focus: "left top",
+      chrome: "bicitandomardel.com",
+      shotTone: "dark",
     },
-  },
-  {
-    id: "reservacancha",
-    eyebrow: "Reservas deportivas · Clubes y complejos",
-    title: "ReservaCancha.app",
-    problemLabel: "Problema",
-    problem:
-      "Clubes y complejos deportivos coordinaban turnos de cancha por teléfono, cuaderno y grupos de WhatsApp.",
-    solutionLabel: "Solución",
-    solution:
-      "Plataforma de reservas online con disponibilidad en tiempo real, pagos y avisos automáticos para jugadores y complejos.",
-    benefitsLabel: "Beneficios",
-    benefits: [
-      "El jugador encuentra cancha libre y reserva en segundos",
-      "El complejo gestiona su disponibilidad desde un panel",
-      "Menos llamadas, menos errores, más canchas ocupadas",
-    ],
-    microcopy: "Demo funcional · a semanas de lanzar",
-    cta: "Ver caso",
-    href: "/casos/reservacancha",
-    visual: "shot",
-    tone: "dark",
-    badge: "A semanas de lanzar",
-    badgeTone: "soon",
-    taller: true,
-    tallerLabel: "A SEMANAS DE LANZAR",
-    image: {
-      src: "/case-studies/reservacancha.png",
-      alt: "Landing de ReservaCancha.app: búsqueda de canchas deportivas en tiempo real.",
-      width: 1903,
-      height: 827,
-    },
-  },
-  {
-    id: "panacity",
-    eyebrow: "Ventas · Reposición · Equipo de campo",
-    title: "Panacity",
-    problemLabel: "Problema",
-    problem:
-      "Vendedores de campo registraban pedidos, cambios de mercadería y reposiciones entre papel, WhatsApp y controles dispersos.",
-    solutionLabel: "Solución",
-    solution:
-      "Sistema operativo para ventas, reposición, devoluciones, stock y seguimiento de comercios desde una misma herramienta.",
-    benefitsLabel: "Beneficios",
-    benefits: [
-      "Pedidos y reposiciones registrados en tiempo real",
-      "Mejor trazabilidad por vendedor y punto de venta",
-      "Menos papel, menos errores y mejor control operativo",
-    ],
-    microcopy: "Sistema en desarrollo · mockup operativo",
-    cta: "Ver caso",
-    href: "/casos/panacity",
-    visual: "mockup",
-    tone: "dark",
-    badge: "Proyecto en desarrollo",
-    badgeTone: "dev",
-    taller: true,
-    tallerLabel: "EN DESARROLLO",
   },
 ];
 
-// Short status label + tone for the case index (derived from real data).
+/** The cases that get the large treatment, in order. */
+export const FEATURED_CASES = CASES.filter((c) => c.featured);
+
+/** Short status label + tone for listings (derived from real data). */
 export function caseStatus(item: CaseItem): {
   label: string;
-  tone: "live" | "soon" | "dev";
+  tone: CaseItem["status"];
 } {
-  if (item.badgeTone === "live") {
-    return { label: /vivo/i.test(item.badge ?? "") ? "EN VIVO" : "EN USO", tone: "live" };
-  }
-  if (item.badgeTone === "soon") return { label: "POR LANZAR", tone: "soon" };
-  return { label: "EN DESARROLLO", tone: "dev" };
+  const label =
+    item.statusLabel ??
+    { live: "EN USO", soon: "POR LANZAR", dev: "EN DESARROLLO" }[item.status];
+  return { label, tone: item.status };
 }
 
-// Human-readable URL (no protocol) for chrome bars / previews.
+/** Human-readable URL (no protocol) for chrome bars / previews. */
 export function caseDisplayUrl(item: CaseItem): string | undefined {
   return item.liveUrl?.replace(/^https?:\/\//, "").replace(/\/$/, "");
 }
-
-// ---------------------------------------------------------------------------
-// How we work.
-// ---------------------------------------------------------------------------
-
-export type ApproachStep = {
-  number: string;
-  title: string;
-  text: string;
-  tag: string;
-};
-
-export const APPROACH_STEPS: ApproachStep[] = [
-  {
-    number: "01",
-    title: "Entender el problema",
-    text: "Escuchamos el negocio antes de abrir un archivo de diseño.",
-    tag: "Kickoff · Mapeo",
-  },
-  {
-    number: "02",
-    title: "Diseñar la herramienta",
-    text: "Interfaces claras, pensadas para quien las usa todos los días.",
-    tag: "Flujos · Prototipo",
-  },
-  {
-    number: "03",
-    title: "Construir y probar",
-    text: "Desarrollo real, validado con usuarios reales en contexto real.",
-    tag: "Build · QA en campo",
-  },
-  {
-    number: "04",
-    title: "Lanzar y mejorar",
-    text: "El producto evoluciona con el negocio. No entregamos y nos vamos.",
-    tag: "Deploy · Iteración",
-  },
-];
-
-// Studio / social proof chips.
-export const STUDIO_CHIPS = [
-  "sacaturno.app",
-  "agendallena",
-  "Coparentar",
-  "Bicitando",
-  "ReservaCancha",
-  "Panacity",
-] as const;
-
-// Mobile product ticker — name + status.
-export const PRODUCT_TICKER_ITEMS = [
-  { name: "SACATURNO.APP", status: "EN USO",        live: true  },
-  { name: "AGENDALLENA",   status: "EN USO",        live: true  },
-  { name: "COPARENTAR",    status: "EN USO",        live: true  },
-  { name: "RESERVACANCHA", status: "POR LANZAR",    live: false },
-  { name: "PANACITY",      status: "EN DESARROLLO", live: false },
-  { name: "BICITANDO",     status: "EN VIVO",       live: true  },
-] as const;
-
-// ---------------------------------------------------------------------------
-// Studio team.
-// Editá nombres/roles. Para fotos: dejá los archivos en /public/team/ y
-// completá `photo` (ej. "/team/guillermo.jpg"). Si `photo` queda vacío, se
-// muestran las iniciales en un círculo.
-// ---------------------------------------------------------------------------
-export type TeamMember = {
-  name: string;
-  role: string;
-  initials: string;
-  photo?: string;
-};
-
-export const TEAM: TeamMember[] = [
-  {
-    name: "Guillermo Schauer",
-    role: "Producto, diseño y desarrollo",
-    initials: "GS",
-    photo: "",
-  },
-  // Sumá acá a quien más forme parte del estudio.
-];
-
-// ---------------------------------------------------------------------------
-// Case detail lookup.
-// ---------------------------------------------------------------------------
 
 export function getCaseSlugs(): string[] {
   return CASES.map((c) => c.id);
