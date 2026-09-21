@@ -14,9 +14,6 @@ export const SITE = {
     "Analizamos cómo funciona tu negocio, detectamos dónde se pierde tiempo y diseñamos la tecnología para resolverlo.",
   description:
     "Revisamos cómo trabaja tu empresa, detectamos qué depende de tareas manuales, WhatsApp o planillas, y automatizamos lo que te hace perder tiempo.",
-  /** Bajada del hero. Más larga que `proposition`, que va a OG y metadata. */
-  heroSubhead:
-    "Revisamos cómo trabaja tu empresa, detectamos qué hoy depende de tareas manuales, WhatsApp o planillas, y automatizamos lo que te está haciendo perder tiempo.",
   url: "https://schauerlabs.com",
   email: "hola@schauerlabs.com",
   locale: "es_AR",
@@ -66,7 +63,6 @@ export const FRICTIONS = [
   "El seguimiento depende de que alguien se acuerde.",
 ] as const;
 
-
 // ---------------------------------------------------------------------------
 // 02 — Qué hacemos
 // ---------------------------------------------------------------------------
@@ -107,7 +103,7 @@ export type MethodStep = {
 
 export const METHOD_STEPS: MethodStep[] = [
   { number: "01", title: "Entender", text: "Cómo trabajan hoy." },
-  { number: "02", title: "Detectar", text: "Dónde se pierde tiempo." },
+  { number: "02", title: "Detectar", text: "Qué está complicando el día a día." },
   { number: "03", title: "Diseñar", text: "Qué conviene cambiar." },
   { number: "04", title: "Implementar", text: "Automatizar, conectar o construir." },
   { number: "05", title: "Medir", text: "Ver si realmente mejoró." },

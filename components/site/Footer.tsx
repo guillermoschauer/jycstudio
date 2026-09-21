@@ -12,9 +12,11 @@ export function Footer() {
             <Link href="/" className="inline-block text-ivory">
               <Logo size="lg" onDark withTagline />
             </Link>
+            {/* Descriptor funcional, no el claim: repetir el H1 acá le quita
+                peso arriba y no agrega nada al pie. */}
             <p className="mt-7 max-w-[34ch] text-pretty leading-relaxed text-gris">
-              {SITE.claim} Menos tareas, más capacidad para lo que sí necesita
-              una persona.
+              Analizamos procesos, automatizamos lo repetitivo y construimos
+              software cuando hace falta.
             </p>
           </div>
 

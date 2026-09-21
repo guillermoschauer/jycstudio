@@ -56,15 +56,17 @@ export function QueHacemos() {
           </div>
         </div>
 
-        {/* El giro: de los síntomas a lo que hacemos con ellos. */}
+        {/* El beneficio, y su único lugar en toda la home: el hero define la
+            marca, esta frase dice qué gana el que contrata. */}
         <Reveal delay={0.08}>
           <p className="mt-14 max-w-[22ch] text-balance text-[clamp(1.5rem,6vw,1.9rem)] font-extrabold leading-[1.1] tracking-[-0.03em] text-ivory lg:mt-16 lg:max-w-[36ch] lg:text-[clamp(1.8rem,2.6vw,2.4rem)]">
             Menos tareas manuales. Menos errores.{" "}
             <span className="text-verde-on-dark">Menos tiempo perdido.</span>
           </p>
-          <p className="mt-5 max-w-[54ch] text-pretty leading-relaxed text-gris">
-            Revisamos cómo trabaja tu empresa y automatizamos lo que hoy te hace
-            perder tiempo.
+          <p className="mt-5 max-w-[58ch] text-pretty leading-relaxed text-gris">
+            Revisamos cómo trabajan, conectamos las herramientas que ya usan y
+            automatizamos lo repetitivo. Si hace falta, construimos software o
+            aplicamos IA.
           </p>
         </Reveal>
 
