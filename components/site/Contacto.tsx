@@ -5,7 +5,7 @@ import { ContactForm } from "@/components/site/ContactForm";
 import { MAILTO_URL, SITE, WHATSAPP_URL } from "@/lib/site";
 
 /**
- * 06 — The close. Dark surface so the page ends where it began in tone, with
+ * 04 — The close. Dark surface so the page ends where it began in tone, with
  * the offer stated plainly: the conversation starts with the operation, not
  * with a product. Also rendered at the foot of every case page.
  */
@@ -13,13 +13,13 @@ export function Contacto() {
   return (
     <section
       id="contacto"
-      className="on-dark bg-carbon pb-[calc(6rem+env(safe-area-inset-bottom))] pt-20 text-ivory sm:pb-[calc(8rem+env(safe-area-inset-bottom))] sm:pt-28 lg:pt-36"
+      className="on-dark bg-carbon pb-[calc(5.5rem+env(safe-area-inset-bottom))] pt-16 text-ivory sm:pb-[calc(6.5rem+env(safe-area-inset-bottom))] sm:pt-20 lg:pt-24"
     >
       <Container>
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-x-20">
           <div className="lg:col-span-5">
             <Reveal>
-              <Eyebrow number="06" tone="dark">
+              <Eyebrow number="04" tone="dark">
                 Contacto
               </Eyebrow>
               <h2 className="mt-7 max-w-[14ch] text-balance text-[clamp(2.2rem,9vw,3rem)] font-extrabold leading-[1.03] tracking-[-0.04em] text-ivory lg:text-[clamp(2.5rem,3.6vw,3.6rem)]">

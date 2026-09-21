@@ -55,15 +55,17 @@ export const NAV_LINKS = [
 // 01 — El punto de partida (problema)
 // ---------------------------------------------------------------------------
 
-/** Recognizable frictions. Written as symptoms, never as incompetence. */
+/** Three frictions, not six: the list is a mirror, and three is enough to
+ * recognise yourself in it. More rows read as an inventory. */
 export const FRICTIONS = [
   "La información vive repartida entre WhatsApp, mails y planillas.",
-  "Hay tareas que dependen de que una persona en particular esté disponible.",
   "Los mismos datos se cargan dos o tres veces, en lugares distintos.",
-  "El seguimiento de un cliente se pierde entre conversaciones.",
-  "Las herramientas que ya usan no se hablan entre sí.",
-  "El proceso funciona porque alguien se acuerda de qué hay que hacer.",
+  "El seguimiento depende de que alguien se acuerde.",
 ] as const;
+
+/** Who this is for. One line inside the section, no longer a section of its own. */
+export const AUDIENCE_LINE =
+  "Trabajamos especialmente con pymes y empresas donde WhatsApp, planillas y tareas manuales ya empezaron a quedar chicas.";
 
 // ---------------------------------------------------------------------------
 // 02 — Qué hacemos
@@ -78,28 +80,18 @@ export type Capability = {
 export const CAPABILITIES: Capability[] = [
   {
     number: "01",
-    title: "Análisis de procesos",
-    text: "Entendemos cómo funciona hoy la operación antes de proponer tecnología: qué se hace, quién lo hace y cuánto tiempo se va en cada paso.",
+    title: "Entendemos y rediseñamos procesos",
+    text: "Miramos cómo funciona hoy la operación antes de proponer cualquier tecnología.",
   },
   {
     number: "02",
-    title: "Automatización",
-    text: "Sacamos del medio los pasos manuales y repetitivos: cargas de datos, recordatorios, seguimientos y los informes que se rehacen todos los meses.",
+    title: "Automatizamos e integramos",
+    text: "Sacamos los pasos manuales del medio y conectamos las herramientas que hoy no se hablan.",
   },
   {
     number: "03",
-    title: "Software a medida",
-    text: "Construimos herramientas propias cuando una solución existente no alcanza. Solo cuando no alcanza.",
-  },
-  {
-    number: "04",
-    title: "IA aplicada",
-    text: "Usamos inteligencia artificial donde efectivamente mejora una tarea: clasificar, redactar, resumir, leer documentos o responder lo de siempre.",
-  },
-  {
-    number: "05",
-    title: "Integraciones",
-    text: "Conectamos las herramientas, los datos y los procesos que hoy funcionan aislados, para que la información deje de copiarse a mano.",
+    title: "Construimos software e IA",
+    text: "Solo cuando lo que existe no alcanza, y donde la inteligencia artificial mejora la tarea de verdad.",
   },
 ];
 
@@ -114,51 +106,19 @@ export type MethodStep = {
 };
 
 export const METHOD_STEPS: MethodStep[] = [
-  {
-    number: "01",
-    title: "Entendemos",
-    text: "Recorremos la operación real: qué se hace, en qué orden, con qué herramientas y quién queda en el medio.",
-  },
-  {
-    number: "02",
-    title: "Detectamos",
-    text: "Marcamos las fricciones: lo repetitivo, lo duplicado, lo que se pierde y lo que depende de que alguien se acuerde.",
-  },
-  {
-    number: "03",
-    title: "Diseñamos",
-    text: "Decidimos qué conviene que siga siendo humano, qué se elimina, qué se automatiza y qué hace falta construir.",
-  },
-  {
-    number: "04",
-    title: "Implementamos",
-    text: "Integramos lo que ya usan, automatizamos lo repetitivo y desarrollamos únicamente lo que no existe.",
-  },
-  {
-    number: "05",
-    title: "Medimos",
-    text: "Volvemos a mirar la operación con la solución funcionando y ajustamos lo que no rindió como esperábamos.",
-  },
+  { number: "01", title: "Entender", text: "Cómo funciona hoy la operación." },
+  { number: "02", title: "Detectar", text: "Dónde se pierde el tiempo." },
+  { number: "03", title: "Diseñar", text: "Qué conviene automatizar y qué no." },
+  { number: "04", title: "Implementar", text: "Integrar, automatizar y construir lo que falte." },
+  { number: "05", title: "Medir", text: "Volver a mirar con la solución andando." },
 ];
-
-// ---------------------------------------------------------------------------
-// 05 — Para quién
-// ---------------------------------------------------------------------------
-
-export const AUDIENCE = [
-  "Pymes y empresas familiares",
-  "Negocios de servicios con agenda, turnos o reservas",
-  "Equipos administrativos que cargan los mismos datos varias veces",
-  "Operaciones que crecieron alrededor de WhatsApp",
-  "Empresas que dependen de planillas para decidir",
-  "Equipos con herramientas que no se hablan entre sí",
-] as const;
 
 // ---------------------------------------------------------------------------
 // Quién está detrás.
 // Reassurance, not a bio: enough to show there is a real person with both
 // business and technical judgement, and nothing more. Deliberately not a
-// numbered chapter of the argument — see components/site/QuienEstaDetras.tsx.
+// numbered chapter of the argument — se renderiza dentro de Manifiesto.tsx,
+// junto a la frase que esta persona sostiene.
 // ---------------------------------------------------------------------------
 
 export const FOUNDER = {
@@ -166,8 +126,7 @@ export const FOUNDER = {
   role: "Fundador · Schauer Labs",
   lead: "Soy Guillermo Schauer, fundador de Schauer Labs.",
   body: [
-    "Vengo del derecho, el desarrollo de software y la creación de productos digitales. Hoy trabajo combinando esas experiencias para entender cómo funcionan los negocios, detectar problemas operativos y diseñar tecnología que realmente los resuelva.",
-    "Me interesa menos construir software por construir y más encontrar la solución correcta para cada problema.",
+    "Mi recorrido combina derecho, desarrollo de software y creación de productos digitales. Hoy uso esa experiencia para entender procesos, detectar problemas reales y diseñar tecnología que ayude a resolverlos.",
   ],
   photo: {
     src: "/team/guillermo-schauer.png",
@@ -409,7 +368,6 @@ export const CASES: CaseItem[] = [
     microcopy: "Producto en uso · agenda de turnos",
     href: "/casos/agendallena",
     visual: "shot",
-    featured: true,
     status: "live",
     liveUrl: "https://agendallena.com.ar",
     image: {

@@ -35,12 +35,15 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ivory text-carbon lg:min-h-[94svh]"
+      // Deliberadamente por debajo de la pantalla completa: dejar asomar el
+      // borde de la sección siguiente le dice al que llega que hay más abajo,
+      // sin restarle presencia al titular.
+      className="relative flex min-h-[84svh] flex-col overflow-hidden bg-ivory text-carbon lg:min-h-[82svh]"
     >
       {/* Oversized mark, barely there — desktop composition only. */}
       <Isotype className="pointer-events-none absolute right-4 top-1/2 hidden h-[24rem] w-[24rem] -translate-y-1/2 text-carbon opacity-[0.05] lg:block xl:right-16 xl:h-[28rem] xl:w-[28rem]" />
 
-      <div className="relative mx-auto flex w-full max-w-[1240px] flex-1 flex-col justify-center px-6 pb-12 pt-[calc(var(--header-h)+3rem)] sm:px-8 lg:px-12 lg:pb-16">
+      <div className="relative mx-auto flex w-full max-w-[1240px] flex-1 flex-col justify-center px-6 pb-10 pt-[calc(var(--header-h)+2rem)] sm:px-8 lg:px-12 lg:pb-12">
         <motion.div variants={container} initial="hidden" animate="visible">
           <motion.div variants={item} className="flex items-center gap-3">
             <span aria-hidden className="h-px w-8 bg-verde" />
