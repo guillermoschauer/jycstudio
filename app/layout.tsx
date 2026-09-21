@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo } from "next/font/google";
 import "./globals.css";
-import { SITE } from "@/lib/site";
+import { FOUNDER, SITE } from "@/lib/site";
 
 /**
  * One family for the whole system, per the brand board. Archivo is a variable
@@ -80,6 +80,11 @@ const jsonLd = {
       logo: `${SITE.url}/brand/schauer-labs-isotipo.svg`,
       areaServed: "AR",
       knowsLanguage: ["es"],
+      founder: {
+        "@type": "Person",
+        name: FOUNDER.name,
+        jobTitle: "Fundador",
+      },
     },
     {
       "@type": "WebSite",
