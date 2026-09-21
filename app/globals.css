@@ -1,22 +1,35 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   JYC Studio — design tokens
+   Schauer Labs — design tokens
+
+   The palette comes from the approved brand board. Two values are deliberate
+   accessibility adaptations of it, documented here:
+     · --muted  (#63706A)  — the board's grey (#9AA69E) only reaches ~2.3:1 on
+       ivory, so on LIGHT surfaces it is used for rules and decoration, and this
+       darker sibling (4.8:1) carries the small labels.
+     · --verde-on-dark (#5FAE95) — the brand green reaches only ~3.1:1 on carbon,
+       so dark surfaces use this lighter tint (7.0:1) for text-level accents.
    --------------------------------------------------------------------------- */
 :root {
-  --ivory: #f3eee4;
-  --paper: #fbf8f2;
-  --charcoal: #22201b;
-  --dark-base: #16140f;
-  /* Deeper near-black reserved for the cinematic hero + closing sections. */
-  --noche: #100e08;
-  --stone: #8c867a;
-  --ink-soft: #46423a;
-  --hairline: #d7d1c4;
-  --champagne: #b79a68;
-  --operational-green: #2e6f5e;
-  /* Warm accent for the "Problema" label (muted terracotta, never an alert red). */
-  --terracotta: #a0563a;
+  /* Surfaces */
+  --ivory: #f7f5ee;
+  --paper: #fffdf7;
+  --carbon: #16140f;
+  --carbon-deep: #0e0d09;
+
+  /* Ink */
+  --ink: #33302a;
+  --muted: #63706a;
+
+  /* Brand */
+  --verde: #2e6f5e;
+  --verde-deep: #245648;
+  --verde-on-dark: #5fae95;
+  --gris: #9aa69e;
+
+  /* Lines */
+  --hairline: #e2ded2;
 
   /* Fixed header offset used for smooth anchor scrolling. */
   --header-h: 4.5rem;
@@ -25,24 +38,21 @@
 @theme inline {
   --color-ivory: var(--ivory);
   --color-paper: var(--paper);
-  --color-charcoal: var(--charcoal);
-  --color-dark-base: var(--dark-base);
-  --color-noche: var(--noche);
-  --color-stone: var(--stone);
-  --color-ink-soft: var(--ink-soft);
+  --color-carbon: var(--carbon);
+  --color-carbon-deep: var(--carbon-deep);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-verde: var(--verde);
+  --color-verde-deep: var(--verde-deep);
+  --color-verde-on-dark: var(--verde-on-dark);
+  --color-gris: var(--gris);
   --color-hairline: var(--hairline);
-  --color-champagne: var(--champagne);
-  --color-operational-green: var(--operational-green);
-  --color-terracotta: var(--terracotta);
 
   /* Hairline that works on dark surfaces. */
-  --color-hairline-dark: rgba(243, 238, 228, 0.14);
+  --color-hairline-dark: rgba(247, 245, 238, 0.12);
 
-  --font-serif: var(--font-newsreader);
-  --font-sans: var(--font-dm-sans);
-  --font-mono: var(--font-jetbrains);
-  /* Handwritten accent (hero paper notes). */
-  --font-hand: var(--font-caveat);
+  /* One family, used across the whole system (see app/layout.tsx). */
+  --font-sans: var(--font-archivo);
 }
 
 /* ---------------------------------------------------------------------------
@@ -57,7 +67,7 @@ html {
 
 body {
   background-color: var(--ivory);
-  color: var(--ink-soft);
+  color: var(--ink);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -65,52 +75,50 @@ body {
 }
 
 ::selection {
-  background-color: var(--champagne);
-  color: var(--charcoal);
+  background-color: var(--verde);
+  color: var(--ivory);
 }
 
 /* Visible, on-brand focus ring for keyboard users. */
 :focus-visible {
-  outline: 2px solid var(--champagne);
+  outline: 2px solid var(--verde);
   outline-offset: 3px;
   border-radius: 2px;
+}
+/* On dark surfaces the green ring disappears — use the light tint there. */
+.on-dark :focus-visible,
+.on-dark:focus-visible {
+  outline-color: var(--verde-on-dark);
 }
 
 /* ---------------------------------------------------------------------------
    Editorial helpers
    --------------------------------------------------------------------------- */
 
-/* Overline / label: mono, uppercase, wide tracking. */
-.overline {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-size: 0.72rem;
-  font-weight: 500;
-  line-height: 1.1;
-}
+/* Declared as components so plain utilities (text-[…], tracking-[…]) can still
+   override them per breakpoint. `text-balance` / `text-pretty` come from
+   Tailwind v4 itself — no local copies needed. */
+@layer components {
+  /* Section label: Archivo, uppercase, wide tracking — the board's own style. */
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.1;
+  }
 
-/* Champagne hairline accent (the small gold rule under the wordmark). */
-.accent-rule {
-  display: inline-block;
-  width: 2.25rem;
-  height: 1.5px;
-  background-color: var(--champagne);
-}
-
-/* Balance headline wrapping where supported. */
-.text-balance {
-  text-wrap: balance;
-}
-.text-pretty {
-  text-wrap: pretty;
+  /* Tabular numerals for the numbered spreads. */
+  .nums {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+  }
 }
 
 /* ---------------------------------------------------------------------------
-   Mobile motion system — capabilities marquee, primary-CTA shimmer, WhatsApp FAB
-   All purely transform/opacity based; disabled under prefers-reduced-motion.
+   Motion — transform/opacity only, disabled under prefers-reduced-motion.
    --------------------------------------------------------------------------- */
-@keyframes jyc-marquee {
+@keyframes sl-marquee {
   from {
     transform: translateX(0);
   }
@@ -118,32 +126,13 @@ body {
     transform: translateX(-50%);
   }
 }
-@keyframes jyc-shimmer {
-  0% {
-    transform: translateX(-180%) skewX(-16deg);
-  }
-  14% {
-    transform: translateX(240%) skewX(-16deg);
-  }
-  100% {
-    transform: translateX(240%) skewX(-16deg);
-  }
-}
 
-/* Continuous, calm horizontal loop. Two identical tracks → -50% loops seamlessly. */
-.jyc-marquee-track {
-  animation: jyc-marquee 30s linear infinite;
+.sl-marquee-track {
+  animation: sl-marquee 38s linear infinite;
   will-change: transform;
 }
-/* Pause on hover for readability (pointer devices). */
-.jyc-marquee:hover .jyc-marquee-track {
+.sl-marquee:hover .sl-marquee-track {
   animation-play-state: paused;
-}
-
-/* Short, elegant light band sweeping a primary CTA ~every 2.6s. */
-.jyc-shimmer-band {
-  animation: jyc-shimmer 2.6s ease-in-out infinite;
-  will-change: transform;
 }
 
 /* Fixed action button respecting iOS safe areas. */
@@ -167,11 +156,7 @@ body {
     transition-duration: 0.001ms !important;
   }
 
-  /* Marquee rests at the start; the shimmer band is removed entirely. */
-  .jyc-marquee-track {
+  .sl-marquee-track {
     animation: none !important;
-  }
-  .jyc-shimmer-band {
-    display: none !important;
   }
 }

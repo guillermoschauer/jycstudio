@@ -1,127 +1,64 @@
-import Image from "next/image";
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
+import { CasoDestacado } from "@/components/site/CasoDestacado";
 import { CasosIndex } from "@/components/site/CasosIndex";
-import { CASES, caseStatus } from "@/lib/site";
-import { cn } from "@/lib/cn";
+import { CASES, FEATURED_CASES } from "@/lib/site";
 
-const TONE_CLS = {
-  live: "text-operational-green",
-  soon: "text-champagne",
-  dev: "text-stone",
-} as const;
-
-// ─── Mobile: compact list with mini-thumbnails ────────────────────────────────
-
-function MobileList() {
-  return (
-    <ul>
-      {CASES.map((item) => {
-        const st = caseStatus(item);
-        return (
-          <li key={item.id}>
-            <Link
-              href={item.href}
-              className="flex items-center gap-4 border-b border-hairline py-4"
-            >
-              <div className="relative h-14 w-[4.5rem] shrink-0 overflow-hidden rounded-md bg-[#1A1A1E]">
-                {item.image ? (
-                  <Image
-                    src={item.image.src}
-                    alt=""
-                    fill
-                    sizes="72px"
-                    className="object-cover object-top"
-                  />
-                ) : (
-                  <span className="flex h-full w-full items-center justify-center font-mono text-[0.55rem] uppercase tracking-[0.1em] text-stone">
-                    Dev
-                  </span>
-                )}
-              </div>
-
-              <div className="min-w-0 flex-1">
-                <p className="truncate font-sans text-[1.05rem] font-bold text-charcoal">
-                  {item.title}
-                </p>
-                <p className="truncate font-mono text-[0.58rem] uppercase tracking-[0.1em] text-stone">
-                  {item.eyebrow}
-                </p>
-              </div>
-
-              <span
-                className={cn(
-                  "shrink-0 font-mono text-[0.55rem] uppercase tracking-[0.1em]",
-                  TONE_CLS[st.tone],
-                )}
-              >
-                {st.label}
-              </span>
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
-// ─── Section ──────────────────────────────────────────────────────────────────
-
+/**
+ * 04 — Cases. Real projects only: no invented clients, metrics or results.
+ *
+ * Two layers, on purpose: the featured ones get the screenshot and the
+ * before/after, so the section proves something instead of listing names; every
+ * project, including the ones still in the workshop, is listed underneath.
+ */
 export function Casos() {
   return (
     <section id="casos" className="bg-ivory">
-
-      {/* ── MOBILE (< md) ── */}
-      <div className="px-6 pb-14 pt-16 md:hidden sm:px-8">
+      <Container className="py-20 sm:py-28 lg:py-36">
         <Reveal>
-          <p className="flex items-center gap-2.5 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-stone">
-            <span aria-hidden className="inline-block h-[5px] w-[5px] rounded-full bg-operational-green" />
-            01 — Proyectos
-          </p>
-          <h2 className="mt-5 text-balance font-sans text-[clamp(2.2rem,10vw,2.7rem)] font-extrabold leading-[1.04] tracking-[-0.03em] text-charcoal">
-            Lo que construimos,{" "}
-            <em className="font-serif font-normal italic tracking-normal">
-              de punta a punta.
-            </em>
+          <Eyebrow number="04">Casos</Eyebrow>
+          <h2 className="mt-7 max-w-[16ch] text-balance text-[clamp(2.1rem,8.5vw,2.9rem)] font-extrabold leading-[1.05] tracking-[-0.04em] lg:max-w-[22ch] lg:text-[clamp(2.6rem,4vw,3.8rem)]">
+            <span className="text-muted">Cómo funcionaba antes.</span>
+            <span className="mt-1 block text-carbon">Cómo funciona ahora.</span>
           </h2>
-          <p className="mt-6 text-pretty text-[0.97rem] leading-relaxed text-ink-soft">
-            Algunos proyectos que pensamos, diseñamos y llevamos a la realidad.
-            Herramientas que ya se usan todos los días y otras que todavía
-            estamos haciendo crecer.
+          <p className="mt-7 max-w-[56ch] text-pretty leading-relaxed text-ink lg:text-[1.1rem]">
+            Productos y sistemas que hoy están en uso, y otros todavía en
+            construcción. En todos el punto de partida fue el mismo: entender
+            cómo funcionaba la operación antes de escribir una línea de código.
           </p>
         </Reveal>
 
-        <Reveal delay={0.06} className="mt-8">
-          <MobileList />
-        </Reveal>
-      </div>
+        {/* Featured — screenshot + before/after, sides alternating. */}
+        <div className="mt-16 space-y-20 sm:mt-20 lg:mt-24 lg:space-y-28">
+          {FEATURED_CASES.map((item, i) => (
+            <CasoDestacado
+              key={item.id}
+              item={item}
+              flip={i % 2 === 1}
+              priority={i === 0}
+            />
+          ))}
+        </div>
 
-      {/* ── DESKTOP (md+) — index + hover preview ── */}
-      <div className="hidden md:block">
-        <Container className="py-20 sm:py-28 lg:py-32">
+        {/* Everything else. */}
+        <div className="mt-24 lg:mt-32">
           <Reveal>
-            <p className="overline flex items-center gap-2.5 text-stone">
-              <span aria-hidden className="inline-block h-[5px] w-[5px] rounded-full bg-operational-green" />
-              01 — Proyectos
-            </p>
-            <h2 className="mt-6 max-w-3xl text-balance font-sans text-[clamp(2.4rem,5vw,4.2rem)] font-extrabold leading-[1.04] tracking-[-0.03em] text-charcoal">
-              Lo que construimos,{" "}
-              <em className="font-serif font-normal italic tracking-normal">de punta a punta.</em>
-            </h2>
-            <p className="mt-6 max-w-2xl text-pretty text-[1.05rem] leading-relaxed text-ink-soft sm:text-lg">
-              Algunos proyectos que pensamos, diseñamos y llevamos a la realidad.
-              Herramientas que ya se usan todos los días y otras que todavía
-              estamos haciendo crecer.
-            </p>
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+              <h3 className="text-[1.5rem] font-extrabold tracking-[-0.03em] text-carbon lg:text-[1.9rem]">
+                Todos los trabajos
+              </h3>
+              <p className="eyebrow text-[0.6rem] text-muted">
+                {CASES.length} proyectos
+              </p>
+            </div>
           </Reveal>
 
-          <Reveal delay={0.08} className="mt-14 lg:mt-20">
+          <Reveal delay={0.06} className="mt-10">
             <CasosIndex />
           </Reveal>
-        </Container>
-      </div>
-
+        </div>
+      </Container>
     </section>
   );
 }

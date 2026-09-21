@@ -1,35 +1,23 @@
-import Image from "next/image";
 import { PanacityMockup } from "@/components/mockups/PanacityMockup";
-import { cn } from "@/lib/cn";
+import { Screenshot } from "@/components/ui/Screenshot";
 import type { CaseItem } from "@/lib/site";
 
 /**
- * Renders a case's visual: a real screenshot (framed, never recolored) or the
- * in-house Panacity operative mockup. Screenshots are the protagonists.
+ * A case's visual: the in-house schematic for the project with nothing to show
+ * yet, otherwise the real screenshot in the shared frame.
  */
-export function CaseVisual({ item }: { item: CaseItem }) {
-  if (item.visual === "mockup") {
+export function CaseVisual({ item, priority = false }: { item: CaseItem; priority?: boolean }) {
+  if (item.visual === "schematic") {
     return <PanacityMockup />;
   }
 
-  const img = item.image;
-  if (!img) return null;
-
   return (
-    <figure
-      className={cn(
-        "overflow-hidden rounded-xl border shadow-[0_22px_60px_-40px_rgba(34,32,27,0.5)] sm:rounded-2xl sm:shadow-[0_30px_80px_-44px_rgba(34,32,27,0.55)]",
-        item.tone === "dark" ? "border-[color:var(--color-hairline-dark)]" : "border-hairline",
-      )}
-    >
-      <Image
-        src={img.src}
-        alt={img.alt}
-        width={img.width}
-        height={img.height}
-        sizes="(min-width: 1024px) 46vw, 100vw"
-        className="h-auto w-full"
-      />
-    </figure>
+    <Screenshot
+      image={item.image}
+      title={item.title}
+      summary={item.summary}
+      priority={priority}
+      sizes="(min-width: 1024px) 62vw, 100vw"
+    />
   );
 }

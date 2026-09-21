@@ -1,26 +1,34 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { Wordmark } from "@/components/ui/Wordmark";
+import { Logo } from "@/components/ui/Logo";
 
 /**
- * Lightweight top bar for secondary pages (case detail).
- * The full interactive Header is reserved for the landing page.
+ * Lightweight bar for secondary pages (case detail).
+ * The full interactive Header is reserved for the home page.
  */
 export function SiteTopBar() {
   return (
-    <header className="sticky top-0 z-50 h-[var(--header-h)] border-b border-hairline bg-ivory/85 backdrop-blur-md">
-      <Container className="flex h-full items-center justify-between">
-        <Link href="/" aria-label="JYC Studio — inicio" className="text-charcoal">
-          <Wordmark className="text-[1.1rem] sm:text-[1.45rem]" />
+    <header className="sticky top-0 z-50 h-[var(--header-h)] border-b border-hairline bg-[rgba(247,245,238,0.88)] backdrop-blur-[14px]">
+      <Container className="flex h-full items-center justify-between gap-6">
+        <Link href="/" className="text-carbon">
+          <span className="sm:hidden">
+            <Logo size="sm" />
+          </span>
+          <span className="hidden sm:block">
+            <Logo size="md" />
+          </span>
         </Link>
         <Link
-          href="/#trabajo"
-          className="group inline-flex items-center gap-2 font-sans text-sm text-ink-soft transition-colors duration-200 hover:text-charcoal"
+          href="/#casos"
+          className="group inline-flex items-center gap-2 text-[0.92rem] text-ink transition-colors duration-200 hover:text-carbon"
         >
-          <span aria-hidden className="transition-transform duration-300 group-hover:-translate-x-0.5">
+          <span
+            aria-hidden
+            className="text-verde transition-transform duration-300 group-hover:-translate-x-0.5"
+          >
             ←
           </span>
-          Volver
+          Todos los casos
         </Link>
       </Container>
     </header>

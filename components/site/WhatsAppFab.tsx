@@ -35,10 +35,8 @@ export function WhatsAppFab() {
       rel="noopener noreferrer"
       aria-label="Escribir por WhatsApp"
       className={cn(
-        "fab-safe fixed z-50 hidden h-14 w-14 items-center justify-center rounded-full bg-operational-green text-ivory shadow-[0_14px_30px_-8px_rgba(46,111,94,0.6)] transition-all duration-300 ease-out hover:bg-[#27604f] md:flex",
-        hidden
-          ? "pointer-events-none translate-y-4 opacity-0"
-          : "opacity-100",
+        "fab-safe fixed z-50 hidden h-14 w-14 items-center justify-center rounded-full bg-verde text-ivory shadow-[0_14px_30px_-8px_rgba(46,111,94,0.55)] transition-all duration-300 ease-out hover:bg-verde-deep md:flex",
+        hidden ? "pointer-events-none translate-y-4 opacity-0" : "opacity-100",
       )}
     >
       <svg viewBox="0 0 24 24" className="h-7 w-7" fill="currentColor" aria-hidden>

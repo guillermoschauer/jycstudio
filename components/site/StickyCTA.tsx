@@ -1,68 +1,68 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Shimmer } from "@/components/ui/Shimmer";
-import { cn } from "@/lib/cn";
 
 /**
- * Mobile-only sticky floating CTA pill (V1 reference spec):
- * - Green pill, 16px margins from screen edges, 56px tall
- * - "¿Hablamos de tu caso?" text + circular cream arrow button
- * - Appears after hero exits view, hides when #contacto comes into range
- * - Hides on md+ (desktop has its own CTAs)
+ * Mobile-only bottom CTA. Appears once the hero leaves the viewport and hides
+ * again as the contact section approaches, so it never competes with the real
+ * form. Hidden from `md` up, where the header CTA is always visible.
  */
 export function StickyCTA() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const hero     = document.getElementById("top");
+    const hero = document.getElementById("top");
     const contacto = document.getElementById("contacto");
     if (!hero || !contacto) return;
 
-    let heroOut      = false;
+    let heroOut = false;
     let contactoNear = false;
     const sync = () => setShow(heroOut && !contactoNear);
 
     const heroIO = new IntersectionObserver(
-      ([e]) => { heroOut = !e.isIntersecting; sync(); },
+      ([e]) => {
+        heroOut = !e.isIntersecting;
+        sync();
+      },
       { threshold: 0 },
     );
     const contactoIO = new IntersectionObserver(
-      ([e]) => { contactoNear = e.isIntersecting; sync(); },
+      ([e]) => {
+        contactoNear = e.isIntersecting;
+        sync();
+      },
       { rootMargin: "0px 0px -15% 0px" },
     );
 
     heroIO.observe(hero);
     contactoIO.observe(contacto);
-    return () => { heroIO.disconnect(); contactoIO.disconnect(); };
+    return () => {
+      heroIO.disconnect();
+      contactoIO.disconnect();
+    };
   }, []);
 
   return (
     <div
       aria-hidden={show ? undefined : "true"}
-      className={cn(
-        "fixed bottom-0 inset-x-0 z-40 md:hidden",
-        "flex justify-center",
-        "px-4 pb-[calc(1rem+env(safe-area-inset-bottom))]",
-        "transition-transform duration-[420ms] ease-[cubic-bezier(0.2,0.6,0.2,1)]",
-        show ? "translate-y-0" : "translate-y-full",
-      )}
+      className={`fixed inset-x-0 bottom-0 z-40 flex justify-center px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] transition-transform duration-[420ms] ease-[cubic-bezier(0.2,0.6,0.2,1)] md:hidden ${
+        show ? "translate-y-0" : "translate-y-[150%]"
+      }`}
     >
       <a
         href="#contacto"
         tabIndex={show ? 0 : -1}
-        className="group relative isolate flex h-[56px] w-full max-w-[calc(100%-2rem)] items-center justify-between gap-4 overflow-hidden rounded-full bg-operational-green px-5 shadow-[0_10px_30px_rgba(22,21,15,0.35)]"
+        className="flex h-[56px] w-full max-w-[26rem] items-center justify-between gap-4 rounded-full bg-verde px-6 shadow-[0_12px_32px_-8px_rgba(22,20,15,0.45)]"
       >
-        <span className="relative z-[1] font-sans text-[0.95rem] font-semibold text-ivory">
-          ¿Hablamos de tu caso?
+        <span className="text-[0.95rem] font-semibold text-ivory">
+          Hablemos de tu negocio
         </span>
         <span
           aria-hidden
-          className="relative z-[1] flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ivory font-sans text-sm font-bold text-charcoal transition-transform duration-300 group-hover:translate-x-0.5"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ivory text-sm font-bold text-carbon"
         >
           →
         </span>
-        <Shimmer className="via-[rgba(243,238,228,0.3)]" />
       </a>
     </div>
   );

@@ -1,15 +1,16 @@
-# JYC Studio — Landing
+# Schauer Labs — sitio
 
-Landing del estudio **JYC Studio** — _Productos digitales para negocios reales._
+Sitio de **Schauer Labs** — _Software e IA para resolver problemas reales._
 
-Editorial, premium y cálido. Construida con Next.js (App Router) + TypeScript, Tailwind CSS v4 y Motion.
+Analizamos cómo funciona un negocio, detectamos dónde se pierde tiempo y diseñamos la tecnología para resolverlo.
+Estética editorial, sobria y mobile first. Next.js (App Router) + TypeScript, Tailwind CSS v4 y Motion.
 
 ## Stack
 
 - **Next.js 16** (App Router, React 19) — render estático, metadata/SEO, OG image y favicons generados.
-- **Tailwind CSS v4** — tokens de marca definidos en `app/globals.css`.
-- **Motion** (`motion/react`) — reveals discretos al entrar en viewport y micro-interacciones.
-- **Fuentes** (`next/font`): Instrument Serif (serif editorial), DM Sans (UI/cuerpo), JetBrains Mono (overlines/datos).
+- **Tailwind CSS v4** — tokens de marca en `app/globals.css`.
+- **Motion** (`motion/react`) — reveals discretos al entrar en viewport. Todo respeta `prefers-reduced-motion`.
+- **Archivo** (`next/font/google`) — única familia del sistema, variable (100–900).
 
 ## Scripts
 
@@ -17,23 +18,41 @@ Editorial, premium y cálido. Construida con Next.js (App Router) + TypeScript, 
 npm run dev     # desarrollo (http://localhost:3000)
 npm run build   # build de producción
 npm start       # sirve el build
-npm run lint    # eslint
+npm run lint    # eslint (Next 16 ya no lo corre dentro de `build`)
 ```
 
 ## Estructura
 
-- `app/` — layout, página principal, rutas de casos (`/casos/[slug]`), icon/OG/robots/sitemap.
-- `components/site/` — secciones (Header, Hero, Casos, Cómo trabajamos, Estudio, Contacto, Footer).
-- `components/mockups/` — panel operativo del hero y mockup operativo de Panacity (sin screenshot real aún).
+- `app/` — layout, home, rutas de casos (`/casos/[slug]`), icon/OG/robots/sitemap y JSON-LD.
+- `components/site/` — secciones de la home en orden narrativo: Hero, Problema, QueHacemos, Metodo, Manifiesto, Casos, ParaQuien, Contacto, Footer.
+- `components/ui/` — primitivos: Logo, Wordmark, Isotype, Button, Eyebrow, Container, Reveal.
+- `components/mockups/` — esquema operativo de Panacity (el único caso sin producto que mostrar todavía).
 - `public/case-studies/` — screenshots reales de cada caso (no recolorear).
-- `components/ui/` — primitivos (Wordmark, Button, Reveal, Overline, ArrowLink, Container).
-- `lib/site.ts` — configuración central: contacto, navegación y contenido de los casos.
+- `public/brand/` — isotipo, avatar y lockups horizontales en SVG.
+- `lib/site.ts` — configuración central: marca, contacto, navegación y todo el contenido de las secciones.
+- `lib/brand-mark.ts` — geometría del isotipo para los contextos que no pueden importar el componente React (OG image, apple-icon).
 
 ## Marca
 
-Identidad cerrada (no reinterpretar). Wordmark `JYC Studio` con `JYC` en sans-serif estructurado y `Studio` en serif itálica.
-Paleta y tokens en `app/globals.css`. El número de WhatsApp y los datos de contacto viven en `lib/site.ts`.
+Identidad cerrada, definida en el brand board aprobado.
 
-> **Pendiente real:** reemplazar `whatsappNumber` en [`lib/site.ts`](lib/site.ts) por la línea real del estudio
-> (hoy es un placeholder configurable). Las páginas de caso muestran el contenido del landing;
-> ampliar con material real cuando esté disponible.
+- **Wordmark** — `SCHAUER` en Archivo 800, `LABS` en Archivo 300. Nunca reinterpretarlo con otra tipografía.
+- **Isotipo** — `/.` : una barra diagonal y un punto. Geometría pura, sin adornos tecnológicos.
+- **Paleta** — ivory `#F7F5EE`, carbón `#16140F`, verde `#2E6F5E`, gris `#9AA69E`.
+  `app/globals.css` documenta las dos variantes que existen solo por contraste (`--muted` y `--verde-on-dark`).
+
+Los lockups horizontales de `public/brand/` usan texto vivo con Archivo cargada desde Google Fonts:
+se ven bien en el navegador, pero para imprenta, cartelería o plataformas de terceros hace falta
+una exportación con la tipografía convertida a curvas.
+
+## Dominio
+
+Dominio canónico: **https://schauerlabs.com**
+
+`next.config.ts` redirige con 308 (permanente, preserva el método) cualquier host heredado de JYC Studio
+y el `www` del dominio nuevo hacia el origen canónico, **conservando el path**: `/casos/sacaturno` cae en
+`https://schauerlabs.com/casos/sacaturno`. Los hosts heredados están listados en `LEGACY.hosts` (`lib/site.ts`).
+Las previews de Vercel y `localhost` no matchean ninguna regla y quedan intactas.
+
+> **Pendiente real:** `SITE.email` (`hola@schauerlabs.com`) tiene que existir como casilla antes de publicar.
+> El número de WhatsApp en `SITE.whatsappNumber` se migró tal cual desde la marca anterior.

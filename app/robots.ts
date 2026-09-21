@@ -8,6 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
     },
     sitemap: `${SITE.url}/sitemap.xml`,
-    host: SITE.url,
+    // The `Host` directive takes a hostname, not a full URL.
+    host: new URL(SITE.url).host,
   };
 }
