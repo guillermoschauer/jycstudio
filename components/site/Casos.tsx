@@ -3,15 +3,18 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { CasoDestacado } from "@/components/site/CasoDestacado";
-import { CASES, FEATURED_CASES } from "@/lib/site";
+import { FEATURED_CASES } from "@/lib/site";
 
 /**
  * 03 — Cases. Real projects only: no invented clients, metrics or results.
  *
- * Four featured cases and a link out, rather than the full table underneath:
+ * Three featured cases and a link out, rather than the full table underneath:
  * the table repeated the projects the reader had just scrolled past, which cost
- * a screen and a half on a phone and added nothing. The count stays in the link
- * so the section still says how much work there is without listing all of it.
+ * a screen and a half on a phone and added nothing.
+ *
+ * The link says "todos" and not the count on purpose. A number only helps while
+ * it impresses, and it reframes a portfolio as a quantity the reader is invited
+ * to judge — which is the wrong question to hand someone right before the close.
  */
 export function Casos() {
   return (
@@ -50,7 +53,7 @@ export function Casos() {
           >
             <span className="text-[1.35rem] font-extrabold tracking-[-0.03em] text-carbon lg:text-[1.7rem]">
               <span className="relative">
-                Ver los {CASES.length} trabajos
+                Ver todos los trabajos
                 <span
                   aria-hidden
                   className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-verde transition-transform duration-300 ease-out group-hover:scale-x-100"
