@@ -13,7 +13,10 @@ export const SITE = {
   proposition:
     "Analizamos cómo funciona tu negocio, detectamos dónde se pierde tiempo y diseñamos la tecnología para resolverlo.",
   description:
-    "Analizamos cómo funciona tu negocio, detectamos dónde se pierde tiempo y diseñamos software, automatizaciones e IA para resolverlo.",
+    "Revisamos cómo trabaja tu empresa, detectamos qué depende de tareas manuales, WhatsApp o planillas, y automatizamos lo que te hace perder tiempo.",
+  /** Bajada del hero. Más larga que `proposition`, que va a OG y metadata. */
+  heroSubhead:
+    "Revisamos cómo trabaja tu empresa, detectamos qué hoy depende de tareas manuales, WhatsApp o planillas, y automatizamos lo que te está haciendo perder tiempo.",
   url: "https://schauerlabs.com",
   email: "hola@schauerlabs.com",
   locale: "es_AR",
@@ -58,18 +61,11 @@ export const NAV_LINKS = [
 /** Three frictions, not six: the list is a mirror, and three is enough to
  * recognise yourself in it. More rows read as an inventory. */
 export const FRICTIONS = [
-  "La información vive repartida entre WhatsApp, mails y planillas.",
-  "Los mismos datos se cargan dos o tres veces, en lugares distintos.",
+  "La información está repartida entre WhatsApp, mails y planillas.",
+  "Los mismos datos se cargan varias veces en lugares distintos.",
   "El seguimiento depende de que alguien se acuerde.",
 ] as const;
 
-/**
- * Who this is for, as a line of recognition rather than a description of a
- * segment: the reader should finish the section having identified themselves.
- * Closes the section — see components/site/QueHacemos.tsx for the treatment.
- */
-export const AUDIENCE_LINE =
-  "Si tu negocio depende de WhatsApp, planillas y memoria, hay mucho para mejorar.";
 
 // ---------------------------------------------------------------------------
 // 02 — Qué hacemos
@@ -84,18 +80,18 @@ export type Capability = {
 export const CAPABILITIES: Capability[] = [
   {
     number: "01",
-    title: "Entendemos y rediseñamos procesos",
-    text: "Miramos cómo funciona hoy la operación antes de proponer cualquier tecnología.",
+    title: "Encontramos dónde se pierde tiempo",
+    text: "Miramos cómo trabajan hoy y detectamos pasos innecesarios, tareas repetidas y cuellos de botella.",
   },
   {
     number: "02",
-    title: "Automatizamos e integramos",
-    text: "Sacamos los pasos manuales del medio y conectamos las herramientas que hoy no se hablan.",
+    title: "Automatizamos lo repetitivo",
+    text: "Conectamos herramientas y hacemos que recordatorios, cargas, seguimientos y tareas rutinarias ocurran sin depender de alguien.",
   },
   {
     number: "03",
-    title: "Construimos software e IA",
-    text: "Solo cuando lo que existe no alcanza, y donde la inteligencia artificial mejora la tarea de verdad.",
+    title: "Construimos solo lo que hace falta",
+    text: "Si una herramienta existente alcanza, la usamos. Si no alcanza, desarrollamos software o aplicamos IA para resolver ese problema puntual.",
   },
 ];
 
@@ -110,11 +106,11 @@ export type MethodStep = {
 };
 
 export const METHOD_STEPS: MethodStep[] = [
-  { number: "01", title: "Entender", text: "Cómo funciona hoy la operación." },
-  { number: "02", title: "Detectar", text: "Dónde se pierde el tiempo." },
-  { number: "03", title: "Diseñar", text: "Qué conviene automatizar y qué no." },
-  { number: "04", title: "Implementar", text: "Integrar, automatizar y construir lo que falte." },
-  { number: "05", title: "Medir", text: "Volver a mirar con la solución andando." },
+  { number: "01", title: "Entender", text: "Cómo trabajan hoy." },
+  { number: "02", title: "Detectar", text: "Dónde se pierde tiempo." },
+  { number: "03", title: "Diseñar", text: "Qué conviene cambiar." },
+  { number: "04", title: "Implementar", text: "Automatizar, conectar o construir." },
+  { number: "05", title: "Medir", text: "Ver si realmente mejoró." },
 ];
 
 // ---------------------------------------------------------------------------
@@ -128,9 +124,9 @@ export const METHOD_STEPS: MethodStep[] = [
 export const FOUNDER = {
   name: "Guillermo Schauer",
   role: "Fundador · Schauer Labs",
-  lead: "Soy Guillermo Schauer, fundador de Schauer Labs.",
+  lead: "Soy Guillermo Schauer.",
   body: [
-    "Mi recorrido combina derecho, desarrollo de software y creación de productos digitales. Hoy uso esa experiencia para entender procesos, detectar problemas reales y diseñar tecnología que ayude a resolverlos.",
+    "Mi recorrido combina derecho, software y creación de productos. Hoy uso esas experiencias para entender cómo funciona un negocio y convertir problemas concretos en tecnología útil.",
   ],
   photo: {
     src: "/team/guillermo-schauer.png",
@@ -196,6 +192,11 @@ export type CaseItem = {
   process: string;
   /** The operational outcome, described qualitatively. */
   solution: string;
+  /**
+   * Versión corta del par problema/solución para el bloque destacado de la
+   * home, donde el lector escanea. La página del caso conserva la larga.
+   */
+  brief?: { problem: string; solution: string };
   /** What changed day to day. Qualitative — never invented figures. */
   changes: string[];
   /**
@@ -255,6 +256,12 @@ export const CASES: CaseItem[] = [
     summary:
       "Compras, ingresos, stock, ventas y cuentas conectados en un mismo sistema interno.",
     microcopy: "Sistema en desarrollo · en testing real",
+    brief: {
+      problem:
+        "Compras, recepción, stock, ventas y cuentas necesitaban convivir sin perder control ni trazabilidad.",
+      solution:
+        "Un sistema interno que conecta todos esos movimientos y permite ver qué está pasando desde un solo lugar.",
+    },
     href: "/casos/flowstock",
     visual: "shot",
     featured: true,
@@ -289,6 +296,12 @@ export const CASES: CaseItem[] = [
     summary:
       "Una sala, un link: familias, cumpleaños y colectas en un espacio que no se pierde.",
     microcopy: "Versión web pública · early stage",
+    brief: {
+      problem:
+        "Cumpleaños, regalos y colectas terminaban perdidos entre chats, transferencias y comprobantes.",
+      solution:
+        "Una sala digital donde las familias pueden ver cumpleaños y organizar colectas sin reconstruir todo desde WhatsApp.",
+    },
     href: "/casos/kidu",
     visual: "shot",
     featured: true,
@@ -325,6 +338,12 @@ export const CASES: CaseItem[] = [
     summary:
       "Elegís un regalo en un comercio, lo enviás, y la otra persona lo canjea cuando quiere.",
     microcopy: "MVP en beta funcional",
+    brief: {
+      problem:
+        'Muchas veces un "te debo una" queda en palabras porque regalar implica elegir, coordinar y entregar.',
+      solution:
+        "Elegís un regalo, lo pagás y lo enviás. La otra persona lo disfruta cuando quiere.",
+    },
     href: "/casos/tdu",
     visual: "shot",
     featured: true,

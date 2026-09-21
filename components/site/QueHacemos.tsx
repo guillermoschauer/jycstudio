@@ -1,18 +1,16 @@
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
-import { AUDIENCE_LINE, CAPABILITIES, FRICTIONS } from "@/lib/site";
+import { CAPABILITIES, FRICTIONS } from "@/lib/site";
 
 /**
- * 01 — The situation and the answer, in one section.
+ * 01 — La situación y la respuesta, en una sola sección.
  *
- * These used to be two full screens that made the same argument twice: first
- * "here is what breaks", then "here is what we do about it". Separating them
- * meant restating the problem to introduce the solution. Together, the frictions
- * are the setup and the three capabilities are the payoff, with no bridge copy
- * in between.
+ * Abre con la línea donde el lector se reconoce, no con una descripción de lo
+ * que hacemos: primero tiene que pensar "esto me pasa". Las tres fricciones son
+ * el espejo; las tres capacidades, la respuesta. Sin copy puente en el medio.
  *
- * `#problema` and `#para-quien` survive as anchors: both were live URLs.
+ * `#problema` y `#para-quien` sobreviven como anclas: las dos fueron URLs vivas.
  */
 export function QueHacemos() {
   return (
@@ -20,25 +18,30 @@ export function QueHacemos() {
       <span id="problema" aria-hidden className="block" />
       <Container className="py-16 sm:py-20 lg:py-24">
         <div className="grid gap-x-16 gap-y-10 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-6">
             <Reveal>
               <Eyebrow number="01" tone="dark">
                 Qué hacemos
               </Eyebrow>
-              <h2 className="mt-6 text-balance text-[clamp(2rem,8vw,2.6rem)] font-extrabold leading-[1.05] tracking-[-0.04em] lg:text-[clamp(2.3rem,3.2vw,3.1rem)]">
-                <span className="text-gris">Muchos negocios crecen.</span>
-                <span className="mt-1 block text-ivory">Sus procesos, no.</span>
+              {/* La frase de reconocimiento es el titular de la sección. */}
+              <h2
+                id="para-quien"
+                className="mt-6 max-w-[16ch] text-balance text-[clamp(1.9rem,7.5vw,2.5rem)] font-extrabold leading-[1.06] tracking-[-0.04em] lg:max-w-[20ch] lg:text-[clamp(2.2rem,3.1vw,3rem)]"
+              >
+                Si tu negocio depende de WhatsApp, planillas y memoria,{" "}
+                <span className="text-verde-on-dark">hay mucho para mejorar.</span>
               </h2>
-              <p className="mt-6 max-w-[44ch] text-pretty leading-relaxed text-gris">
-                La operación empieza a repartirse entre WhatsApp, planillas,
-                tareas manuales y herramientas que no se hablan entre sí.
+              <p className="mt-6 max-w-[48ch] text-pretty leading-relaxed text-gris">
+                Cuando una empresa crece así, aparecen siempre los mismos
+                problemas: información duplicada, seguimientos que se pierden y
+                personas repitiendo tareas que podrían resolverse solas.
               </p>
             </Reveal>
           </div>
 
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-6">
             <Reveal delay={0.06}>
-              <ul className="border-t border-[color:var(--color-hairline-dark)]">
+              <ul className="border-t border-[color:var(--color-hairline-dark)] lg:mt-14">
                 {FRICTIONS.map((line) => (
                   <li
                     key={line}
@@ -53,7 +56,7 @@ export function QueHacemos() {
           </div>
         </div>
 
-        {/* The answer, straight after the symptoms. */}
+        {/* El giro: de los síntomas a lo que hacemos con ellos. */}
         <Reveal delay={0.08}>
           <p className="mt-14 max-w-[22ch] text-balance text-[clamp(1.5rem,6vw,1.9rem)] font-extrabold leading-[1.1] tracking-[-0.03em] text-ivory lg:mt-16 lg:max-w-[36ch] lg:text-[clamp(1.8rem,2.6vw,2.4rem)]">
             Menos tareas manuales. Menos errores.{" "}
@@ -85,19 +88,6 @@ export function QueHacemos() {
             </Reveal>
           ))}
         </ol>
-
-        {/* Cierre de sección: la línea donde el lector se reconoce.
-            Sube a semibold e ivory para tener peso propio, pero se queda por
-            debajo del titular en tamaño — si compitiera, la sección tendría dos
-            entradas y ninguna cerraría. El acento verde ya existente la ancla. */}
-        <Reveal delay={0.12}>
-          <p
-            id="para-quien"
-            className="mt-14 max-w-[24ch] border-l-2 border-verde-on-dark pl-5 text-balance text-[1.2rem] font-semibold leading-snug tracking-[-0.02em] text-ivory sm:pl-6 lg:mt-16 lg:max-w-[40ch] lg:text-[1.6rem]"
-          >
-            {AUDIENCE_LINE}
-          </p>
-        </Reveal>
       </Container>
     </section>
   );

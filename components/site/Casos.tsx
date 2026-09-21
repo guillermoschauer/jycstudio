@@ -23,13 +23,13 @@ export function Casos() {
         <Reveal>
           <Eyebrow number="03">Casos</Eyebrow>
           <h2 className="mt-7 max-w-[16ch] text-balance text-[clamp(2.1rem,8.5vw,2.9rem)] font-extrabold leading-[1.05] tracking-[-0.04em] lg:max-w-[22ch] lg:text-[clamp(2.6rem,4vw,3.8rem)]">
-            <span className="text-muted">Cómo funcionaba antes.</span>
-            <span className="mt-1 block text-carbon">Cómo funciona ahora.</span>
+            <span className="text-muted">Problemas reales.</span>
+            <span className="mt-1 block text-carbon">Soluciones que ya construimos.</span>
           </h2>
-          <p className="mt-7 max-w-[56ch] text-pretty leading-relaxed text-ink lg:text-[1.1rem]">
-            Productos y sistemas que hoy están en uso, y otros todavía en
-            construcción. En todos el punto de partida fue el mismo: entender
-            cómo funcionaba la operación antes de escribir una línea de código.
+          <p className="mt-7 max-w-[60ch] text-pretty leading-relaxed text-ink lg:text-[1.1rem]">
+            Stock, turnos, cobros, organización y marketplaces. Distintos
+            negocios, mismo punto de partida: entender qué problema había que
+            resolver antes de elegir la tecnología.
           </p>
         </Reveal>
 

@@ -40,9 +40,8 @@ export function Manifiesto() {
                 <span className="font-light text-verde">no necesariamente trabajadores.</span>
               </p>
               <p className="mt-6 max-w-[52ch] text-pretty leading-relaxed text-ink">
-                La tecnología vale más cuando libera a las personas de lo
-                repetitivo y las deja concentrarse en lo que necesita criterio,
-                conversación y decisión.
+                Usamos IA donde puede sacar tareas repetitivas del medio. Lo que
+                necesita criterio, conversación o decisión sigue siendo humano.
               </p>
             </Reveal>
           </div>

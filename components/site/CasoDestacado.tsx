@@ -52,17 +52,18 @@ export function CasoDestacado({
           {item.title}
         </h3>
 
+        {/* La versión corta si existe: en la home se escanea, no se lee. */}
         <dl className="mt-7 space-y-5">
           <div>
-            <dt className="eyebrow text-[0.58rem] text-muted">Antes</dt>
+            <dt className="eyebrow text-[0.58rem] text-muted">Problema</dt>
             <dd className="mt-2 max-w-[48ch] text-pretty text-[0.95rem] leading-relaxed text-ink">
-              {item.problem}
+              {item.brief?.problem ?? item.problem}
             </dd>
           </div>
           <div>
-            <dt className="eyebrow text-[0.58rem] text-verde">Ahora</dt>
+            <dt className="eyebrow text-[0.58rem] text-verde">Qué resolvimos</dt>
             <dd className="mt-2 max-w-[48ch] text-pretty text-[0.95rem] leading-relaxed text-carbon">
-              {item.solution}
+              {item.brief?.solution ?? item.solution}
             </dd>
           </div>
         </dl>

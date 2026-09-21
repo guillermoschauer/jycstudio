@@ -50,19 +50,32 @@ export function Hero() {
             <p className="eyebrow text-muted">{SITE.name.toUpperCase()}</p>
           </motion.div>
 
+          {/* La promesa concreta pasa a ser el H1; el descriptor de marca queda
+              debajo, con presencia propia pero claramente en segundo nivel. */}
           <motion.h1
             variants={item}
-            className="mt-8 max-w-[15ch] text-balance text-[clamp(2.6rem,11vw,4rem)] font-extrabold leading-[1.03] tracking-[-0.045em] lg:mt-10 lg:max-w-[16ch] lg:text-[clamp(3.4rem,5.6vw,5.3rem)]"
+            // La escala móvil la fija la línea más larga ("Menos tareas
+            // manuales.", 22 caracteres): si no entra entera, el titular se
+            // parte al medio de una frase y deja de leerse como tres promesas.
+            className="mt-7 text-[clamp(1.4rem,7.2vw,3.4rem)] font-extrabold leading-[1.06] tracking-[-0.045em] lg:mt-9 lg:text-[clamp(3rem,5vw,4.6rem)]"
           >
-            Software e IA para resolver{" "}
-            <span className="text-verde">problemas reales.</span>
+            <span className="block">Menos tareas manuales.</span>
+            <span className="block">Menos errores.</span>
+            <span className="block text-verde">Menos tiempo perdido.</span>
           </motion.h1>
 
           <motion.p
             variants={item}
-            className="mt-8 max-w-[42ch] text-pretty text-[1.05rem] leading-relaxed text-ink lg:mt-10 lg:max-w-[52ch] lg:text-[1.2rem]"
+            className="mt-6 max-w-[26ch] text-balance text-[1.15rem] font-semibold leading-snug tracking-[-0.02em] text-carbon lg:mt-7 lg:max-w-none lg:text-[1.45rem]"
           >
-            {SITE.proposition}
+            {SITE.claim}
+          </motion.p>
+
+          <motion.p
+            variants={item}
+            className="mt-5 max-w-[44ch] text-pretty leading-relaxed text-ink lg:mt-6 lg:max-w-[60ch] lg:text-[1.08rem]"
+          >
+            {SITE.heroSubhead}
           </motion.p>
 
           <motion.div
@@ -70,14 +83,14 @@ export function Hero() {
             className="mt-10 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:gap-5 lg:mt-12"
           >
             <Button href={WHATSAPP_URL} external block>
-              Contame cómo trabajan
+              Quiero ver qué puedo mejorar
             </Button>
             <a
-              href="#metodo"
+              href="#casos"
               className="group inline-flex min-h-[3.25rem] items-center justify-center gap-2 text-[0.95rem] font-medium text-ink transition-colors duration-200 hover:text-carbon sm:justify-start"
             >
               <span className="relative">
-                Ver cómo trabajamos
+                Ver casos reales
                 <span
                   aria-hidden
                   className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-verde transition-transform duration-300 ease-out group-hover:scale-x-100"

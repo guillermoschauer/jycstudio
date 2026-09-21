@@ -22,12 +22,12 @@ export function Contacto() {
               <Eyebrow number="04" tone="dark">
                 Contacto
               </Eyebrow>
-              <h2 className="mt-7 max-w-[14ch] text-balance text-[clamp(2.2rem,9vw,3rem)] font-extrabold leading-[1.03] tracking-[-0.04em] text-ivory lg:text-[clamp(2.5rem,3.6vw,3.6rem)]">
-                Hablemos de cómo funciona tu negocio.
+              <h2 className="mt-7 max-w-[16ch] text-balance text-[clamp(2rem,8.5vw,2.7rem)] font-extrabold leading-[1.04] tracking-[-0.04em] text-ivory lg:text-[clamp(2.3rem,3.3vw,3.2rem)]">
+                ¿Qué parte de tu negocio te está haciendo perder tiempo?
               </h2>
-              <p className="mt-7 max-w-[42ch] text-pretty leading-relaxed text-gris lg:text-[1.1rem]">
-                No hace falta empezar con un software. Primero entendamos qué
-                conviene mejorar.
+              <p className="mt-7 max-w-[44ch] text-pretty leading-relaxed text-gris lg:text-[1.1rem]">
+                No hace falta que sepas qué software o qué IA necesitás. Contame
+                cómo trabajan hoy y vemos qué conviene mejorar.
               </p>
             </Reveal>
 

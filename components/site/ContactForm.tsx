@@ -166,7 +166,8 @@ export function ContactForm({ className }: { className?: string }) {
           type="submit"
           className="group inline-flex min-h-[3.25rem] w-full items-center justify-center gap-3 rounded-[10px] bg-ivory px-7 text-[0.95rem] font-semibold tracking-[-0.01em] text-carbon transition-colors duration-200 hover:bg-white sm:w-auto"
         >
-          Contame qué querés mejorar
+          {/* El botón nombra lo que realmente pasa al apretarlo. */}
+          Abrir consulta en WhatsApp
           <span
             aria-hidden
             className="transition-transform duration-300 ease-out group-hover:translate-x-0.5"
