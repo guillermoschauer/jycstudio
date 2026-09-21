@@ -474,7 +474,6 @@ export const CASES: CaseItem[] = [
     microcopy: "Producto propio · agenda, gastos y documentos",
     href: "/casos/coparentar",
     visual: "shot",
-    featured: true,
     status: "live",
     liveUrl: "https://coparentar.com",
     image: {
