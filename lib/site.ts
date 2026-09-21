@@ -155,6 +155,31 @@ export const AUDIENCE = [
 ] as const;
 
 // ---------------------------------------------------------------------------
+// Quién está detrás.
+// Reassurance, not a bio: enough to show there is a real person with both
+// business and technical judgement, and nothing more. Deliberately not a
+// numbered chapter of the argument — see components/site/QuienEstaDetras.tsx.
+// ---------------------------------------------------------------------------
+
+export const FOUNDER = {
+  name: "Guillermo Schauer",
+  role: "Fundador · Schauer Labs",
+  lead: "Soy Guillermo Schauer, fundador de Schauer Labs.",
+  body: [
+    "Vengo del derecho, el desarrollo de software y la creación de productos digitales. Hoy trabajo combinando esas experiencias para entender cómo funcionan los negocios, detectar problemas operativos y diseñar tecnología que realmente los resuelva.",
+    "Me interesa menos construir software por construir y más encontrar la solución correcta para cada problema.",
+  ],
+  photo: {
+    src: "/team/guillermo-schauer.png",
+    alt: "Retrato de Guillermo Schauer, fundador de Schauer Labs.",
+    width: 1254,
+    height: 1254,
+    /** Portrait crop from the square original — see the Screenshot rationale. */
+    focus: "50% 35%",
+  },
+} as const;
+
+// ---------------------------------------------------------------------------
 // 04 — Casos.
 // Real projects only. No invented clients, metrics or results.
 // Every case is told as PROBLEMA → PROCESO → SOLUCIÓN.

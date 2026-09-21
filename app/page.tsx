@@ -6,6 +6,7 @@ import { Metodo } from "@/components/site/Metodo";
 import { Manifiesto } from "@/components/site/Manifiesto";
 import { Casos } from "@/components/site/Casos";
 import { ParaQuien } from "@/components/site/ParaQuien";
+import { QuienEstaDetras } from "@/components/site/QuienEstaDetras";
 import { Contacto } from "@/components/site/Contacto";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppFab } from "@/components/site/WhatsAppFab";
@@ -14,7 +15,10 @@ import { StickyCTA } from "@/components/site/StickyCTA";
 /**
  * The home tells one story, in order: here is the situation → here is what we
  * do about it → here is how → here is what we believe → here is the proof →
- * here is who it is for → let's talk.
+ * here is who it is for → here is who is behind it → let's talk.
+ *
+ * Manifiesto and QuienEstaDetras are the two unnumbered asides; everything else
+ * is a numbered chapter of the argument.
  */
 export default function Home() {
   return (
@@ -28,6 +32,7 @@ export default function Home() {
         <Manifiesto />
         <Casos />
         <ParaQuien />
+        <QuienEstaDetras />
         <Contacto />
       </main>
       <Footer />
