@@ -36,12 +36,19 @@ export function Manifiesto() {
                 id="manifiesto-titulo"
                 className="mt-6 max-w-[18ch] text-balance text-[clamp(2rem,8vw,2.7rem)] leading-[1.05] tracking-[-0.04em] lg:max-w-[22ch] lg:text-[clamp(2.4rem,3.6vw,3.3rem)]"
               >
-                <span className="font-extrabold text-carbon">IA para quitar trabajo,</span>{" "}
-                <span className="font-light text-verde">no necesariamente trabajadores.</span>
+                {/* El contrapunto arranca siempre en su propia línea: dejado al
+                    flujo natural caía después de la coma, a mitad de renglón, y
+                    la frase perdía la estructura de dos tiempos. */}
+                <span className="block font-extrabold text-carbon">
+                  IA para reducir tareas repetitivas,
+                </span>
+                <span className="block font-light text-verde">
+                  no para reemplazar personas.
+                </span>
               </p>
-              <p className="mt-6 max-w-[52ch] text-pretty leading-relaxed text-ink">
-                Usamos IA donde puede sacar tareas repetitivas del medio. Lo que
-                necesita criterio, conversación o decisión sigue siendo humano.
+              <p className="mt-6 max-w-[54ch] text-pretty leading-relaxed text-ink">
+                Usamos IA para sacar del medio lo rutinario y liberar tiempo para
+                lo que necesita criterio, conversación y decisión.
               </p>
             </Reveal>
           </div>
