@@ -1,16 +1,17 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { CasoDestacado } from "@/components/site/CasoDestacado";
-import { CasosIndex } from "@/components/site/CasosIndex";
 import { CASES, FEATURED_CASES } from "@/lib/site";
 
 /**
  * 04 — Cases. Real projects only: no invented clients, metrics or results.
  *
- * Two layers, on purpose: the featured ones get the screenshot and the
- * before/after, so the section proves something instead of listing names; every
- * project, including the ones still in the workshop, is listed underneath.
+ * Four featured cases and a link out, rather than the full table underneath:
+ * the table repeated the projects the reader had just scrolled past, which cost
+ * a screen and a half on a phone and added nothing. The count stays in the link
+ * so the section still says how much work there is without listing all of it.
  */
 export function Casos() {
   return (
@@ -41,23 +42,32 @@ export function Casos() {
           ))}
         </div>
 
-        {/* Everything else. */}
-        <div className="mt-24 lg:mt-32">
-          <Reveal>
-            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-              <h3 className="text-[1.5rem] font-extrabold tracking-[-0.03em] text-carbon lg:text-[1.9rem]">
-                Todos los trabajos
-              </h3>
-              <p className="eyebrow text-[0.6rem] text-muted">
-                {CASES.length} proyectos
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.06} className="mt-10">
-            <CasosIndex />
-          </Reveal>
-        </div>
+        {/* The way out to everything else. */}
+        <Reveal className="mt-16 border-t border-hairline pt-8 lg:mt-20">
+          <Link
+            href="/casos"
+            className="group flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2"
+          >
+            <span className="text-[1.35rem] font-extrabold tracking-[-0.03em] text-carbon lg:text-[1.7rem]">
+              <span className="relative">
+                Ver los {CASES.length} trabajos
+                <span
+                  aria-hidden
+                  className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-verde transition-transform duration-300 ease-out group-hover:scale-x-100"
+                />
+              </span>
+              <span
+                aria-hidden
+                className="ml-3 inline-block text-verde transition-transform duration-300 ease-out group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </span>
+            <span className="eyebrow text-[0.6rem] text-muted">
+              Productos en uso, en beta y en desarrollo
+            </span>
+          </Link>
+        </Reveal>
       </Container>
     </section>
   );
